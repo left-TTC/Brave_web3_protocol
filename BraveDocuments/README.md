@@ -84,22 +84,22 @@ Responsible for parsing HTML, CSS, and JavaScript, and rendering web page conten
             mojo::Remote<mojom::DocumentParser> parser;  
             parser->ParseHtml("<html>...</html>", base::BindOnce(...));
             ```
-            ```mermaid
+            ```meimaid
             sequenceDiagram
-                participant Client as 客户端
-                participant Stub as 客户端存根
-                participant Binding as 绑定层
-                participant Skeleton as 服务端骨架
-                participant Impl as 业务实现
+            participant Client as 客户端
+            participant Stub as 客户端存根
+            participant Binding as 绑定层
+            participant Skeleton as 服务端骨架
+            participant Impl as 业务实现
 
-                Client->>Stub: 调用 ParseHtml()
-                Stub->>Binding: 序列化参数为Mojo消息
-                Binding->>Skeleton: 通过MessagePipe传输
-                Skeleton->>Impl: 调用实际业务逻辑
-                Impl->>Skeleton: 返回结果
-                Skeleton->>Binding: 序列化结果
-                Binding->>Stub: 通过管道回传
-                Stub->>Client: 触发回调
+            Client->>Stub: 调用 ParseHtml()
+            Stub->>Binding: 序列化参数为Mojo消息
+            Binding->>Skeleton: 通过MessagePipe传输
+            Skeleton->>Impl: 调用实际业务逻辑
+            Impl->>Skeleton: 返回结果
+            Skeleton->>Binding: 序列化结果
+            Binding->>Stub: 通过管道回传
+            Stub->>Client: 触发回调
             ```
         
 - 
