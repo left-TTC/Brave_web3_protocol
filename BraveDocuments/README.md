@@ -93,9 +93,88 @@
     - single threded
     - COM single Threded
 
+- Posting a Parallel task
+    - PostTask (direct posting to the thred pool)
+    - Post via taskrunner
+    - Post sequenced task(not necessarily on the same thred)
+        - How to implement a series of synchronous tasks
+            - Ⅰ.create an sequenced taskrunner
+            - Ⅱ. post tasks on taskrunner in order 
+        - By chormium's rules, Sequence tasks should be given priority
+    - How to run multiple tasks on same thred
+        ```cpp
+        base::SingleThreadTaskRunner
+        ```
+    - post task to main thred or IO therd
+        ```cpp
+        content/public/browser/browser_thread.h
+        ```
+        - content::GetUIThreadTaskRunner({})
+        - content::GetIOThreadTaskRunner({})
+
+- Important guidelines you can follow
+    - just post 
+
+- Efficient parallel task scheduling method - base::PostJob
+    - woker task 
+        - The threads in the thread pool run this WorkerTask together
+        - The program loops through small work items until it is finished or needs to exit.
+    ```cpp
+    void WorkerTask(base::JobDelegate* job_delegate) {
+        while (!job_delegate->ShouldYield()) { // 一直做，直到该让路
+            auto work_item = TakeWorkItem();     // 拿一个小任务
+            if (!work_item)
+            return;                           // 没任务了就退出
+            ProcessWork(work_item);              // 处理任务
+        }
+    }
+    ```
+
+- general use API
+    > These are the APIS to contact with SequenceManager
+    - base::RunLoop
+        - start sequence manager
+
+    - base::Thread/SequencedTaskRunner::CurrentDefaultHandle
+        - re post task from current thred/sequence
+    
+    - base::SequenceLocalStorageSlot
+        - Attach some local variables to the current sequence (each sequence has its own small storage).
+    
+    - base::CurrentThread
+        - For example, use base::CurrentThread::Get()->GetTaskRunner() to get the task queue of this thread.
+    
+---
+### About Components
+
 
 ---
 
+### Writing Tests
+    - TEST_F marco
+
+---
+
+### UI Thred and IO Thred
+> super busy threds 
+#### UI (Main Thred)
+- Handles all UI related stuff
+
+- Schedule various high-level logic inside the browser
+
+- Manage all the objects which is relative with UI
+
+- Runs most of the core logic of the Browser process
+#### IO (Main Thred)
+- Handle IPC meassage
+    - Mojo communication
+- Network Request
+
+- Handles disk IO (small amount)
+    - read file
+- Interact with underlying platform services
+    - For example, DNS resolution and proxy settings change monitoring
+---
 
 ## Core Concepts
 
@@ -177,7 +256,36 @@
 > as its name: It ensures that all tasks are executed by the same physical thread
 
 ### Callback<> and Bind()
-> 
+    base/functional/bind.h
+
+- Partial application
+    - bind a subsets of arguments to produce another function that takes fewer argument
+        ```cpp
+        int Add(int a, int b);
+        auto Add5 = BindOnce(&Add, 5);  // Add5 是一个只需要一个参数（b）的新函数
+        Add5.Run(3);  // 相当于调用 Add(5, 3)
+        ```
+    - Differences between closure
+        - In javaScript, python, Lisp: retain a reference to its enclosing environment
+        - What is captured is the parameters you explicitly pass in, and the "binding" is completed when Bind is called.
+
+- base::OnceCallback
+    - A wrapper for a function that is called only once
+        #### OnceCallback<>
+        - created by base::BindOnce()
+        - move-only type: means it can be moved but not copied
+
+        #### RepeatingCallback<>
+        - created by base::BindRepeating()
+        - copies cheap
+        - Can be implicitly converted to base::OnceCallback<>
+    
+- [usage](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/callback.md)
+    - this is doc about the callback's usage
+
+        
+- base::OnceClosure
+    - A one-time small task unit with no parameters and delayed execution
 
 ---
 
