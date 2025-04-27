@@ -13,7 +13,7 @@
 
 ---
 
-## AboutChormium
+## [AboutChormium](https://www.chromium.org/developers/design-documents/)
 > Brave is based on chormium, so I'm research Chormium frist here
 
 ### Multi-process Architecture
@@ -146,6 +146,47 @@
     
 ---
 ### About Components
+
+---
+### [Inter-process Communication(IPC)](https://www.chromium.org/developers/design-documents/inter-process-communication/)
+
+#### IPC in the browser
+- I/O thred
+    > I/O threads mainly exist in the browser process
+    - this is a thred that dedicated to handling network requests and other input/output tasks
+    - If you are checking the url request like me, you may pay more attention to the IO therd
+
+- ChannelProxy
+    - master that send meesage from renderer to browser process
+
+- ResourceDispatcherHost(资源调度主机)
+    - components that handles resoure request
+    - Call the corresponding network protocol for processing according to the content of the request (such as HTTP request)
+
+
+#### IPC in the renderer
+- main rederer thred 
+    - Manages messages from and back to the browser process
+
+- renderer thred
+    - Also called WebKit thread, it is mainly responsible for actual page rendering, JavaScript execution, and UI updates.
+
+- IPC
+    - In the renderer process, messages are passed from the browser process to the WebKit renderer thread via the main renderer thread, and vice versa.
+
+
+#### Multi-process Reasource loading
+> All betwork communications are handled by Browser process, so if you only focus on network requests of ominibox, you don't need to change the IPC-related code
+
+- We can divide it into three parts
+    - Blink: render engine
+    - Renderer: every render process,which always be an page, it includes an Blink object
+    - Browser: Manage all render process and handle all the network requests
+
+#### Messages
+- Type
+    - routed
+    - control
 
 
 ---
