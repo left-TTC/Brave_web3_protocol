@@ -3,66 +3,83 @@
 #ifndef BRAVE_WEB3_SERVICER_H_
 #define BRAVE_WEB3_SERVICER_H_
 
-
-// #include "net/url_request/url_request_interceptor.h" 
-// #include "url/gurl.h"
-
 #include <string>
 #include <vector>
-#include <cstdint>
-#include <ed25519.h>
+#include <array>
+#include <optional> 
+#include <stdexcept>
 
-namespace fanmocheng {
+namespace Solana_web3 {
 
-    const std::string ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+    //About generate PDA
+    const size_t MAX_SEEDS = 16;
+
+    const size_t MAX_SEED_LEN = 32;
+
+    const std::array<uint8_t, 19> PDA_MARKER = { 
+        80, 114, 111, 103, 114, 97, 109, 68, 101, 114, 105, 118, 101, 100, 65, 100, 100, 114, 101 // "ProgramDerivedAddress"
+    };
+
+    //About basa58
+    const std::string BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
 
     std::string EncodeBase58(const std::vector<uint8_t> &input);
 
     std::vector<uint8_t> DecodeBase58(const std::string& input);
 
-    namespace Web3Service  {
-        std::string FindProgramAddressSync(const std::vector<unsigned char>& publickey, const std::vector<unsigned char>& programid);
-
-
-
-    };
-
-    class PublicKey {
+    class Pubkey {
     public:
+        //Pubkey length
         static const size_t LENGTH = 32;
-        //store the publickey's byte data
-        std::vector<uint8_t> bytes;
+        
+        std::array<uint8_t, LENGTH> bytes;
 
-        //The default constructor initializes a public key object
-        //PublicKey and initializes the bytes array to 32 zero bytes. 
-        //In this way, if the user does not pass the public key data, 
-        //it will get a default, invalid public key
-        PublicKey() : bytes(LENGTH, 0) {}
+        //constructor function
+        Pubkey();
+        explicit Pubkey(const std::array<uint8_t, LENGTH>& b);
+        explicit Pubkey(const std::string &pubkey);
 
-        explicit PublicKey(const std::vector<uint8_t>& bytes){
-            if(bytes.size() != LENGTH){
-                throw std::runtime_error("Invalid public key length");
-            }
-            this->bytes = bytes;
-        }
+        std::string toBase58() const;
 
-        explicit PublicKey(const std::string &base58Key){
-            this->bytes = fanmocheng::DecodeBase58(base58Key);
-            if(bytes.size() != LENGTH){
-                throw std::runtime_error("Invalid public key length");
-            }
-        }
+        bool operator==(const Pubkey& other) const {
+            return bytes == other.bytes;
+        };
 
-        std::string toBase58() const {
-            return fanmocheng::EncodeBase58(bytes);
-        }
-
-        bool isOnCurve() const {
-            return ed25519
-        }
+        bool is_on_curve() const;
     };
+
+    enum class PubkeyError{
+        InvalidSeeds,
+        MaxSeedLengthExceeded,
+    };
+
+    namespace Solana_web3_interface{
+        //the hash utils to calculate PDA
+        
+        /*
+        *@name:         sha_256
+        *@description:  get the hashed value
+        *@input:        input_data: the data which will be hashed
+        *               output_hash: pase in an empty std::array
+        *@output:       null
+        */
+        void sha_256(const std::vector<uint8_t>& input_data, std::array<uint8_t, Pubkey::LENGTH>& output_hash);
+
+        //
+        std::optional<Pubkey> create_program_address_cxx(
+            const std::vector<std::vector<uint8_t>>& seeds,
+            const Pubkey& program_id,
+            PubkeyError* out_error = nullptr 
+        );
+
+        std::optional<std::pair<std::string, uint8_t>> try_find_program_address_cxx(
+            const std::vector<std::vector<uint8_t>>& seeds,
+            const Pubkey& program_id
+        );
+    }
 }
 
 
 
 #endif
+

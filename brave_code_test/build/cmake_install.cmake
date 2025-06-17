@@ -1,4 +1,4 @@
-# Install script for directory: /home/f/myproject/Brave_web3_protocol/brave_code_test
+# Install script for directory: /home/captain/project/Brave_web3_protocol/brave_code_test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/bin/objdump")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/f/myproject/Brave_web3_protocol/brave_code_test/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/captain/project/Brave_web3_protocol/brave_code_test/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

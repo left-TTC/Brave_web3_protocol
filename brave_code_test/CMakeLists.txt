@@ -1,11 +1,8 @@
 cmake_minimum_required(VERSION 3.10)  
 project(Web3ServiceProject)  
 
-find_package(OpenSSL REQUIRED)
-find_package(Sodium REQUIRED)
-
-
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SOURCES
     main.cpp
@@ -15,5 +12,3 @@ set(SOURCES
 
 add_executable(test ${SOURCES})
 
-target_link_libraries(test OpenSSL::SSL OpenSSL::Crypto)
-target_link_libraries(test Sodium::Sodium)
