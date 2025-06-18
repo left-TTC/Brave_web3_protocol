@@ -75,6 +75,9 @@
         "cstdarg": "cpp",
         "numeric": "cpp",
         "random": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "any": "cpp",
+        "codecvt": "cpp",
+        "valarray": "cpp"
     }
 }

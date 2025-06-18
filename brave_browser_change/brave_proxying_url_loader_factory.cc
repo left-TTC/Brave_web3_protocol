@@ -647,39 +647,39 @@ void BraveProxyingURLLoaderFactory::InProgressRequest::OnRequestError(
 }
 
 BraveProxyingURLLoaderFactory::BraveProxyingURLLoaderFactory(
-    BraveRequestHandler& request_handler,
-    content::BrowserContext* browser_context,
-    int render_process_id,
-    content::FrameTreeNodeId frame_tree_node_id,
-    network::URLLoaderFactoryBuilder& factory_builder,
-    scoped_refptr<RequestIDGenerator> request_id_generator,
-    DisconnectCallback on_disconnect,
-    scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner)
-    : request_handler_(request_handler),
-      browser_context_(browser_context),
-      render_process_id_(render_process_id),
-      frame_tree_node_id_(frame_tree_node_id),
-      request_id_generator_(request_id_generator),
-      disconnect_callback_(std::move(on_disconnect)),
-      navigation_response_task_runner_(
-          std::move(navigation_response_task_runner)),
-      weak_factory_(this) {
-  DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
-  DCHECK(proxy_receivers_.empty());
-  DCHECK(!target_factory_.is_bound());
+        BraveRequestHandler& request_handler,
+        content::BrowserContext* browser_context,
+        int render_process_id,
+        content::FrameTreeNodeId frame_tree_node_id,
+        network::URLLoaderFactoryBuilder& factory_builder,
+        scoped_refptr<RequestIDGenerator> request_id_generator,
+        DisconnectCallback on_disconnect,
+        scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner)
+        : request_handler_(request_handler),
+        browser_context_(browser_context),
+        render_process_id_(render_process_id),
+        frame_tree_node_id_(frame_tree_node_id),
+        request_id_generator_(request_id_generator),
+        disconnect_callback_(std::move(on_disconnect)),
+        navigation_response_task_runner_(
+            std::move(navigation_response_task_runner)),
+        weak_factory_(this) {
+    DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
+    DCHECK(proxy_receivers_.empty());
+    DCHECK(!target_factory_.is_bound());
 
-  auto [receiver, target_factory] = factory_builder.Append();
+    auto [receiver, target_factory] = factory_builder.Append();
 
-  target_factory_.Bind(std::move(target_factory));
-  target_factory_.set_disconnect_handler(
-      base::BindOnce(&BraveProxyingURLLoaderFactory::OnTargetFactoryError,
-                     base::Unretained(this)));
+    target_factory_.Bind(std::move(target_factory));
+    target_factory_.set_disconnect_handler(
+        base::BindOnce(&BraveProxyingURLLoaderFactory::OnTargetFactoryError,
+                        base::Unretained(this)));
 
-  proxy_receivers_.Add(this, std::move(receiver),
-                       navigation_response_task_runner_);
-  proxy_receivers_.set_disconnect_handler(
-      base::BindRepeating(&BraveProxyingURLLoaderFactory::OnProxyBindingError,
-                          base::Unretained(this)));
+    proxy_receivers_.Add(this, std::move(receiver),
+                        navigation_response_task_runner_);
+    proxy_receivers_.set_disconnect_handler(
+        base::BindRepeating(&BraveProxyingURLLoaderFactory::OnProxyBindingError,
+                            base::Unretained(this)));
 }
 
 BraveProxyingURLLoaderFactory::~BraveProxyingURLLoaderFactory() = default;
@@ -698,6 +698,23 @@ void BraveProxyingURLLoaderFactory::MaybeProxyRequest(
                         : content::FrameTreeNodeId(),
       factory_builder, navigation_response_task_runner);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // if contains "web3"
 bool if_need_handle_url(const GURL& input_url) {
@@ -779,54 +796,54 @@ void get_new_url(const GURL& input_url,
              const std::string& path_one,
              base::OnceCallback<void(const GURL&)> callback,
              const std::string& content) {
-              LOG(INFO) << "我们成功的查询到了一次CID:"<< content;
-              std::string cid = content;
-              if (!cid.empty() && cid.back() == '\n') {
-                cid.pop_back();
-              }
-              std::string path;
-              std::string last_need_add;
+                LOG(INFO) << "我们成功的查询到了一次CID:"<< content;
+                std::string cid = content;
+                if (!cid.empty() && cid.back() == '\n') {
+                    cid.pop_back();
+                }
+                std::string path;
+                std::string last_need_add;
 
-              if (path_origin.empty() || path_origin == "/") {
-                last_need_add = "/index.html";
-              } else {
-                last_need_add = path_origin;
-              }
-              path = path_one + cid + last_need_add;
+                if (path_origin.empty() || path_origin == "/") {
+                    last_need_add = "/index.html";
+                } else {
+                    last_need_add = path_origin;
+                }
+                path = path_one + cid + last_need_add;
 
-              GURL new_url = GURL(scheme + "://" + host + ":" + port + path);
-              std::move(callback).Run(new_url);
+                GURL new_url = GURL(scheme + "://" + host + ":" + port + path);
+                std::move(callback).Run(new_url);
             },
           path_origin, scheme, host, port, path_one, std::move(callback)));
 }
 
 // check the request type
 net::IsolationInfo::RequestType choose_request_type(const GURL& input_referrer) {
-  if (input_referrer.is_empty()) {
-    return net::IsolationInfo::RequestType::kMainFrame;
-  } else {
-    return net::IsolationInfo::RequestType::kOther;
-  }
+    if (input_referrer.is_empty()) {
+        return net::IsolationInfo::RequestType::kMainFrame;
+    } else {
+        return net::IsolationInfo::RequestType::kOther;
+    }
 }
 
 void BraveProxyingURLLoaderFactory::CreateLoaderAndStart(
-    mojo::PendingReceiver<network::mojom::URLLoader> loader_receiver,
-    int32_t request_id,
-    uint32_t options,
-    const network::ResourceRequest& request,
-    mojo::PendingRemote<network::mojom::URLLoaderClient> client,
-    const net::MutableNetworkTrafficAnnotationTag& traffic_annotation) {
-  DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
+        mojo::PendingReceiver<network::mojom::URLLoader> loader_receiver,
+        int32_t request_id,
+        uint32_t options,
+        const network::ResourceRequest& request,
+        mojo::PendingRemote<network::mojom::URLLoaderClient> client,
+        const net::MutableNetworkTrafficAnnotationTag& traffic_annotation) {
+    DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
 
-  LOG(INFO) << "进入了brave拦截函数";
-  const GURL& check_url = request.url;
-  //First check if you need to change the url
-  if (if_need_handle_url(check_url)) {
-    network::ResourceRequest modified_request = request;
-    //next get the url_factory
-    auto* storage_partition = browser_context_->GetDefaultStoragePartition();
-    scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory =
-        storage_partition->GetURLLoaderFactoryForBrowserProcess();
+    LOG(INFO) << "进入了brave拦截函数";
+    const GURL& check_url = request.url;
+    //First check if you need to change the url
+    if (if_need_handle_url(check_url)) {
+        network::ResourceRequest modified_request = request;
+        //next get the url_factory
+        auto* storage_partition = browser_context_->GetDefaultStoragePartition();
+        scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory =
+            storage_partition->GetURLLoaderFactoryForBrowserProcess();
 
     get_new_url(
         check_url, url_loader_factory.get(),
@@ -888,6 +905,42 @@ void BraveProxyingURLLoaderFactory::CreateLoaderAndStart(
     LOG(INFO) << "离开了brave拦截函数";
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void BraveProxyingURLLoaderFactory::Clone(
     mojo::PendingReceiver<network::mojom::URLLoaderFactory> loader_receiver) {

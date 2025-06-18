@@ -1,0 +1,1 @@
+/bin/c++ CMakeFiles/test.dir/main.cpp.o CMakeFiles/test.dir/brave_web3_service.cc.o CMakeFiles/test.dir/brave_web3_rpc.cc.o -o test  -lsodium 

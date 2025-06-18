@@ -8,6 +8,7 @@
 #include <array>
 #include <optional> 
 #include <stdexcept>
+#include <sodium.h>
 
 namespace Solana_web3 {
 
@@ -16,9 +17,7 @@ namespace Solana_web3 {
 
     const size_t MAX_SEED_LEN = 32;
 
-    const std::array<uint8_t, 19> PDA_MARKER = { 
-        80, 114, 111, 103, 114, 97, 109, 68, 101, 114, 105, 118, 101, 100, 65, 100, 100, 114, 101 // "ProgramDerivedAddress"
-    };
+    static const std::string PDA_MARKER = "ProgramDerivedAddress";  
 
     //About basa58
     const std::string BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
@@ -56,23 +55,15 @@ namespace Solana_web3 {
     namespace Solana_web3_interface{
         //the hash utils to calculate PDA
         
-        /*
-        *@name:         sha_256
-        *@description:  get the hashed value
-        *@input:        input_data: the data which will be hashed
-        *               output_hash: pase in an empty std::array
-        *@output:       null
-        */
         void sha_256(const std::vector<uint8_t>& input_data, std::array<uint8_t, Pubkey::LENGTH>& output_hash);
 
-        //
         std::optional<Pubkey> create_program_address_cxx(
             const std::vector<std::vector<uint8_t>>& seeds,
             const Pubkey& program_id,
             PubkeyError* out_error = nullptr 
         );
-
-        std::optional<std::pair<std::string, uint8_t>> try_find_program_address_cxx(
+        
+        std::optional<std::pair<Pubkey, uint8_t>> try_find_program_address_cxx(
             const std::vector<std::vector<uint8_t>>& seeds,
             const Pubkey& program_id
         );

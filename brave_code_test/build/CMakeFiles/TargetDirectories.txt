@@ -1,0 +1,3 @@
+/home/captain/project/Brave_web3_protocol/brave_code_test/build/CMakeFiles/test.dir
+/home/captain/project/Brave_web3_protocol/brave_code_test/build/CMakeFiles/edit_cache.dir
+/home/captain/project/Brave_web3_protocol/brave_code_test/build/CMakeFiles/rebuild_cache.dir

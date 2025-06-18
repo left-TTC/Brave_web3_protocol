@@ -4,10 +4,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <optional> 
-#include <iomanip>
-#include <sstream>
+#include <optional>     
 #include <algorithm>
+#include <sodium.h>
+#include <limits>
 
 #include "brave_web3_service.h"
 
@@ -45,6 +45,7 @@ namespace Solana_web3 {
         std::vector<uint8_t> bytes;
         bytes.push_back(0);
         
+        const std::string BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
         for (size_t i = 0; i < input.size(); i++) {
             size_t index = BASE58_ALPHABET.find(input[i]);
             if (index == std::string::npos) {
@@ -85,20 +86,13 @@ namespace Solana_web3 {
     //construct Pubkey from string
     Pubkey::Pubkey(const std::string& pubkey_b58) {
         std::vector<uint8_t> decoded_bytes = DecodeBase58(pubkey_b58);
-
         if (decoded_bytes.empty()) {
-            std::cerr << "Error: Pubkey constructor (string) failed to decode Base58 string: " << pubkey_b58 << std::endl;
-            std::fill(bytes.begin(), bytes.end(), 0);
             return;
         }
 
         if (decoded_bytes.size() != LENGTH) {
-            std::cerr << "Error: Pubkey constructor (string) decoded length (" << decoded_bytes.size()
-                      << ") does not match expected Pubkey length (" << LENGTH << ") for: " << pubkey_b58 << std::endl;
-            std::fill(bytes.begin(), bytes.end(), 0); // Initialize to all zeros on error
             return;
         }
-
         std::copy(decoded_bytes.begin(), decoded_bytes.end(), bytes.begin());
     }
 
@@ -111,30 +105,125 @@ namespace Solana_web3 {
     }
 
     bool Pubkey::is_on_curve() const{
-
+        return crypto_core_ed25519_is_valid_point(bytes.data()) == 1;
     }
 
 
     //--------------------solana web3 interface-------------------
     
     namespace Solana_web3_interface{
+        /*
+        *@name:         sha_256
+        *@description:  get the hashed value
+        *@input:        input_data: the data which will be hashed
+        *               output_hash: pase in an empty std::array
+        *@output:       null
+        */
         void sha_256(const std::vector<uint8_t>& input_data, std::array<uint8_t, Pubkey::LENGTH>& output_hash){
+            static_assert(Pubkey::LENGTH == crypto_hash_sha256_BYTES, "SHA256 output must be 32 bytes");
 
+            if (crypto_hash_sha256(output_hash.data(), input_data.data(), input_data.size()) != 0) {
+                throw std::runtime_error("libsodium SHA-256 hashing failed");
+            }
         }
 
-        // std::optional<Pubkey> create_program_address_cxx(
-        //     const std::vector<std::vector<uint8_t>>& seeds,
-        //     const Pubkey& program_id,
-        //     PubkeyError* out_error 
-        // ){
 
-        // }
+        /*
+        *@name:         create_program_address_cxx
+        *@description:  get the hashed value
+        *@input:        seeds: the seed to calculate PDA
+        *               program_id: the Pubkey of the program that generate the PDA
+        *               out_error: output error happends in the run time
+        *@output:       sucess: Pubkey
+        *               fail: PubkeyError
+        */
+        std::optional<Pubkey> create_program_address_cxx(
+            const std::vector<std::vector<uint8_t>>& seeds,
+            const Pubkey& program_id,
+            PubkeyError* out_error 
+        ){
+            //Determining the seeds' amounts
+            if(seeds.size() > MAX_SEEDS){
+                if(out_error){
+                    *out_error = PubkeyError::MaxSeedLengthExceeded;
+                }
+                return std::nullopt;
+            }
+            
+            //Determining the length of the seed 
+            for(const std::vector<uint8_t> &seed: seeds){
+                if(seed.size() > MAX_SEED_LEN){
+                    if(out_error){
+                        *out_error = PubkeyError::MaxSeedLengthExceeded;
+                    }
+                    return std::nullopt;
+                }
+            }
 
-        // std::optional<std::pair<std::string, uint8_t>> try_find_program_address_cxx(
-        //     const std::vector<std::vector<uint8_t>>& seeds,
-        //     const Pubkey& program_id
-        // ){
+            //Combine all the seeds to one data
+            std::vector<uint8_t> combined_data;
+            size_t total_seeds_len = 0;
+            for (const auto& seed: seeds){
+                total_seeds_len += seed.size();
+            }
+            //Allocate capacity for data
+            combined_data.reserve(total_seeds_len + Pubkey::LENGTH + PDA_MARKER.size());
+            for (const auto& seed : seeds) {
+                combined_data.insert(combined_data.end(), seed.begin(), seed.end());
+            }
 
-        // }
+            // Append program_id bytes
+            combined_data.insert(combined_data.end(), program_id.bytes.begin(), program_id.bytes.end());
+            // Append the magic PDA marker
+            combined_data.insert(combined_data.end(), PDA_MARKER.begin(), PDA_MARKER.end());
+
+            std::array<uint8_t, Pubkey::LENGTH> hash_result;
+            sha_256(combined_data, hash_result);
+
+            Pubkey potential_pda(hash_result);
+
+            if (potential_pda.is_on_curve()) {
+                if (out_error) *out_error = PubkeyError::InvalidSeeds;
+                return std::nullopt; 
+            }
+
+            return potential_pda;
+        }
+
+
+        /*
+        *@name:         try_find_program_address_cxx
+        *@description:  calculate the solana program PDA
+        *@input:        seeds
+        *               program_id
+        *@output:       <Pubkey, uint8_t>
+        *               Pubkey:     PDA key
+        *               uint8_t:    bumps
+        */
+        std::optional<std::pair<Pubkey, uint8_t>> try_find_program_address_cxx(
+            const std::vector<std::vector<uint8_t>>& seeds,
+            const Pubkey& program_id
+        ) {
+            for (int bump = 255; bump >= 0; --bump) {
+                std::vector<std::vector<uint8_t>> seeds_with_bump = seeds;
+                seeds_with_bump.push_back({ static_cast<uint8_t>(bump) });
+
+                PubkeyError error_code;
+                std::optional<Pubkey> result_pubkey = create_program_address_cxx(seeds_with_bump, program_id, &error_code);
+
+                if (result_pubkey) {
+                    return std::make_optional(std::make_pair(*result_pubkey, static_cast<uint8_t>(bump)));
+                } else if (error_code == PubkeyError::InvalidSeeds) {
+                    // continue
+                } else {
+                    std::cerr << "Error in create_program_address_cxx (non-curve related): "
+                            << static_cast<int>(error_code) << std::endl;
+                    break;
+                }
+            }
+            return std::nullopt;
+        }
+
+
     }
 }
