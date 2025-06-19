@@ -123,10 +123,15 @@ void test_function3(){
 
 }
 
+void test_function4(){
+    Solana_web3::Pubkey test_publickey = Solana_web3::Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
+    string a = test_publickey.get_pubkey_ipfs();
+}
+
 
 
 int main(){ 
-    test_function3();
+    test_function4();
 
     return 0;
 }

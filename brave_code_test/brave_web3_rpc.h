@@ -4,14 +4,35 @@
 #define BRAVE_WEB3_RPC_H_
 
 #include "json.hpp" 
+#include <curl/curl.h>
 
 #include "brave_web3_service.h"
 
 using json = nlohmann::json;
 
 namespace Solana_Rpc{
+
+    size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
     class SolanaRpcClient{
     public:
+        SolanaRpcClient(){
+            rpc_url_ = Solana_web3::rpc_url;
+            curl_global_init(CURL_GLOBAL_DEFAULT);
+        }
+
+        ~SolanaRpcClient() {
+            // Perform global libcurl cleanup.
+            curl_global_cleanup();
+        }
+
+        std::optional<json> send_rpc_request(
+            const std::string& method,
+            const json& params,
+            int request_id = 1
+        )const;
+
+    private:
+        std::string rpc_url_;
     };
 
     enum class Commitment {
@@ -51,7 +72,7 @@ namespace Solana_Rpc{
         int id = 1
     );
 
-    // const std::string[] 
+    
 
     
 

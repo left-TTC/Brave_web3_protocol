@@ -8,6 +8,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(SODIUM REQUIRED libsodium)
 
+# 查找 libcurl
+find_package(CURL REQUIRED)
+
 # 添加源文件
 set(SOURCES
     main.cpp
@@ -22,7 +25,13 @@ set(SOURCES
 add_executable(test ${SOURCES})
 
 # 包含头文件路径
-include_directories(${SODIUM_INCLUDE_DIRS})
+include_directories(
+    ${SODIUM_INCLUDE_DIRS}
+    ${CURL_INCLUDE_DIRS}
+)
 
-# 链接 libsodium 库
-target_link_libraries(test ${SODIUM_LIBRARIES})
+# 链接 libsodium 和 libcurl
+target_link_libraries(test
+    ${SODIUM_LIBRARIES}
+    CURL::libcurl
+)

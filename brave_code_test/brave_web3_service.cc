@@ -10,6 +10,7 @@
 #include <limits>
 
 #include "brave_web3_service.h"
+#include "brave_web3_rpc.h"
 
 namespace Solana_web3 {
     //---------------------About base58------------------------
@@ -106,6 +107,24 @@ namespace Solana_web3 {
 
     bool Pubkey::is_on_curve() const{
         return crypto_core_ed25519_is_valid_point(bytes.data()) == 1;
+    }
+
+    std::string Pubkey::get_pubkey_ipfs() const{
+        const std::string base58_pubkey = this->toBase58();
+        json pubkey_list = json::array();
+        pubkey_list.push_back(base58_pubkey); 
+
+        const std::optional<Solana_Rpc::commitment> confirm_level = Solana_Rpc::commitment();
+
+        Solana_Rpc::SolanaRpcClient new_rpc_client = Solana_Rpc::SolanaRpcClient();
+
+        const std::string method = "getAccountInfo";
+        json params = Solana_Rpc::build_request_args(pubkey_list, confirm_level);
+
+        std::optional<json> response = new_rpc_client.send_rpc_request(method, params);
+
+
+        return "1";
     }
 
 

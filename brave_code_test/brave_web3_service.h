@@ -12,6 +12,8 @@
 
 namespace Solana_web3 {
 
+    const std::string rpc_url = "https://api.devnet.solana.com";
+
     //About generate PDA
     const size_t MAX_SEEDS = 16;
 
@@ -20,7 +22,7 @@ namespace Solana_web3 {
     static const std::string PDA_MARKER = "ProgramDerivedAddress";  
 
     //About basa58
-    const std::string BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+    static const std::string BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
 
     std::string EncodeBase58(const std::vector<uint8_t> &input);
 
@@ -45,6 +47,8 @@ namespace Solana_web3 {
         };
 
         bool is_on_curve() const;
+
+        std::string get_pubkey_ipfs() const;
     };
 
     enum class PubkeyError{
