@@ -123,6 +123,11 @@ namespace Solana_web3 {
 
         std::optional<json> response = new_rpc_client.send_rpc_request(method, params);
 
+        if (response.has_value()) {
+            std::cout << "Response: " << response.value().dump(4) << std::endl;
+        }else{
+            std::cout << "noResponse" << std::endl;
+        }
 
         return "1";
     }
