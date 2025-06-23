@@ -7,12 +7,13 @@
 #include <curl/curl.h>
 
 #include "brave_web3_service.h"
+#include <mutex>
 
 using json = nlohmann::json;
 
 namespace Solana_Rpc{
 
-    size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
+    
     class SolanaRpcClient{
     public:
         SolanaRpcClient(){
@@ -26,13 +27,29 @@ namespace Solana_Rpc{
         }
 
         std::optional<json> send_rpc_request(
-            const std::string& method,
-            const json& params,
-            int request_id = 1
+            const json& request_json
         )const;
 
     private:
         std::string rpc_url_;
+    };
+
+    class SolanaRootMap{
+    public:
+        static SolanaRootMap& instance();
+
+        void set_all(const std::vector<std::string>& values);
+
+        std::vector<std::string> get_all() const;
+    private:
+        SolanaRootMap() = default;
+        ~SolanaRootMap() = default;
+
+        SolanaRootMap(const SolanaRootMap&) = delete;
+        SolanaRootMap& operator=(const SolanaRootMap&) = delete;
+
+        std::vector<std::string> data_;
+        mutable std::mutex mutex_;
     };
 
     enum class Commitment {
@@ -53,28 +70,30 @@ namespace Solana_Rpc{
 
     const Solana_web3::Pubkey WEB3_AUCTION_SERVICE = Solana_web3::Pubkey("9qQuHLMAJEehtk47nKbY1cMAL1bVD7nQxno4SJRDth7");
     const Solana_web3::Pubkey WEB3_NAME_SERVICE = Solana_web3::Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
+
     
+    size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
+
+    std::string get_cid_from_json(std::optional<json> json_str);
 
     Solana_web3::Pubkey get_all_root_domain();
 
-    std::string get_account_info(Solana_web3::Pubkey publickey);
+    std::string decodeAndStripPubkeys(const std::string& base64_str);
 
-    json build_request_args(
+    std::optional<json> get_account_info(Solana_web3::Pubkey publickey);
+
+    json build_request_json(
+        const std::string& method,
+        const json& parms,
+        const std::optional<int> request_id = 1,
+        const bool fliters = false
+    );
+    json build_common_request_args(
         const std::vector<json>& pubkey_array,
         const std::optional<commitment>& commitment = std::nullopt,
         const std::optional<std::string>& encoding = std::nullopt,
         const json& extra = {}
     );
-
-    json build_rpc_request(
-        const std::string& method,
-        const json& params,
-        int id = 1
-    );
-
-    
-
-    
 
 }
 

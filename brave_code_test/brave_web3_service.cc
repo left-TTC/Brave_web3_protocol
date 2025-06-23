@@ -7,16 +7,27 @@
 #include <optional>     
 #include <algorithm>
 #include <sodium.h>
-#include <limits>
 
 #include "brave_web3_service.h"
 #include "brave_web3_rpc.h"
 
 namespace Solana_web3 {
-    //---------------------About base58------------------------
+    // ===========================================================
+    //  ██████  SECTION 1: Base58 decode and encode tool  ██████
+    // ===========================================================
+    /**
+     * function: base58 encode and decode
+     */
+
+
+    /**
+     * @brief convert bytes to readable string
+     */
     std::string EncodeBase58(const std::vector<uint8_t> &input){
         std::vector<uint8_t> digits;
         digits.push_back(0);
+
+        const std::string BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
         
         for (size_t i = 0; i < input.size(); i++) {
             uint32_t carry = input[i];
@@ -42,6 +53,9 @@ namespace Solana_web3 {
         return result;
     }
 
+    /**
+     * @brief convert string to uint8 bytes
+     */
     std::vector<uint8_t> DecodeBase58(const std::string& input) {
         std::vector<uint8_t> bytes;
         bytes.push_back(0);
@@ -73,12 +87,18 @@ namespace Solana_web3 {
         return bytes;
     }
 
-
-    //------------------Pubkey class implementations-------------
     
-    //default Pubkey 000...00
+
+
+    // ===========================================================
+    //  ██████  SECTION 2: Pubkey class  ██████
+    // ===========================================================
+    /**
+     * function: Pubkey class's method and implementation
+     */
+
     Pubkey::Pubkey() {
-        std::fill(bytes.begin(), bytes.end(), 0);
+        std::fill(bytes.begin(), bytes.end(), 1);
     }
 
     //construct Pubkey by byte arrays
@@ -105,43 +125,48 @@ namespace Solana_web3 {
         return EncodeBase58(array_to_vector(this->bytes));
     }
 
-    bool Pubkey::is_on_curve() const{
-        return crypto_core_ed25519_is_valid_point(bytes.data()) == 1;
+    std::size_t Pubkey::size() const{
+        return this->bytes.size();
     }
 
+    bool Pubkey::is_on_curve() const{
+        return is_solana_PDA_valid(bytes.data()) != 0;
+    }
+    
+    /**
+     * @brief Get the ipfs cid stored in the legitimate account
+     *
+     * @return string: if the account being queried is legitimate, return cid
+     *                 if the account is invalid, return ""
+     */
     std::string Pubkey::get_pubkey_ipfs() const{
-        const std::string base58_pubkey = this->toBase58();
-        json pubkey_list = json::array();
-        pubkey_list.push_back(base58_pubkey); 
-
-        const std::optional<Solana_Rpc::commitment> confirm_level = Solana_Rpc::commitment();
-
-        Solana_Rpc::SolanaRpcClient new_rpc_client = Solana_Rpc::SolanaRpcClient();
-
-        const std::string method = "getAccountInfo";
-        json params = Solana_Rpc::build_request_args(pubkey_list, confirm_level);
-
-        std::optional<json> response = new_rpc_client.send_rpc_request(method, params);
+        std::optional<json> response = Solana_Rpc::get_account_info(*this);
 
         if (response.has_value()) {
             std::cout << "Response: " << response.value().dump(4) << std::endl;
-        }else{
-            std::cout << "noResponse" << std::endl;
+            const std::string cid = Solana_Rpc::get_cid_from_json(response);
+            std::cout<< "cid:" << cid << std::endl; 
+
+            return cid;
         }
 
-        return "1";
+        return "";
     }
 
-
-    //--------------------solana web3 interface-------------------
+    // ===========================================================
+    //  ██████  SECTION 3: Universal Functions  ██████
+    // ===========================================================
+    /**
+     * function: the method function in solana_web3_interface
+     */
     
     namespace Solana_web3_interface{
-        /*
-        *@name:         sha_256
-        *@description:  get the hashed value
-        *@input:        input_data: the data which will be hashed
-        *               output_hash: pase in an empty std::array
-        *@output:       null
+        
+       /**
+        * @brief get the hashed value
+        *
+        * @param input_data   the data which will be hashed.
+        * @param output_hash  pase in an empty std::array to receive the hashed value.
         */
         void sha_256(const std::vector<uint8_t>& input_data, std::array<uint8_t, Pubkey::LENGTH>& output_hash){
             static_assert(Pubkey::LENGTH == crypto_hash_sha256_BYTES, "SHA256 output must be 32 bytes");
@@ -152,34 +177,28 @@ namespace Solana_web3 {
         }
 
 
-        /*
-        *@name:         create_program_address_cxx
-        *@description:  get the hashed value
-        *@input:        seeds: the seed to calculate PDA
-        *               program_id: the Pubkey of the program that generate the PDA
-        *               out_error: output error happends in the run time
-        *@output:       sucess: Pubkey
-        *               fail: PubkeyError
-        */
+        /**
+         * @brief check the legality of PDA
+         *
+         * @param seeds         combined seeds(include bump in the last place)
+         * @param program_id    PDA owner   
+         * 
+         * @return   Pubkey     A pda admmited by solana program
+         *           nullopt    pda check return error
+         *          
+         */
         std::optional<Pubkey> create_program_address_cxx(
             const std::vector<std::vector<uint8_t>>& seeds,
-            const Pubkey& program_id,
-            PubkeyError* out_error 
+            const Pubkey& program_id
         ){
             //Determining the seeds' amounts
             if(seeds.size() > MAX_SEEDS){
-                if(out_error){
-                    *out_error = PubkeyError::MaxSeedLengthExceeded;
-                }
                 return std::nullopt;
             }
             
             //Determining the length of the seed 
             for(const std::vector<uint8_t> &seed: seeds){
                 if(seed.size() > MAX_SEED_LEN){
-                    if(out_error){
-                        *out_error = PubkeyError::MaxSeedLengthExceeded;
-                    }
                     return std::nullopt;
                 }
             }
@@ -204,48 +223,84 @@ namespace Solana_web3 {
             std::array<uint8_t, Pubkey::LENGTH> hash_result;
             sha_256(combined_data, hash_result);
 
-            Pubkey potential_pda(hash_result);
+            Pubkey publickey(hash_result);
 
-            if (potential_pda.is_on_curve()) {
-                if (out_error) *out_error = PubkeyError::InvalidSeeds;
-                return std::nullopt; 
+            if (publickey.is_on_curve()) {
+                return std::nullopt;
             }
 
-            return potential_pda;
+            return publickey;
         }
 
 
-        /*
-        *@name:         try_find_program_address_cxx
-        *@description:  calculate the solana program PDA
-        *@input:        seeds
-        *               program_id
-        *@output:       <Pubkey, uint8_t>
-        *               Pubkey:     PDA key
-        *               uint8_t:    bumps
-        */
-        std::optional<std::pair<Pubkey, uint8_t>> try_find_program_address_cxx(
+        /**
+         * @brief try to find the solana program pda by related seeds
+         *
+         * @param seeds         combined seeds(without bump in the last place)
+         * @param program_id    PDA owner   
+         * 
+         * @return   PDA        verfied PDA
+         *           empty_PDA  failed_PDA
+         *          
+         */
+        PDA try_find_program_address_cxx(
             const std::vector<std::vector<uint8_t>>& seeds,
             const Pubkey& program_id
         ) {
-            for (int bump = 255; bump >= 0; --bump) {
+            if(sodium_init() < 0){
+                return empty_PDA;
+            }
+
+            for(uint8_t bump = 255; bump >= 0; --bump){
                 std::vector<std::vector<uint8_t>> seeds_with_bump = seeds;
                 seeds_with_bump.push_back({ static_cast<uint8_t>(bump) });
 
-                PubkeyError error_code;
-                std::optional<Pubkey> result_pubkey = create_program_address_cxx(seeds_with_bump, program_id, &error_code);
+                const std::optional<Pubkey> create_res = create_program_address_cxx(seeds_with_bump, program_id);
 
-                if (result_pubkey) {
-                    return std::make_optional(std::make_pair(*result_pubkey, static_cast<uint8_t>(bump)));
-                } else if (error_code == PubkeyError::InvalidSeeds) {
-                    // continue
-                } else {
-                    std::cerr << "Error in create_program_address_cxx (non-curve related): "
-                            << static_cast<int>(error_code) << std::endl;
-                    break;
+                if(create_res.has_value()){
+                    const PDA result = PDA{
+                        create_res.value(),
+                        bump,
+                    };
+                    return result;
                 }
             }
-            return std::nullopt;
+
+            return empty_PDA;
+        }
+
+
+        PDA get_cid_from_json_account(const std::string& domain, const Pubkey &root_domain_account){
+            const std::string combined_domain = PREFIX + domain;
+            const std::vector<uint8_t> combined_domain_bytes(combined_domain.begin(), combined_domain.end());
+            
+            std::array<uint8_t, Pubkey::LENGTH> hash_domain;
+            sha_256(combined_domain_bytes, hash_domain);
+            std::vector<std::vector<uint8_t>> domain_account_seeds;
+
+            domain_account_seeds.push_back(std::vector<uint8_t>(hash_domain.begin(), hash_domain.end()));
+            domain_account_seeds.push_back(std::vector<uint8_t>(32, 0));
+            domain_account_seeds.push_back(std::vector<uint8_t>(root_domain_account.bytes.begin(), root_domain_account.bytes.end()));
+            //get domain account key
+            auto domain_account_PDA = try_find_program_address_cxx(domain_account_seeds, WEB3_NAME_SERVICE);
+        
+            //now we can calculate the ipfs account
+            std::vector<std::vector<uint8_t>> domain_ipfs_seeds;
+            const std::string combined_ipfs = PREFIX + "IPFS";
+            const std::vector<uint8_t> ipfs_account_bytes(combined_ipfs.begin(), combined_ipfs.end());
+
+            std::array<uint8_t, Pubkey::LENGTH> hash_ipfs;
+            sha_256(ipfs_account_bytes, hash_ipfs);
+            std::vector<std::vector<uint8_t>> ipfs_account_seeds;
+
+            ipfs_account_seeds.push_back(std::vector<uint8_t>(hash_ipfs.begin(), hash_ipfs.end()));
+            ipfs_account_seeds.push_back(std::vector<uint8_t>(CENTRAL_RECORD_STATE.bytes.begin(), CENTRAL_RECORD_STATE.bytes.end()));
+            ipfs_account_seeds.push_back(std::vector<uint8_t>(domain_account_PDA.publickey.bytes.begin(), domain_account_PDA.publickey.bytes.end()));
+
+            auto ipfs_account_PDA = try_find_program_address_cxx(ipfs_account_seeds, WEB3_NAME_SERVICE);
+
+            return ipfs_account_PDA;
+            
         }
 
 

@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Web3 Test",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/brave_code_test/build/test",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Add libsodium source directory to GDB",
+          // 替换这里的 "/path/to/libsodium-1.0.19/src/libsodium/" 为你实际的 libsodium 源代码根目录
+          // 这个路径是你在下载和解压 libsodium 源代码后，包含 crypto_core、randombytes 等子目录的根目录
+          "text": "dir /home/captain/libsodium-stable/src/libsodium/crypto_core/ed25519",
+          "ignoreFailures": false
+        },
+        // ****** 新增配置结束 ******
+      ],
+      "miDebuggerPath": "/usr/bin/gdb"
+    }
+  ]
+}

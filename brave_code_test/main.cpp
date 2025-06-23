@@ -89,49 +89,92 @@ void test_function2(){
 
     auto result = Solana_web3::Solana_web3_interface::try_find_program_address_cxx(seeds, test_program_id);
 
-    if (result.has_value()) {
-        Solana_web3::Pubkey pda = result->first;
-        uint8_t bump = result->second;
-        std::cout << "PDA: " << pda.toBase58() << ", bump: " << static_cast<int>(bump) << std::endl;
-        //F6XgnHw3HVffBJLhhLnuu4XGQtKYz2TxYP2oJUCuxBfQ
-        //F6XgnHw3HVffBJLhhLnuu4XGQtKYz2TxYP2oJUCuxBfQ
-    } else {
-        std::cerr << "Failed to find PDA." << std::endl;
-    }
-}
-
-
-void test_function3(){
-    Solana_web3::Pubkey test_publickey = Solana_web3::Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
-
-    json pubkey_list = json::array();
-    pubkey_list.push_back(test_publickey.toBase58());
-
-    const std::optional<Solana_Rpc::commitment> confirm_level = Solana_Rpc::commitment();
-
-    json request_params = Solana_Rpc::build_request_args(
-        pubkey_list, confirm_level
-    );
-
-    const std::string get_account_info = "getAccountInfo";
-
-    json rpc_request = Solana_Rpc::build_rpc_request(
-        get_account_info, request_params
-    );
-
-    std::cout << rpc_request.dump(4) << std::endl;
-
+    Solana_web3::Pubkey pda = result.publickey;
+    uint8_t bump = result.bump;
+    std::cout << "PDA: " << pda.toBase58() << ", bump: " << static_cast<int>(bump) << std::endl;
+    //F6XgnHw3HVffBJLhhLnuu4XGQtKYz2TxYP2oJUCuxBfQ
+    //F6XgnHw3HVffBJLhhLnuu4XGQtKYz2TxYP2oJUCuxBfQ
 }
 
 void test_function4(){
-    Solana_web3::Pubkey test_publickey = Solana_web3::Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
-    string a = test_publickey.get_pubkey_ipfs();
+    //8SCKeL3FDsTLNLEtLTVrnmNaGBTi8meNJHkGk4yBHKkm   aaa
+    //8ZdaNzfVYUdFpJH8sCkWy59SxN1UXP5JrBJZwxtWQTRB   QmPu4ZT2zPfyVY8CA2YBzqo9HfAV79nDuuf177tMrQK1py
+    Solana_web3::Pubkey test_publickey = Solana_web3::Pubkey("8SCKeL3FDsTLNLEtLTVrnmNaGBTi8meNJHkGk4yBHKkm");
+
+    Solana_web3::Pubkey root_domain_key = Solana_web3::Pubkey("D1Ee8US7XM5jCs978iuAqBTLPvK6969ZNdi3yqDeZnH4");
+    const Solana_web3::PDA ipfs_account = Solana_web3::Solana_web3_interface::get_cid_from_json_account("ajja", root_domain_key);
+
+    cout << "ipfs key:" << ipfs_account.publickey.toBase58() << endl;
+
+    string a = ipfs_account.publickey.get_pubkey_ipfs();
+}
+
+#include <sodium.h>
+
+void test_function5(){
+    unsigned char hash[32] = {157, 70, 136, 182, 45, 30, 60, 75, 162, 237, 158, 91, 155, 96, 60, 229, 125, 202, 237, 54, 24, 214, 13, 105, 103, 54, 63, 69, 132, 145, 174, 134};
+
+    int result = crypto_core_ed25519_is_valid_point(hash);
+    cout << result << endl;
+}
+
+#include <fstream>
+
+void test_function6(){
+    ofstream outfile("ipfs_account_generate_test.txt");
+    for(uint32_t i = 0; i < 100000; i++ ){
+        string str_i = to_string(i);
+
+        Solana_web3::Pubkey root_domain_key = Solana_web3::Pubkey("D1Ee8US7XM5jCs978iuAqBTLPvK6969ZNdi3yqDeZnH4");
+        Solana_web3::PDA result = Solana_web3::Solana_web3_interface::get_cid_from_json_account(str_i, root_domain_key);
+
+        outfile << "Pubkey:" << " " << result.publickey.toBase58() << " " << "bump:" << " " << static_cast<int>(result.bump) << "\n";
+    }
+
+    outfile.close();
+    std::cout << "输出完成" << std::endl;
+}
+
+size_t count_different_lines(const std::string& file1, const std::string& file2) {
+    std::ifstream f1(file1, std::ios::binary);
+    std::ifstream f2(file2, std::ios::binary);
+    size_t diff_count = 0;
+
+    if (!f1.is_open() || !f2.is_open()) {
+        std::cerr << "无法打开文件" << std::endl;
+        return static_cast<size_t>(-1); // 返回最大值表示错误
+    }
+
+    std::string line1, line2;
+    while (std::getline(f1, line1) && std::getline(f2, line2)) {
+        // 统一处理换行符（移除Windows的\r）
+        if (!line1.empty() && line1.back() == '\r') line1.pop_back();
+        if (!line2.empty() && line2.back() == '\r') line2.pop_back();
+        
+        if (line1 != line2) {
+            ++diff_count;
+        }
+    }
+
+    // 检查是否有剩余行（文件长度不同）
+    while (std::getline(f1, line1)) ++diff_count;
+    while (std::getline(f2, line2)) ++diff_count;
+
+    return diff_count;
 }
 
 
-
 int main(){ 
+    // const string file1 = "./ipfs_account_generate_test.txt";
+    // const string file2 = "../test_txt/ipfs_account_generate_test_js.txt";
+
+    // size_t i = count_different_lines(file1, file2);
+    // cout << "line:" << i << endl;
+
+
+
     test_function4();
+
 
     return 0;
 }
