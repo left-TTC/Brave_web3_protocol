@@ -70,13 +70,14 @@ namespace Solana_Rpc{
 
     const Solana_web3::Pubkey WEB3_AUCTION_SERVICE = Solana_web3::Pubkey("9qQuHLMAJEehtk47nKbY1cMAL1bVD7nQxno4SJRDth7");
     const Solana_web3::Pubkey WEB3_NAME_SERVICE = Solana_web3::Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
+    const Solana_web3::Pubkey CENTRAL_REGISTER_STATE = Solana_web3::Pubkey("ERCnYDoLmfPCvmSWB52mubuDgPb7CwgUmfourQJ3sK7d");
 
     
     size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
 
     std::string get_cid_from_json(std::optional<json> json_str);
 
-    Solana_web3::Pubkey get_all_root_domain();
+    std::vector<std::string> get_all_root_domain();
 
     std::string decodeAndStripPubkeys(const std::string& base64_str);
 
@@ -88,6 +89,7 @@ namespace Solana_Rpc{
         const std::optional<int> request_id = 1,
         const bool fliters = false
     );
+    json build_root_fliters();
     json build_common_request_args(
         const std::vector<json>& pubkey_array,
         const std::optional<commitment>& commitment = std::nullopt,

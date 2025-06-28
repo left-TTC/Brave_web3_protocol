@@ -98,7 +98,7 @@ namespace Solana_web3 {
      */
 
     Pubkey::Pubkey() {
-        std::fill(bytes.begin(), bytes.end(), 1);
+        std::fill(bytes.begin(), bytes.end(), 0);
     }
 
     //construct Pubkey by byte arrays

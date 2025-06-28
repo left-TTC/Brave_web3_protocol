@@ -23,14 +23,15 @@ namespace Solana_Rpc{
      */
 
 
-    /*
-    *@description:  cosntruct   an entire json array(based on args)
-    *@input:        args:       main args, such as [Publickey]
-    *               commitment: confirm level
-    *               encoding:   return value's code format
-    *               extra:      other parameters
-    *@output:       json:       constructed json        
-    */
+    /**
+     * @brief   build the account data request json
+     *
+     * @param   pubkey_array    querying publickey
+     * @param   commitment      should always be confirmed
+     * @param   encoding        default null
+     * @param   extra           extral params
+     * @return  json            constructed json request params
+     */
     json build_common_request_args(
         const std::vector<json>& pubkey_array,
         const std::optional<commitment>& commitment,
@@ -60,7 +61,36 @@ namespace Solana_Rpc{
         }
         return args_clone;
     }
+    
+    /**
+     * @brief   return a fixed root domain fliter json
+     *
+     * @return  json   constructed root domain fliter json
+     */
+    json build_root_fliters(){
+        //get root domains key
 
+        return json::array({
+            {
+                {"memcmp", {
+                    {"offset", 32},
+                    {"bytes", CENTRAL_REGISTER_STATE.toBase58()}
+                }}
+            },
+            {
+                {"memcmp", {
+                    {"offset", 0},
+                    {"bytes", "11111111111111111111111111111111"}
+                }}
+            },
+            {
+                {"memcmp", {
+                    {"offset", 64},
+                    {"bytes", "11111111111111111111111111111111"}
+                }}
+            }
+        });
+    }
 
     json build_request_json(
         const std::string& method,
@@ -69,37 +99,29 @@ namespace Solana_Rpc{
         const bool fliters
     ){
         if(method == "getAccountInfo"){
-            json request_json = {
+            return json{
                 {"jsonrpc", "2.0"},
                 {"id", request_id},
                 {"method", method},
                 {"params", parms}
             };
-
-            return request_json;
         }else if(method == "getProgramAccounts" && fliters){
-            const Solana_web3::Pubkey central = Solana_web3::Pubkey("ERCnYDoLmfPCvmSWB52mubuDgPb7CwgUmfourQJ3sK7d");
-            //get root domains key
-            return json::array({
-                {
-                    {"memcmp", {
-                        {"offset", 32},
-                        {"bytes", central.toBase58()}
-                    }}
-                },
-                {
-                    {"memcmp", {
-                        {"offset", 0},
-                        {"bytes", Solana_web3::Pubkey().toBase58()}
-                    }}
-                },
-                {
-                    {"memcmp", {
-                        {"offset", 64},
-                        {"bytes", Solana_web3::Pubkey().toBase58()}
-                    }}
-                }
-            });
+            return json{
+                {"jsonrpc", "2.0"},
+                {"id", request_id.value_or(1)},
+                {"method", method},
+                {"params", json::array({
+                    WEB3_NAME_SERVICE.toBase58(),
+                    {
+                        {"dataSlice", {
+                            {"offset", 0},
+                            {"length", 0}
+                        }},
+                        {"encoding", "base64"},
+                        {"filters", parms}
+                    }
+                })}
+            };
         }
     }
 
@@ -183,11 +205,43 @@ namespace Solana_Rpc{
 
         return "";
     }
-
     
 
-    Solana_web3::Pubkey get_all_root_domain(){
+    std::vector<std::string> get_all_root_domain(){
+        const std::string method = "getProgramAccounts";
+        const json get_root_params = build_root_fliters();
+        const json request_json = build_request_json(method, get_root_params, 1, true);
 
+        SolanaRpcClient new_client = SolanaRpcClient();
+        auto response = new_client.send_rpc_request(request_json);
+
+        std::vector<std::string> pubkeys;
+        if(!response.has_value()){
+            return pubkeys;
+        }
+
+        json parse_json = json::parse(response);
+        std::vector<std::string> pubkey_lists;
+
+        for (const auto& item : parse_json) {
+            if (item.contains("pubkey")) {
+                pubkeys.push_back(item["pubkey"].get<std::string>());
+            }
+        }
+
+        std::cout << "fristResponse:" << response << std::endl;
+        for (const auto& pk : pubkeys) {
+            std::cout << "Pubkey: " << pk << std::endl;
+        }
+
+
+        // json data_request_params = build_common_request_args(publickey_lists, commitment());
+        // json data_request_json = build_request_json("getAccountInfo", data_request_params);
+
+        // const json data_response = new_client.send_rpc_request(data_request_json);
+        // std::cout << "data Response:" << data_response << std::endl;
+
+        return pubkeys;
     }
 
     /**
@@ -270,8 +324,8 @@ namespace Solana_Rpc{
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_buffer);
 
         // Optional: Set timeouts
-        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 5L);         // Connection timeout 5 seconds
-        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10L);               // Total operation timeout 10 seconds
+        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);         // Connection timeout 5 seconds
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 15L);               // Total operation timeout 10 seconds
 
         // Execute the request
         CURLcode res = curl_easy_perform(curl);

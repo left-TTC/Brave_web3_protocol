@@ -163,6 +163,10 @@ size_t count_different_lines(const std::string& file1, const std::string& file2)
     return diff_count;
 }
 
+void test_function8(){
+    vector<string> a = Solana_Rpc::get_all_root_domain();
+}
+
 
 int main(){ 
     // const string file1 = "./ipfs_account_generate_test.txt";
@@ -173,7 +177,7 @@ int main(){
 
 
 
-    test_function4();
+    test_function8();
 
 
     return 0;
