@@ -140,7 +140,10 @@ namespace Solana_web3 {
      *                 if the account is invalid, return ""
      */
     std::string Pubkey::get_pubkey_ipfs() const{
-        std::optional<json> response = Solana_Rpc::get_account_info(*this);
+        json pubey_json = json::array();
+        pubey_json.push_back(this->toBase58());
+
+        std::optional<json> response = Solana_Rpc::get_account_info(pubey_json);
 
         if (response.has_value()) {
             std::cout << "Response: " << response.value().dump(4) << std::endl;

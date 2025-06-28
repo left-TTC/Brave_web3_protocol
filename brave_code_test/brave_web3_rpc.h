@@ -81,7 +81,9 @@ namespace Solana_Rpc{
 
     std::string decodeAndStripPubkeys(const std::string& base64_str);
 
-    std::optional<json> get_account_info(Solana_web3::Pubkey publickey);
+    std::optional<json> get_account_info(json publickey);
+
+    std::optional<json> get_multiple_account_info(json publickeys);
 
     json build_request_json(
         const std::string& method,

@@ -38,7 +38,16 @@ namespace Solana_Rpc{
         const std::optional<std::string>& encoding,
         const json& extra
     ){
-        json args_clone = pubkey_array;
+        json args_clone;
+        if(pubkey_array.size() > 1){
+            json pubkey_list = json::array();
+            for (const auto& pk : pubkey_array) {
+                pubkey_list.push_back(pk);
+            }
+            args_clone.push_back(pubkey_list);
+        }else{
+            json args_clone = pubkey_array;
+        }
 
         if(encoding || commitment || !extra.empty()){
             json option_args;
@@ -98,7 +107,7 @@ namespace Solana_Rpc{
         const std::optional<int> request_id,
         const bool fliters
     ){
-        if(method == "getAccountInfo"){
+        if((method == "getAccountInfo") || (method == "getMultipleAccounts")){
             return json{
                 {"jsonrpc", "2.0"},
                 {"id", request_id},
@@ -123,32 +132,55 @@ namespace Solana_Rpc{
                 })}
             };
         }
+
+        return json{};
     }
 
 
     /**
      * @brief   get account's on chain datas
      *
-     * @param   publickey    accounts that needs to get data
+     * @param   publickey    account that needs to get data
      * @return  json         obtained data
      *          nullopt      no data has been retrieved
      */
-    std::optional<json> get_account_info(Solana_web3::Pubkey publickey){
-        //publickey's str
-        const std::string publcikey_str = publickey.toBase58();
-        json pubkey_list = json::array();
-        pubkey_list.push_back(publcikey_str);
+    std::optional<json> get_account_info(json publickey){
 
         //commitment -- default: confirm
         const std::optional<commitment> confirm_level = commitment();
+
         //methods: getAccountInfo
         const std::string method = "getAccountInfo";
+
         //it must be base64 when we want to get all datas
         const std::optional<std::string> base_64_encode = "base64";
+
         //build request params
-        json param = build_common_request_args(pubkey_list, confirm_level, base_64_encode);
+        json param = build_common_request_args(publickey, confirm_level, base_64_encode);
         json request_json = build_request_json(method, param);
+        std::cout << "request: " << request_json << std::endl;
+
         //send request
+        SolanaRpcClient new_client = SolanaRpcClient();
+        return new_client.send_rpc_request(request_json);
+    }
+
+    /**
+     * @brief   get accounts' on chain datas
+     *
+     * @param   publickeys   accounts that needs to get data
+     * @return  json         obtained data
+     *          nullopt      no data has been retrieved
+     */
+    std::optional<json> get_multiple_account_info(json publickeys){
+
+        const std::optional<commitment> confirm_level = commitment();
+        const std::string method = "getMultipleAccounts";
+        const std::optional<std::string> base_64_encode = "base64";
+
+        json params = build_common_request_args(publickeys, confirm_level, base_64_encode);
+        json request_json = build_request_json(method, params);
+
         SolanaRpcClient new_client = SolanaRpcClient();
         return new_client.send_rpc_request(request_json);
     }
@@ -220,7 +252,7 @@ namespace Solana_Rpc{
             return pubkeys;
         }
 
-        json parse_json = json::parse(response);
+        const json& parse_json = response.value(); 
         std::vector<std::string> pubkey_lists;
 
         for (const auto& item : parse_json) {
@@ -229,19 +261,56 @@ namespace Solana_Rpc{
             }
         }
 
-        std::cout << "fristResponse:" << response << std::endl;
+        json root_pubkey_list = json::array();
         for (const auto& pk : pubkeys) {
             std::cout << "Pubkey: " << pk << std::endl;
+
+            const std::string combined_string = pk + Solana_web3::PREFIX;
+            const std::vector<uint8_t> combined_domain_bytes(combined_string.begin(), combined_string.end());
+
+            std::array<uint8_t, Solana_web3::Pubkey::LENGTH> hash_domain;
+            Solana_web3::Solana_web3_interface::sha_256(combined_domain_bytes, hash_domain);
+
+            std::vector<std::vector<uint8_t>> domain_account_seeds;
+            domain_account_seeds.push_back(std::vector<uint8_t>(hash_domain.begin(), hash_domain.end()));
+            domain_account_seeds.push_back(std::vector<uint8_t>(Solana_web3::CENTRAL_STATE_AUCTION.bytes.begin(), Solana_web3::CENTRAL_STATE_AUCTION.bytes.end()));
+            domain_account_seeds.push_back(std::vector<uint8_t>(32, 0));
+
+            const Solana_web3::PDA root_reverse_key = Solana_web3::Solana_web3_interface::try_find_program_address_cxx(domain_account_seeds, Solana_web3::WEB3_NAME_SERVICE);
+            root_pubkey_list.push_back(root_reverse_key.publickey.toBase58());
+        }
+        
+        const std::optional<json> root_pubkeys_response = get_multiple_account_info(root_pubkey_list);
+
+        std::cout << "all root domain's qurey response:" << root_pubkeys_response << std::endl;
+
+        std::vector<std::string> root_domains;
+        if(!root_pubkeys_response.has_value()){
+            return root_domains;
         }
 
+        const json& root_response = root_pubkeys_response.value();
+        if(root_response.contains("value") && !root_response["value"].is_null()){
+            const json& root_domains_datas = root_response["value"];
+            
+            for(const auto& data: root_domains_datas){
+                if(data.contains("data") && !data["data"].is_null()){
+                    std::cout << "now check data: " << data["data"] << std::endl;
+                    std::cout << "will add data: " << data["data"][0] << std::endl;                    
+                    root_domains.push_back(decodeAndStripPubkeys(data["data"][0].get<std::string>()));
+                }else{
+                    return root_domains;
+                }
+            }
+        }else{
+            return root_domains;
+        }
 
-        // json data_request_params = build_common_request_args(publickey_lists, commitment());
-        // json data_request_json = build_request_json("getAccountInfo", data_request_params);
+        for(const auto& root_domain: root_domains){
+            std::cout << "root domains: " << root_domain << std::endl;
+        }
 
-        // const json data_response = new_client.send_rpc_request(data_request_json);
-        // std::cout << "data Response:" << data_response << std::endl;
-
-        return pubkeys;
+        return root_domains;
     }
 
     /**
