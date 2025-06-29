@@ -240,44 +240,60 @@ namespace Solana_Rpc{
     
 
     std::vector<std::string> get_all_root_domain(){
-        const std::string method = "getProgramAccounts";
-        const json get_root_params = build_root_fliters();
-        const json request_json = build_request_json(method, get_root_params, 1, true);
+        // const std::string method = "getProgramAccounts";
+        // const json get_root_params = build_root_fliters();
+        // const json request_json = build_request_json(method, get_root_params, 1, true);
 
-        SolanaRpcClient new_client = SolanaRpcClient();
-        auto response = new_client.send_rpc_request(request_json);
+        // SolanaRpcClient new_client = SolanaRpcClient();
+        // auto response = new_client.send_rpc_request(request_json);
 
         std::vector<std::string> pubkeys;
-        if(!response.has_value()){
-            return pubkeys;
-        }
+        // if(!response.has_value()){
+        //     return pubkeys;
+        // }
 
-        const json& parse_json = response.value(); 
-        std::vector<std::string> pubkey_lists;
+        // const json& parse_json = response.value(); 
+        // std::vector<std::string> pubkey_lists;
 
-        for (const auto& item : parse_json) {
-            if (item.contains("pubkey")) {
-                pubkeys.push_back(item["pubkey"].get<std::string>());
-            }
-        }
+        // for (const auto& item : parse_json) {
+        //     if (item.contains("pubkey")) {
+        //         pubkeys.push_back(item["pubkey"].get<std::string>());
+        //     }
+        // }
+
+        const Solana_web3::Pubkey test1 = Solana_web3::Pubkey("D1Ee8US7XM5jCs978iuAqBTLPvK6969ZNdi3yqDeZnH4");
+        const Solana_web3::Pubkey test2 = Solana_web3::Pubkey("5b1xvUie2Za6k3tBw7BVNrnp7gLGBqM4NjWqH2R4qeQt");
+
+        pubkeys.push_back(test1.toBase58());
+        pubkeys.push_back(test2.toBase58());
+
+        
 
         json root_pubkey_list = json::array();
         for (const auto& pk : pubkeys) {
             std::cout << "Pubkey: " << pk << std::endl;
 
-            const std::string combined_string = pk + Solana_web3::PREFIX;
+            const Solana_web3::Pubkey auction_state = Solana_web3::Pubkey("2DnqJcAMA5LPXcQN1Ep1rJNbyXXSofmbXdcweLwyoKq");
+            std::cout << "AUCTION:" << auction_state.toBase58() << std::endl;
+
+            const std::string combined_string = Solana_web3::PREFIX + pk ;
             const std::vector<uint8_t> combined_domain_bytes(combined_string.begin(), combined_string.end());
 
             std::array<uint8_t, Solana_web3::Pubkey::LENGTH> hash_domain;
+
             Solana_web3::Solana_web3_interface::sha_256(combined_domain_bytes, hash_domain);
 
             std::vector<std::vector<uint8_t>> domain_account_seeds;
             domain_account_seeds.push_back(std::vector<uint8_t>(hash_domain.begin(), hash_domain.end()));
-            domain_account_seeds.push_back(std::vector<uint8_t>(Solana_web3::CENTRAL_STATE_AUCTION.bytes.begin(), Solana_web3::CENTRAL_STATE_AUCTION.bytes.end()));
+            
+            domain_account_seeds.push_back(std::vector<uint8_t>(auction_state.bytes.begin(), auction_state.bytes.end()));
             domain_account_seeds.push_back(std::vector<uint8_t>(32, 0));
 
             const Solana_web3::PDA root_reverse_key = Solana_web3::Solana_web3_interface::try_find_program_address_cxx(domain_account_seeds, Solana_web3::WEB3_NAME_SERVICE);
             root_pubkey_list.push_back(root_reverse_key.publickey.toBase58());
+
+            std::cout << "reverse key: " << root_reverse_key.publickey.toBase58() << std::endl;
+
         }
         
         const std::optional<json> root_pubkeys_response = get_multiple_account_info(root_pubkey_list);

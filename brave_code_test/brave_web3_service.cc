@@ -297,7 +297,7 @@ namespace Solana_web3 {
             std::vector<std::vector<uint8_t>> ipfs_account_seeds;
 
             ipfs_account_seeds.push_back(std::vector<uint8_t>(hash_ipfs.begin(), hash_ipfs.end()));
-            ipfs_account_seeds.push_back(std::vector<uint8_t>(CENTRAL_RECORD_STATE.bytes.begin(), CENTRAL_RECORD_STATE.bytes.end()));
+            ipfs_account_seeds.push_back(std::vector<uint8_t>(CENTRAL_STATE_RECORD.bytes.begin(), CENTRAL_STATE_RECORD.bytes.end()));
             ipfs_account_seeds.push_back(std::vector<uint8_t>(domain_account_PDA.publickey.bytes.begin(), domain_account_PDA.publickey.bytes.end()));
 
             auto ipfs_account_PDA = try_find_program_address_cxx(ipfs_account_seeds, WEB3_NAME_SERVICE);

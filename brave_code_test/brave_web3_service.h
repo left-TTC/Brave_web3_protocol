@@ -53,6 +53,10 @@ namespace Solana_web3 {
         std::string get_pubkey_ipfs() const;
     };
 
+    static const Pubkey WEB3_NAME_SERVICE = Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
+    static const Pubkey WEB3_AUCTION_SERVICE = Pubkey("");
+    static const Pubkey CENTRAL_STATE_RECORD = Pubkey("Ha57yHecoA8iepHAX4LY6wG8YWnr47MjcZaPGN3G7XAv");
+
     struct PDA{
         Pubkey publickey;
         uint8_t bump;
@@ -68,10 +72,6 @@ namespace Solana_web3 {
         MaxSeedLengthExceeded,
     };
 
-    static const Pubkey WEB3_NAME_SERVICE = Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
-    static const Pubkey WEB3_AUCTION_SERVICE = Pubkey("");
-    static const Pubkey CENTRAL_STATE_AUCTION = Pubkey("2DnqJcAMA5LPXcQN1Ep1rJNbyXXSofmbXdcweLwyoKq7");
-    static const Pubkey CENTRAL_RECORD_STATE = Pubkey("Ha57yHecoA8iepHAX4LY6wG8YWnr47MjcZaPGN3G7XAv");
     namespace Solana_web3_interface{
         //the hash utils to calculate PDA
         
