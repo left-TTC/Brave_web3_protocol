@@ -39,8 +39,10 @@ namespace Solana_Rpc{
         static SolanaRootMap& instance();
 
         void set_all(const std::vector<std::string>& values);
+        void set_all_pubkey(const std::vector<Solana_web3::Pubkey>& Pubkeys);
 
         std::vector<std::string> get_all() const;
+        std::vector<Solana_web3::Pubkey> get_all_Pubkey() const;
     private:
         SolanaRootMap() = default;
         ~SolanaRootMap() = default;
@@ -49,6 +51,7 @@ namespace Solana_Rpc{
         SolanaRootMap& operator=(const SolanaRootMap&) = delete;
 
         std::vector<std::string> data_;
+        std::vector<Solana_web3::Pubkey> pubkeys_;
         mutable std::mutex mutex_;
     };
 
@@ -56,6 +59,11 @@ namespace Solana_Rpc{
         Processed,
         Confirmed,
         Finalized,
+    };
+
+    enum class DecodeType {
+        Domain,
+        Cid,
     };
 
     class commitment{
@@ -77,9 +85,9 @@ namespace Solana_Rpc{
 
     std::string get_cid_from_json(std::optional<json> json_str);
 
-    std::vector<std::string> get_all_root_domain();
+    std::pair<std::vector<std::string>, std::vector<Solana_web3::Pubkey>> get_all_root_domain();
 
-    std::string decodeAndStripPubkeys(const std::string& base64_str);
+    std::string decodeAndStripPubkeys(const std::string& base64_str, const DecodeType type);
 
     std::optional<json> get_account_info(json publickey);
 

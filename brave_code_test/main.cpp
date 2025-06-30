@@ -102,11 +102,12 @@ void test_function4(){
     Solana_web3::Pubkey test_publickey = Solana_web3::Pubkey("8SCKeL3FDsTLNLEtLTVrnmNaGBTi8meNJHkGk4yBHKkm");
 
     Solana_web3::Pubkey root_domain_key = Solana_web3::Pubkey("D1Ee8US7XM5jCs978iuAqBTLPvK6969ZNdi3yqDeZnH4");
-    const Solana_web3::PDA ipfs_account = Solana_web3::Solana_web3_interface::get_cid_from_json_account("ajja", root_domain_key);
+    const Solana_web3::PDA ipfs_account = Solana_web3::Solana_web3_interface::get_account_from_root("ajja", root_domain_key);
 
     cout << "ipfs key:" << ipfs_account.publickey.toBase58() << endl;
 
     string a = ipfs_account.publickey.get_pubkey_ipfs();
+    cout << "cid:" << a << endl;
 }
 
 #include <sodium.h>
@@ -126,7 +127,7 @@ void test_function6(){
         string str_i = to_string(i);
 
         Solana_web3::Pubkey root_domain_key = Solana_web3::Pubkey("D1Ee8US7XM5jCs978iuAqBTLPvK6969ZNdi3yqDeZnH4");
-        Solana_web3::PDA result = Solana_web3::Solana_web3_interface::get_cid_from_json_account(str_i, root_domain_key);
+        Solana_web3::PDA result = Solana_web3::Solana_web3_interface::get_account_from_root(str_i, root_domain_key);
 
         outfile << "Pubkey:" << " " << result.publickey.toBase58() << " " << "bump:" << " " << static_cast<int>(result.bump) << "\n";
     }
@@ -164,7 +165,25 @@ size_t count_different_lines(const std::string& file1, const std::string& file2)
 }
 
 void test_function8(){
-    vector<string> a = Solana_Rpc::get_all_root_domain();
+    std::pair<std::vector<std::string>, std::vector<Solana_web3::Pubkey>> a = Solana_Rpc::get_all_root_domain();
+}
+
+#include "brave_web3_task.h"
+
+void test_function9(){
+    Brave_Web3_Solana_task::update_root_domains();
+
+    const std::vector<std::string> roots = Brave_Web3_Solana_task::get_root_domains();
+
+    for(const auto& root: roots){
+        std::cout << "root:" << root << std::endl;
+    }
+}
+
+void test_function10(){
+    const Brave_Web3_Solana_task::test_class a = Brave_Web3_Solana_task::test_class("ajja", "web3");
+
+    Brave_Web3_Solana_task::replace_domain_tocid(a);
 }
 
 
@@ -175,9 +194,7 @@ int main(){
     // size_t i = count_different_lines(file1, file2);
     // cout << "line:" << i << endl;
 
-
-
-    test_function8();
+    test_function10();
 
 
     return 0;

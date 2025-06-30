@@ -91,7 +91,7 @@ namespace Solana_web3 {
 
 
     // ===========================================================
-    //  ██████  SECTION 2: Pubkey class  ██████
+    //         ██████  SECTION 2: Pubkey class  ██████
     // ===========================================================
     /**
      * function: Pubkey class's method and implementation
@@ -142,6 +142,8 @@ namespace Solana_web3 {
     std::string Pubkey::get_pubkey_ipfs() const{
         json pubey_json = json::array();
         pubey_json.push_back(this->toBase58());
+
+        std::cout << "pubkey json:" << pubey_json << std::endl;
 
         std::optional<json> response = Solana_Rpc::get_account_info(pubey_json);
 
@@ -273,7 +275,7 @@ namespace Solana_web3 {
         }
 
 
-        PDA get_cid_from_json_account(const std::string& domain, const Pubkey &root_domain_account){
+        PDA get_account_from_root(const std::string& domain, const Pubkey &root_domain_account){
             const std::string combined_domain = PREFIX + domain;
             const std::vector<uint8_t> combined_domain_bytes(combined_domain.begin(), combined_domain.end());
             

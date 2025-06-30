@@ -55,6 +55,7 @@ namespace Solana_web3 {
 
     static const Pubkey WEB3_NAME_SERVICE = Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
     static const Pubkey WEB3_AUCTION_SERVICE = Pubkey("");
+    static const Pubkey CENTRAL_STATE_AUCTION = Pubkey("2DnqJcAMA5LPXcQN1Ep1rJNbyXXSofmbXdcweLwyoKq7");
     static const Pubkey CENTRAL_STATE_RECORD = Pubkey("Ha57yHecoA8iepHAX4LY6wG8YWnr47MjcZaPGN3G7XAv");
 
     struct PDA{
@@ -87,7 +88,7 @@ namespace Solana_web3 {
             const Pubkey& program_id
         );
 
-        PDA get_cid_from_json_account(const std::string& domain, const Pubkey &root_domain_account);
+        PDA get_account_from_root(const std::string& domain, const Pubkey &root_domain_account);
     }
 }
 

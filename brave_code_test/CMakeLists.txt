@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(Web3ServiceProject)
 
 #path to the floder where the libsodium is located 
-set(LIBSODIUM_BASE /home/f)
+set(LIBSODIUM_BASE /home/captain)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -22,6 +22,7 @@ set(SOURCES
     main.cpp
     brave_web3_service.cc
     brave_web3_rpc.cc
+    brave_web3_task.cc
 )
 
 add_executable(test ${SOURCES})
