@@ -33,10 +33,7 @@ namespace Solana_Rpc{
      * @return  json            constructed json request params
      */
     json build_common_request_args(
-        const std::vector<json>& pubkey_array,
-        const std::optional<commitment>& commitment,
-        const std::optional<std::string>& encoding,
-        const json& extra
+        const std::vector<json>& pubkey_array
     ){
         json args_clone;
         std::cout << "pubkey json size:" << pubkey_array.size() << std::endl;
@@ -50,25 +47,15 @@ namespace Solana_Rpc{
             args_clone = pubkey_array;
         }
 
-        if(encoding || commitment || !extra.empty()){
-            json option_args;
+        json option_args;
 
-            if (encoding) {
-                option_args["encoding"] = *encoding;
-            }
+        option_args["encoding"] = "base64";
 
-            option_args["encoding"] = "base64";
-
-            if (commitment) {
-                option_args["commitment"] = commitment->commitment_to_string();
-            }
-            
-            if (!extra.empty()) {
-                option_args.update(extra); 
-            }
-            
-            args_clone.push_back(option_args);
-        }
+        option_args["commitment"] = "confirmed";
+        
+        args_clone.push_back(option_args);
+        
+        std::cout << "build_common_request_args: " << args_clone << std::endl;
         return args_clone;
     }
     
@@ -148,16 +135,12 @@ namespace Solana_Rpc{
     std::optional<json> get_account_info(json publickey){
 
         //commitment -- default: confirm
-        const std::optional<commitment> confirm_level = commitment();
 
         //methods: getAccountInfo
         const std::string method = "getAccountInfo";
 
-        //it must be base64 when we want to get all datas
-        const std::optional<std::string> base_64_encode = "base64";
-
         //build request params
-        json param = build_common_request_args(publickey, confirm_level, base_64_encode);
+        json param = build_common_request_args(publickey);
         json request_json = build_request_json(method, param);
         std::cout << "request: " << request_json << std::endl;
 
@@ -175,15 +158,50 @@ namespace Solana_Rpc{
      */
     std::optional<json> get_multiple_account_info(json publickeys){
 
-        const std::optional<commitment> confirm_level = commitment();
         const std::string method = "getMultipleAccounts";
-        const std::optional<std::string> base_64_encode = "base64";
 
-        json params = build_common_request_args(publickeys, confirm_level, base_64_encode);
+        json params = build_common_request_args(publickeys);
         json request_json = build_request_json(method, params);
+
+        std::cout << "multiple request: " << request_json << std::endl;
 
         SolanaRpcClient new_client = SolanaRpcClient();
         return new_client.send_rpc_request(request_json);
+    }
+
+
+    int base64_char_value(char c) {
+        if ('A' <= c && c <= 'Z') return c - 'A';
+        if ('a' <= c && c <= 'z') return c - 'a' + 26;
+        if ('0' <= c && c <= '9') return c - '0' + 52;
+        if (c == '+') return 62;
+        if (c == '/') return 63;
+        return -1; 
+    }
+
+    int base64_decode(const char* input, std::vector<uint8_t>& output) {
+        size_t input_len = strlen(input);
+        size_t estimated_len = input_len * 3 / 4;
+        output.clear();
+        output.reserve(estimated_len);
+
+        int val = 0;
+        int valb = -8;
+
+        for (size_t i = 0; i < input_len; ++i) {
+            char c = input[i];
+            if (c == '=') break;
+            int d = base64_char_value(c);
+            if (d < 0) continue;
+            val = (val << 6) + d;
+            valb += 6;
+            if (valb >= 0) {
+                output.push_back((val >> valb) & 0xFF);
+                valb -= 8;
+            }
+        }
+
+        return 0;
     }
 
     /**
@@ -194,16 +212,13 @@ namespace Solana_Rpc{
      *          nullopt      no data has been retrieved
      */
     std::string decodeAndStripPubkeys(const std::string& base64_str, const DecodeType type) {
-        std::vector<uint8_t> decoded_bytes = cppcodec::base64_rfc4648::decode(base64_str);
-
-        std::string decoded(decoded_bytes.begin(), decoded_bytes.end());
-
-        if (decoded_bytes.size() <= 96) {
+        std::vector<uint8_t> decoded_bytes;
+        if (base64_decode(base64_str.c_str(), decoded_bytes) != 0 || decoded_bytes.size() <= 96) {
             return "";
         }
 
-        size_t cut_length;
-        switch (type){
+        size_t cut_length = 96;
+        switch (type) {
             case DecodeType::Domain:
                 cut_length = 100;
                 break;
@@ -212,11 +227,11 @@ namespace Solana_Rpc{
                 break;
         }
 
-        std::vector<uint8_t> remaining_bytes(decoded_bytes.begin() + cut_length, decoded_bytes.end());
+        if (decoded_bytes.size() <= cut_length) {
+            return "";
+        }
 
-        std::string remaining_str(remaining_bytes.begin(), remaining_bytes.end());
-
-        return remaining_str;
+        return std::string(decoded_bytes.begin() + cut_length, decoded_bytes.end());
     }
 
 
@@ -255,10 +270,13 @@ namespace Solana_Rpc{
     std::pair<std::vector<std::string>, std::vector<Solana_web3::Pubkey>> get_all_root_domain(){
         const std::string method = "getProgramAccounts";
         const json get_root_params = build_root_fliters();
+        std::cout << "fliters:" << get_root_params << std::endl;
         const json request_json = build_request_json(method, get_root_params, 1, true);
 
         SolanaRpcClient new_client = SolanaRpcClient();
         auto response = new_client.send_rpc_request(request_json);
+
+        std::cout << "response: " << response << std::endl;
 
         std::vector<std::string> root_domains;
         std::vector<Solana_web3::Pubkey> root_pubkeys;
@@ -353,26 +371,6 @@ namespace Solana_Rpc{
         return size * nmemb;
     }
 
-    //convert type Commitment to string
-    std::string commitment::commitment_to_string() const {
-        static const std::unordered_map<Commitment, std::string> map = {
-            {Commitment::Processed, "processed"},
-            {Commitment::Confirmed, "confirmed"},
-            {Commitment::Finalized, "finalized"},
-        };
-
-        return map.at(confirm_level);
-    }
-
-    //default construct function: level Confirmed
-    commitment::commitment(){
-        this->confirm_level = Commitment::Confirmed;
-    }
-
-    commitment::commitment(const Commitment &commitment){
-        this->confirm_level = commitment;
-    }
-
 
     /**
      * @brief send rpc request and receive data
@@ -396,6 +394,8 @@ namespace Solana_Rpc{
         if(request == ""){
             return std::nullopt;
         }
+
+        std::cout << "request: " << request << std::endl;
 
         std::string response_buffer;
 

@@ -1,28 +1,16 @@
 
-#include <cstddef>
-#include <cstdint>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <optional>     
-#include <algorithm>
+
 
 #include "brave_web3_service.h"
 #include "brave_web3_rpc.h"
-#include "brave_web3_service.h"
 
-namespace Solana_web3 {
 
-    std::string RpcUrl() {
-        return "https://api.devnet.solana.com";
+
+namespace Solana_web3{
+
+    GURL RpcUrl() {
+        return GURL("https://api.devnet.solana.com");
     }
-
-    // ===========================================================
-    //  ██████  SECTION 1: Base58 decode and encode tool  ██████
-    // ===========================================================
-    /**
-     * function: base58 encode and decode
-     */
 
 
     /**
@@ -61,17 +49,20 @@ namespace Solana_web3 {
     /**
      * @brief convert string to uint8 bytes
      */
-    std::vector<uint8_t> DecodeBase58(const std::string& input) {
+    absl::optional<std::vector<uint8_t>> DecodeBase58(const std::string& input) {
         std::vector<uint8_t> bytes;
         bytes.push_back(0);
-        
-        const std::string BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+
+        constexpr char kBase58Alphabet[] = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+        const std::string BASE58_ALPHABET(kBase58Alphabet);
+
         for (size_t i = 0; i < input.size(); i++) {
             size_t index = BASE58_ALPHABET.find(input[i]);
             if (index == std::string::npos) {
-                throw std::runtime_error("Invalid Base58 character");
+                // Invalid character
+                return absl::nullopt;
             }
-            
+
             uint32_t carry = static_cast<uint32_t>(index);
             for (size_t j = 0; j < bytes.size(); j++) {
                 carry += bytes[j] * 58;
@@ -83,16 +74,14 @@ namespace Solana_web3 {
                 carry >>= 8;
             }
         }
-        
+
         for (size_t i = 0; i < input.size() && input[i] == BASE58_ALPHABET[0]; i++) {
             bytes.push_back(0);
         }
-        
+
         std::reverse(bytes.begin(), bytes.end());
         return bytes;
     }
-
-    
 
 
     // ===========================================================
@@ -111,15 +100,15 @@ namespace Solana_web3 {
 
     //construct Pubkey from string
     Pubkey::Pubkey(const std::string& pubkey_b58) {
-        std::vector<uint8_t> decoded_bytes = DecodeBase58(pubkey_b58);
-        if (decoded_bytes.empty()) {
+        absl::optional<std::vector<uint8_t>> decoded_bytes = DecodeBase58(pubkey_b58);
+        if (!decoded_bytes.has_value()) {
             return;
         }
 
-        if (decoded_bytes.size() != LENGTH) {
+        if (decoded_bytes.value().size() != LENGTH) {
             return;
         }
-        std::copy(decoded_bytes.begin(), decoded_bytes.end(), bytes.begin());
+        std::copy(decoded_bytes.value().begin(), decoded_bytes.value().end(), bytes.begin());
     }
 
     static std::vector<uint8_t> array_to_vector(const std::array<uint8_t, Pubkey::LENGTH>& arr) {
@@ -137,66 +126,51 @@ namespace Solana_web3 {
     bool Pubkey::is_on_curve() const{
         return Web3_libsodium::is_solana_PDA_valid(bytes.data()) != 0;
     }
-    
-    /**
-     * @brief Get the ipfs cid stored in the legitimate account
-     *
-     * @return string: if the account being queried is legitimate, return cid
-     *                 if the account is invalid, return ""
-     */
-    std::string Pubkey::get_pubkey_ipfs() const{
-        json pubey_json = json::array();
-        pubey_json.push_back(this->toBase58());
 
-        std::cout << "pubkey json:" << pubey_json << std::endl;
+    void Pubkey::get_pubkey_ipfs(
+        scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
+        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback
+    ) const {
+        base::Value::List pubkeys;
+        pubkeys.Append(this->toBase58());
 
-        std::optional<json> response = Solana_Rpc::get_account_info(pubey_json);
-
-        if (response.has_value()) {
-            std::cout << "Response: " << response.value().dump(4) << std::endl;
-            const std::string cid = Solana_Rpc::get_cid_from_json(response);
-
-            return cid;
-        }
-
-        return "";
+        Solana_Rpc::get_account_info_and_restart(pubkeys, url_loader_factory, std::move(restart_callback));
     }
 
-    // ===========================================================
-    //  ██████  SECTION 3: Universal Functions  ██████
-    // ===========================================================
-    /**
-     * function: the method function in solana_web3_interface
-     */
-    
+    //-------------------------------------------
+
+    Pubkey return_NAMESERVICE(){
+        return Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
+    }
+
+    Pubkey return_AUCTIONSERVICE(){
+        return Pubkey("9qQuHLMAJEehtk47nKbY1cMAL1bVD7nQxno4SJRDth7");
+    }
+
+    Pubkey return_ACUTIONSTATE(){
+        return Pubkey("2DnqJcAMA5LPXcQN1Ep1rJNbyXXSofmbXdcweLwyoKq7");
+    }
+
+    Pubkey return_RECORDSTATE(){
+        return Pubkey("Ha57yHecoA8iepHAX4LY6wG8YWnr47MjcZaPGN3G7XAv");
+    }
+
+    Pubkey return_REGISTERSTATE(){
+        return Pubkey("ERCnYDoLmfPCvmSWB52mubuDgPb7CwgUmfourQJ3sK7d");
+    }
+
+
     namespace Solana_web3_interface{
-        
-       /**
-        * @brief get the hashed value
-        *
-        * @param input_data   the data which will be hashed.
-        * @param output_hash  pase in an empty std::array to receive the hashed value.
-        */
+
         void sha_256(const std::vector<uint8_t>& input_data, std::array<uint8_t, Pubkey::LENGTH>& output_hash){
             static_assert(Pubkey::LENGTH == crypto_hash_sha256_BYTES, "SHA256 output must be 32 bytes");
 
             if (Web3_libsodium::crypto_hash_sha256(output_hash.data(), input_data.data(), input_data.size()) != 0) {
-                throw std::runtime_error("libsodium SHA-256 hashing failed");
+                return;
             }
         }
 
-
-        /**
-         * @brief check the legality of PDA
-         *
-         * @param seeds         combined seeds(include bump in the last place)
-         * @param program_id    PDA owner   
-         * 
-         * @return   Pubkey     A pda admmited by solana program
-         *           nullopt    pda check return error
-         *          
-         */
-        std::optional<Pubkey> create_program_address_cxx(
+        absl::optional<Pubkey> create_program_address_cxx(
             const std::vector<std::vector<uint8_t>>& seeds,
             const Pubkey& program_id
         ){
@@ -241,17 +215,6 @@ namespace Solana_web3 {
             return publickey;
         }
 
-
-        /**
-         * @brief try to find the solana program pda by related seeds
-         *
-         * @param seeds         combined seeds(without bump in the last place)
-         * @param program_id    PDA owner   
-         * 
-         * @return   PDA        verfied PDA
-         *           empty_PDA  failed_PDA
-         *          
-         */
         PDA try_find_program_address_cxx(
             const std::vector<std::vector<uint8_t>>& seeds,
             const Pubkey& program_id
@@ -261,7 +224,7 @@ namespace Solana_web3 {
                 std::vector<std::vector<uint8_t>> seeds_with_bump = seeds;
                 seeds_with_bump.push_back({ static_cast<uint8_t>(bump) });
 
-                const std::optional<Pubkey> create_res = create_program_address_cxx(seeds_with_bump, program_id);
+                const absl::optional<Pubkey> create_res = create_program_address_cxx(seeds_with_bump, program_id);
 
                 if(create_res.has_value()){
                     const PDA result = PDA{
@@ -275,7 +238,6 @@ namespace Solana_web3 {
             return empty_PDA;
         }
 
-
         PDA get_account_from_root(const std::string& domain, const Pubkey &root_domain_account){
             const std::string combined_domain = PREFIX + domain;
             const std::vector<uint8_t> combined_domain_bytes(combined_domain.begin(), combined_domain.end());
@@ -288,7 +250,8 @@ namespace Solana_web3 {
             domain_account_seeds.push_back(std::vector<uint8_t>(32, 0));
             domain_account_seeds.push_back(std::vector<uint8_t>(root_domain_account.bytes.begin(), root_domain_account.bytes.end()));
             //get domain account key
-            auto domain_account_PDA = try_find_program_address_cxx(domain_account_seeds, WEB3_NAME_SERVICE);
+            const Pubkey name_service = return_NAMESERVICE();
+            auto domain_account_PDA = try_find_program_address_cxx(domain_account_seeds, name_service);
         
             //now we can calculate the ipfs account
             std::vector<std::vector<uint8_t>> domain_ipfs_seeds;
@@ -299,16 +262,54 @@ namespace Solana_web3 {
             sha_256(ipfs_account_bytes, hash_ipfs);
             std::vector<std::vector<uint8_t>> ipfs_account_seeds;
 
+            const Pubkey record_central = return_RECORDSTATE();
             ipfs_account_seeds.push_back(std::vector<uint8_t>(hash_ipfs.begin(), hash_ipfs.end()));
-            ipfs_account_seeds.push_back(std::vector<uint8_t>(CENTRAL_STATE_RECORD.bytes.begin(), CENTRAL_STATE_RECORD.bytes.end()));
+            ipfs_account_seeds.push_back(std::vector<uint8_t>(record_central.bytes.begin(), record_central.bytes.end()));
             ipfs_account_seeds.push_back(std::vector<uint8_t>(domain_account_PDA.publickey.bytes.begin(), domain_account_PDA.publickey.bytes.end()));
 
-            auto ipfs_account_PDA = try_find_program_address_cxx(ipfs_account_seeds, WEB3_NAME_SERVICE);
+            auto ipfs_account_PDA = try_find_program_address_cxx(ipfs_account_seeds, std::move(name_service));
 
             return ipfs_account_PDA;
             
         }
+    }
 
+    std::vector<std::string> split_host_by_dots(const std::string& url_host){
+        std::vector<std::string> parts;
+        size_t start = 0;
+        size_t end = url_host.find('.');
 
+        while (end != std::string::npos) {
+            parts.push_back(url_host.substr(start, end - start));
+            start = end + 1;
+            end = url_host.find('.', start);
+        }
+        
+        parts.push_back(url_host.substr(start));
+        
+        return parts;
+    }
+
+    std::tuple<int, bool, std::string> fast_find(
+        const GURL& original_url, 
+        const std::vector<std::string>& vec
+    ){
+        const std::string domain_host = original_url.host();
+        const std::vector<std::string> host_parts = split_host_by_dots(std::move(domain_host));
+
+        for (size_t i = 0; i < vec.size(); ++i) {
+            if (vec[i] == host_parts[host_parts.size() - 1]) {
+                std::string domain;
+                for(size_t k = 0; k < host_parts.size() - 2; ++k){
+                    LOG(INFO) << "domain part: " << host_parts[k];
+                    domain = domain + host_parts[k] + ".";
+                }
+
+                domain += host_parts[host_parts.size() - 2];
+
+                return make_tuple(static_cast<int>(i), true, domain);
+            }
+        }
+        return std::make_tuple(-1, false, "");
     }
 }

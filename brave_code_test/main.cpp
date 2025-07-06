@@ -110,15 +110,6 @@ void test_function4(){
     cout << "cid:" << a << endl;
 }
 
-#include <sodium.h>
-
-void test_function5(){
-    unsigned char hash[32] = {157, 70, 136, 182, 45, 30, 60, 75, 162, 237, 158, 91, 155, 96, 60, 229, 125, 202, 237, 54, 24, 214, 13, 105, 103, 54, 63, 69, 132, 145, 174, 134};
-
-    int result = crypto_core_ed25519_is_valid_point(hash);
-    cout << result << endl;
-}
-
 #include <fstream>
 
 void test_function6(){
@@ -194,7 +185,7 @@ int main(){
     // size_t i = count_different_lines(file1, file2);
     // cout << "line:" << i << endl;
 
-    test_function10();
+    test_function4();
 
 
     return 0;

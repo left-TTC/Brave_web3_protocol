@@ -1,23 +1,28 @@
 
-
 #ifndef BRAVE_WEB3_SERVICER_H_
 #define BRAVE_WEB3_SERVICER_H_
 
-#include <string>
-#include <vector>
+#include <iostream>
 #include <array>
-#include <optional> 
-#include <stdexcept>
-
+#include <tuple>
+#include <vector>
+#include <algorithm>
+#include "third_party/abseil-cpp/absl/types/optional.h"
 #include "brave_web3_libsodium.h"
+#include "base/json/json_reader.h"     
+#include "base/json/json_writer.h"    
+#include "base/logging.h"             
+#include "base/values.h"
+#include "base/functional/callback.h"
+#include "url/gurl.h"
+
+#include "services/network/public/mojom/url_loader_factory.mojom.h"
+#include "services/network/public/cpp/shared_url_loader_factory.h"
 
 
+namespace Solana_web3{
+    GURL RpcUrl();
 
-namespace Solana_web3 {
-
-    std::string RpcUrl();
-    
-    //About generate PDA
     const size_t MAX_SEEDS = 16;
 
     const size_t MAX_SEED_LEN = 32;
@@ -28,9 +33,9 @@ namespace Solana_web3 {
 
     std::string EncodeBase58(const std::vector<uint8_t> &input);
 
-    std::vector<uint8_t> DecodeBase58(const std::string& input);
+    absl::optional<std::vector<uint8_t>> DecodeBase58(const std::string& input);
 
-    
+
     class Pubkey {
     public:
         static const size_t LENGTH = 32;
@@ -47,16 +52,22 @@ namespace Solana_web3 {
 
         bool operator==(const Pubkey& other) const {
             return bytes == other.bytes;
-        };
+        }
 
         bool is_on_curve() const;
 
-        std::string get_pubkey_ipfs() const;
+        void get_pubkey_ipfs(
+            scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
+            base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback
+        ) const;
+
     };
 
-    static const Pubkey WEB3_NAME_SERVICE = Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
-    static const Pubkey CENTRAL_STATE_AUCTION = Pubkey("2DnqJcAMA5LPXcQN1Ep1rJNbyXXSofmbXdcweLwyoKq7");
-    static const Pubkey CENTRAL_STATE_RECORD = Pubkey("Ha57yHecoA8iepHAX4LY6wG8YWnr47MjcZaPGN3G7XAv");
+    Pubkey return_NAMESERVICE();
+    Pubkey return_AUCTIONSERVICE();
+    Pubkey return_ACUTIONSTATE();
+    Pubkey return_RECORDSTATE();
+    Pubkey return_REGISTERSTATE();
 
     struct PDA{
         Pubkey publickey;
@@ -85,9 +96,13 @@ namespace Solana_web3 {
 
         PDA get_account_from_root(const std::string& domain, const Pubkey &root_domain_account);
     }
+
+    std::vector<std::string> split_host_by_dots(const std::string& url_host);
+
+    std::tuple<int, bool, std::string> fast_find(const GURL& original_url, const std::vector<std::string>& vec);
 }
 
 
 
-#endif
 
+#endif

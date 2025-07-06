@@ -17,7 +17,7 @@ namespace Solana_Rpc{
     class SolanaRpcClient{
     public:
         SolanaRpcClient(){
-            rpc_url_ = Solana_web3::rpc_url;
+            rpc_url_ = Solana_web3::RpcUrl();
             curl_global_init(CURL_GLOBAL_DEFAULT);
         }
 
@@ -55,25 +55,9 @@ namespace Solana_Rpc{
         mutable std::mutex mutex_;
     };
 
-    enum class Commitment {
-        Processed,
-        Confirmed,
-        Finalized,
-    };
-
     enum class DecodeType {
         Domain,
         Cid,
-    };
-
-    class commitment{
-    public:
-        Commitment confirm_level;
-
-        commitment();
-        explicit commitment(const Commitment &commitment);
-
-        std::string commitment_to_string() const;
     };
 
     const Solana_web3::Pubkey WEB3_AUCTION_SERVICE = Solana_web3::Pubkey("9qQuHLMAJEehtk47nKbY1cMAL1bVD7nQxno4SJRDth7");
@@ -86,6 +70,10 @@ namespace Solana_Rpc{
     std::string get_cid_from_json(std::optional<json> json_str);
 
     std::pair<std::vector<std::string>, std::vector<Solana_web3::Pubkey>> get_all_root_domain();
+
+    int base64_char_value(char c);
+
+    int base64_decode(const char *input, unsigned char **output, size_t *output_len);
 
     std::string decodeAndStripPubkeys(const std::string& base64_str, const DecodeType type);
 
@@ -101,10 +89,7 @@ namespace Solana_Rpc{
     );
     json build_root_fliters();
     json build_common_request_args(
-        const std::vector<json>& pubkey_array,
-        const std::optional<commitment>& commitment = std::nullopt,
-        const std::optional<std::string>& encoding = std::nullopt,
-        const json& extra = {}
+        const std::vector<json>& pubkey_array
     );
 
 }
