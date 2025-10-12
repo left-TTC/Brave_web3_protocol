@@ -268,8 +268,11 @@ namespace Solana_Rpc{
     
 
     std::pair<std::vector<std::string>, std::vector<Solana_web3::Pubkey>> get_all_root_domain(){
+        // method -- getProgramAccounts
         const std::string method = "getProgramAccounts";
+
         const json get_root_params = build_root_fliters();
+        
         std::cout << "fliters:" << get_root_params << std::endl;
         const json request_json = build_request_json(method, get_root_params, 1, true);
 

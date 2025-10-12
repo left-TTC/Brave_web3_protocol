@@ -58,7 +58,9 @@ namespace Solana_web3{
 
         void get_pubkey_ipfs(
             scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
-            base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback
+            base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback,
+            const std::string maybe_domain,
+            const GURL& original_url
         ) const;
 
     };
@@ -97,9 +99,11 @@ namespace Solana_web3{
         PDA get_account_from_root(const std::string& domain, const Pubkey &root_domain_account);
     }
 
+    std::string extract_target_domain(const GURL& original_url);
+
     std::vector<std::string> split_host_by_dots(const std::string& url_host);
 
-    std::tuple<int, bool, std::string> fast_find(const GURL& original_url, const std::vector<std::string>& vec);
+    std::tuple<int, bool, std::string> fast_find(const std::string maybe_domain, const std::vector<std::string>& vec);
 }
 
 

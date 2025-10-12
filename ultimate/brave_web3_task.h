@@ -9,6 +9,39 @@
 
 namespace Brave_web3_solana_task{
 
+    // a cid instance
+    class DomainCidMap {
+    public:
+        static DomainCidMap& instance();
+    
+        void insert_or_update(const std::string& domain, const std::string& cid) {
+            base::AutoLock lock(lock_);
+            domain_cid_map_[domain] = cid;
+        }
+    
+        absl::optional<std::string> get_cid(const std::string& domain) const {
+            base::AutoLock lock(lock_);
+            auto it = domain_cid_map_.find(domain);
+            if (it != domain_cid_map_.end()) {
+                return it->second;
+            }
+            return absl::nullopt;
+        }
+    
+        void erase(const std::string& domain) {
+            base::AutoLock lock(lock_);
+            domain_cid_map_.erase(domain);
+        }
+    
+    private:
+        friend class base::NoDestructor<DomainCidMap>;
+        DomainCidMap();
+        ~DomainCidMap();
+    
+        mutable base::Lock lock_;
+        std::map<std::string, std::string> domain_cid_map_;
+    };
+
     void update_root_domains();
 
     void handle_web3_domain(
@@ -17,18 +50,15 @@ namespace Brave_web3_solana_task{
         content::BrowserContext* browser_context
     );
 
-
-    // void restart_domain_navigation(
-    //     const GURL& chekcing_url,
-    //     Solana_web3::Pubkey root_key,
-    //     base::OnceCallback<void(const GURL&)> restart_callback
-    // );
-
-    void redirct_request(
+    void redirect_request(
         network::ResourceRequest* modified_request, 
         const GURL& new_url
     );
 
+    GURL return_url_from_cid(const std::string& cid);
+
+    std::string ExtractPathFromSearchURL(const GURL& url);
+    
 }
 
 #endif

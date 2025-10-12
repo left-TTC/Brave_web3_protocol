@@ -745,6 +745,10 @@ void BraveProxyingURLLoaderFactory::CreateLoaderAndStart(
 
     network::ResourceRequest modified_request = request;
 
+    const GURL& check_url = request.url;
+
+    // Functions that will be executed asynchronously
+    // we packed it there and will executed at the right time
     base::OnceCallback<void(const GURL&, const bool is_web3_domain)> restart_cb = base::BindOnce(
         [](
             BraveProxyingURLLoaderFactory* factory,
@@ -756,13 +760,16 @@ void BraveProxyingURLLoaderFactory::CreateLoaderAndStart(
             const GURL& new_url,
             const bool is_web3_domain
         ){
+
+            LOG(INFO) << "Original url: " << modified_request.url;
+            LOG(INFO) << "new url: " << new_url;
             
             if(is_web3_domain){
-                LOG(INFO) << "redirect url";
-                Brave_web3_solana_task::redirct_request(&modified_request, new_url);
+                LOG(INFO) << "redirect web3";
+                Brave_web3_solana_task::redirect_request(&modified_request, new_url);
             }
 
-            LOG(INFO) << "now url" << modified_request.url;
+            LOG(INFO) << "redirect to url: " << modified_request.url;
 
             const uint64_t brave_request_id = factory->request_id_generator_->Generate();
                 auto result = factory->requests_.emplace(
@@ -779,8 +786,9 @@ void BraveProxyingURLLoaderFactory::CreateLoaderAndStart(
         options, std::move(client), traffic_annotation
     );
 
-    const GURL& check_url = request.url;
-
+    // from this function we check the url and get the variable is_web3_domain
+    // when the parameter is_web3_domain is obtained
+    // Perform the following operations asynchronously
     Brave_web3_solana_task::handle_web3_domain(check_url, std::move(restart_cb), browser_context_);
 
 }

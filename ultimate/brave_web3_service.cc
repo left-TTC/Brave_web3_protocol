@@ -129,34 +129,28 @@ namespace Solana_web3{
 
     void Pubkey::get_pubkey_ipfs(
         scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
-        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback
+        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback,
+        const std::string maybe_domain,
+        const GURL& original_url
     ) const {
         base::Value::List pubkeys;
         pubkeys.Append(this->toBase58());
 
-        Solana_Rpc::get_account_info_and_restart(pubkeys, url_loader_factory, std::move(restart_callback));
+        Solana_Rpc::get_account_info_and_restart(pubkeys, url_loader_factory, std::move(restart_callback), std::move(maybe_domain), original_url);
     }
 
     //-------------------------------------------
 
     Pubkey return_NAMESERVICE(){
-        return Pubkey("8YXaA8pzJ4xVPjYY8b5HkxmPWixwpZu7gVcj8EvHxRDC");
-    }
-
-    Pubkey return_AUCTIONSERVICE(){
-        return Pubkey("9qQuHLMAJEehtk47nKbY1cMAL1bVD7nQxno4SJRDth7");
-    }
-
-    Pubkey return_ACUTIONSTATE(){
-        return Pubkey("2DnqJcAMA5LPXcQN1Ep1rJNbyXXSofmbXdcweLwyoKq7");
+        return Pubkey("BEUuE7dmW6yyTVhyecrHktKF1necQvfiZdFyBCBjCXQm");
     }
 
     Pubkey return_RECORDSTATE(){
-        return Pubkey("Ha57yHecoA8iepHAX4LY6wG8YWnr47MjcZaPGN3G7XAv");
+        return Pubkey("7rQ3CCVi46zRrFMrY5nnQX2G6qvQrMKJcMcbyoCUyJDB");
     }
 
     Pubkey return_REGISTERSTATE(){
-        return Pubkey("ERCnYDoLmfPCvmSWB52mubuDgPb7CwgUmfourQJ3sK7d");
+        return Pubkey("MLUCvnLm7HHBiHnr8bHA6XMZQJbMXewocDRvpaVhFcf");
     }
 
 
@@ -274,6 +268,31 @@ namespace Solana_web3{
         }
     }
 
+    // if this is a strange web3 domain
+    // it will turn to a search result
+    // such as origin: "https://search.brave.com/search?q=x.web3&source=desktop"
+    std::string extract_target_domain(const GURL& original_url) {
+        std::string host = original_url.host();
+
+        if (host.find("google.") != std::string::npos ||
+            host.find("bing.") != std::string::npos ||
+            host.find("brave.") != std::string::npos) {
+            
+            std::string query = original_url.query();
+            size_t pos = query.find("q=");
+            if (pos != std::string::npos) {
+                std::string target = query.substr(pos + 2);
+                size_t amp_pos = target.find('&');
+                if (amp_pos != std::string::npos)
+                    target = target.substr(0, amp_pos);
+                return target;
+            }
+        }
+
+        return host; 
+    }
+
+    // We only support first-level domain names
     std::vector<std::string> split_host_by_dots(const std::string& url_host){
         std::vector<std::string> parts;
         size_t start = 0;
@@ -291,25 +310,28 @@ namespace Solana_web3{
     }
 
     std::tuple<int, bool, std::string> fast_find(
-        const GURL& original_url, 
+        const std::string maybe_domain, 
         const std::vector<std::string>& vec
     ){
-        const std::string domain_host = original_url.host();
-        const std::vector<std::string> host_parts = split_host_by_dots(std::move(domain_host));
+        const std::vector<std::string> host_parts = split_host_by_dots(std::move(maybe_domain));
+
+        if (host_parts.size() != 2) {
+            return std::make_tuple(-1, false, "");
+        }
+
+        const std::string& tld = host_parts.back();     // root
+        const std::string& name = host_parts.front();   // domain
 
         for (size_t i = 0; i < vec.size(); ++i) {
-            if (vec[i] == host_parts[host_parts.size() - 1]) {
-                std::string domain;
-                for(size_t k = 0; k < host_parts.size() - 2; ++k){
-                    LOG(INFO) << "domain part: " << host_parts[k];
-                    domain = domain + host_parts[k] + ".";
-                }
-
-                domain += host_parts[host_parts.size() - 2];
-
-                return make_tuple(static_cast<int>(i), true, domain);
+            if (vec[i] == tld) {
+                return std::make_tuple(static_cast<int>(i), true, name);
             }
         }
+
         return std::make_tuple(-1, false, "");
     }
+
+
+
+
 }
