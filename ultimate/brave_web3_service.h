@@ -66,8 +66,6 @@ namespace Solana_web3{
     };
 
     Pubkey return_NAMESERVICE();
-    Pubkey return_AUCTIONSERVICE();
-    Pubkey return_ACUTIONSTATE();
     Pubkey return_RECORDSTATE();
     Pubkey return_REGISTERSTATE();
 

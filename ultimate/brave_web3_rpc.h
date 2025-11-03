@@ -64,7 +64,8 @@ namespace Solana_Rpc{
         void SendJsonRequestWithIpfsStart(
             const base::Value::Dict& request_json, 
             scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
-            base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback
+            base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback,
+            std::string maybe_domain
         );
 
     private:
@@ -137,7 +138,9 @@ namespace Solana_Rpc{
         const base::Value::List& pubkey_array
     );
 
-    GURL getCidUrlFromContent(std::string content);
+    GURL getCidUrlFromContent(
+        std::string content, std::string maybe_domain
+    );
 
     void update_root_map(
         std::string content
@@ -146,7 +149,8 @@ namespace Solana_Rpc{
     void get_account_info_and_restart(
         base::Value::List& publickey,
         scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
-        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback
+        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback,
+        std::string maybe_domain
     );
 
     void get_all_root_pubkey(

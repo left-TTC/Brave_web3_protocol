@@ -127,6 +127,7 @@ namespace Solana_web3{
         return Web3_libsodium::is_solana_PDA_valid(bytes.data()) != 0;
     }
 
+    // maybedomain -- like x.web3 
     void Pubkey::get_pubkey_ipfs(
         scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
         base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback,
@@ -136,7 +137,7 @@ namespace Solana_web3{
         base::Value::List pubkeys;
         pubkeys.Append(this->toBase58());
 
-        Solana_Rpc::get_account_info_and_restart(pubkeys, url_loader_factory, std::move(restart_callback), std::move(maybe_domain), original_url);
+        Solana_Rpc::get_account_info_and_restart(pubkeys, url_loader_factory, std::move(restart_callback), maybe_domain);
     }
 
     //-------------------------------------------
@@ -322,8 +323,13 @@ namespace Solana_web3{
         const std::string& tld = host_parts.back();     // root
         const std::string& name = host_parts.front();   // domain
 
+        LOG(INFO) << "this root: " << tld;
+        LOG(INFO) << "this root: " << tld.size();
+
         for (size_t i = 0; i < vec.size(); ++i) {
+            LOG(INFO) << "checking root: " << vec[i];LOG(INFO) << "checking root: " << vec[i].size();
             if (vec[i] == tld) {
+                LOG(INFO) << "比对成功" << vec[i];
                 return std::make_tuple(static_cast<int>(i), true, name);
             }
         }

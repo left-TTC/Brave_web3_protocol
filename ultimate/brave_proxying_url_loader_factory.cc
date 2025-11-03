@@ -765,6 +765,7 @@ void BraveProxyingURLLoaderFactory::CreateLoaderAndStart(
             LOG(INFO) << "new url: " << new_url;
             
             if(is_web3_domain){
+                
                 LOG(INFO) << "redirect web3";
                 Brave_web3_solana_task::redirect_request(&modified_request, new_url);
             }

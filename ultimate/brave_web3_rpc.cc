@@ -1,6 +1,7 @@
 
 
 #include "brave_web3_rpc.h"
+#include "brave_web3_task.h"
 
 
 
@@ -53,10 +54,10 @@ namespace Solana_Rpc{
             return "";
         }
 
-        size_t cut_length = 96;
+        size_t cut_length;
         switch (type) {
             case DecodeType::Domain:
-                cut_length = 100;
+                cut_length = 108;
                 break;
             case DecodeType::Cid:
                 cut_length = 104;
@@ -233,8 +234,9 @@ namespace Solana_Rpc{
         rootMap.set_all(roots);
     }
 
+    
 
-    GURL getCidUrlFromContent(std::string content){
+    GURL getCidUrlFromContent(std::string content, std::string maybe_domain){
         LOG(INFO) << "ipfs query result: " << content;
 
         absl::optional<base::Value> parsed = base::JSONReader::Read(content);
@@ -265,7 +267,10 @@ namespace Solana_Rpc{
 
         if(encoded_data){
             const std::string cid = decodeAndStripPubkeys(*encoded_data, DecodeType::Cid);
-            const std::string ultimate_url_str = "http://ipfs.io/ipfs/" + cid + "/#/";
+            const std::string ultimate_url_str = "https://ipfs.io/ipns/" + cid + "/#/";
+
+            Brave_web3_solana_task::DomainCidMap& domain_cid_map = Brave_web3_solana_task::DomainCidMap::instance();
+            domain_cid_map.insert_or_update(maybe_domain, cid);
 
             LOG(INFO) << "url ipfs: " << ultimate_url_str;
 
@@ -279,7 +284,8 @@ namespace Solana_Rpc{
     void get_account_info_and_restart(
         base::Value::List& publickey,
         scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
-        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback
+        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback,
+        std::string maybe_domain
     ){
         const std::string method = "getAccountInfo";
 
@@ -289,7 +295,7 @@ namespace Solana_Rpc{
 
         auto request_sender = std::make_unique<SolanaApiRequest>();
 
-        request_sender->SendJsonRequestWithIpfsStart(request_json, url_loader_factory, std::move(restart_callback));
+        request_sender->SendJsonRequestWithIpfsStart(request_json, url_loader_factory, std::move(restart_callback), std::move(maybe_domain));
     }
 
 
@@ -335,7 +341,7 @@ namespace Solana_Rpc{
                 std::vector<std::vector<uint8_t>> domain_account_seeds;
                 domain_account_seeds.push_back(std::vector<uint8_t>(hash_domain.begin(), hash_domain.end()));
                 
-                const Solana_web3::Pubkey central_state_auction = Solana_web3::return_ACUTIONSTATE();
+                const Solana_web3::Pubkey central_state_auction = Solana_web3::return_REGISTERSTATE();
                 domain_account_seeds.push_back(std::vector<uint8_t>(central_state_auction.bytes.begin(), central_state_auction.bytes.end()));
                 domain_account_seeds.push_back(std::vector<uint8_t>(32, 0));
 
@@ -380,16 +386,6 @@ namespace Solana_Rpc{
 
         request_sender->SendJsonRequestWithFactory(request, url_loader_factory, base::BindOnce(&get_all_root_pubkey));
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -514,7 +510,8 @@ namespace Solana_Rpc{
     void SolanaApiRequest::SendJsonRequestWithIpfsStart(
         const base::Value::Dict& request_json, 
         scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
-        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback
+        base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback,
+        std::string maybe_domain
     ){
 
         net::NetworkTrafficAnnotationTag traffic_annotation =
@@ -556,12 +553,13 @@ namespace Solana_Rpc{
             base::BindOnce(
                 [](std::unique_ptr<network::SimpleURLLoader> loader,
                     base::OnceCallback<void(const GURL&, bool is_web3_domain)> restart_callback,
+                    std::string maybe_domain,
                     std::unique_ptr<std::string> response) {
                         std::string content = response ? *response : "";
-                        GURL ultimate_url = getCidUrlFromContent(content);
+                        GURL ultimate_url = getCidUrlFromContent(content, maybe_domain);
                         std::move(restart_callback).Run(ultimate_url, true);
                     },
-                std::move(loader), std::move(restart_callback)));
+                std::move(loader), std::move(restart_callback), std::move(maybe_domain)));
     }
 
 }

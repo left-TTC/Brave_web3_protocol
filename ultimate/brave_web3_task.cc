@@ -125,7 +125,6 @@ namespace Brave_web3_solana_task{
         // and the browser wasn'e ever seen the domain
         // it will trigger a search by search engine
         bool if_stranger_web3 = false;
-        std::string navi_show;
 
         // Generally this will be xxx.web3
         const std::string origin_host = modified_request->url.host();
@@ -138,17 +137,21 @@ namespace Brave_web3_solana_task{
                 return;
             }
             if_stranger_web3 = true;
-
-            navi_show = "https://" + Solana_web3::extract_target_domain(modified_request->url);
-            LOG(INFO) << "search mode " << navi_show;
         }
 
         std::string path = modified_request->url.path();
         // get the real IPFS url
         std::string full_ipfs_url = ipfs_url.spec();
         if (!path.empty()) {
+
+            LOG(INFO) << "path" << path;
+            LOG(INFO) << "full_ipfs_url" << full_ipfs_url;
+
             if (full_ipfs_url.back() != '/' && path.front() != '/') {
                 full_ipfs_url += '/';
+            }
+            if (full_ipfs_url.back() == '/' && path.front() == '/'){
+                full_ipfs_url.pop_back(); 
             }
             
             if (if_stranger_web3){
