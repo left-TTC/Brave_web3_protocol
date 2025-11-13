@@ -73,10 +73,11 @@ namespace Solana_Rpc{
 
 
     base::Value::List build_common_request_args(
-        const base::Value::List& pubkey_array
+        const base::Value::List& pubkey_array,
+        bool multiple
     ){
         base::Value::List args;
-        if(pubkey_array.size() > 1){
+        if(pubkey_array.size() > 1 || multiple){
             base::Value::List pubkeys;
             for(const auto& pubkey: pubkey_array){
                 if (pubkey.is_string()) {
@@ -148,7 +149,6 @@ namespace Solana_Rpc{
 
         if ((method == "getAccountInfo") || (method == "getMultipleAccounts")) {
             request_json.Set("params", base::Value(params.Clone()));
-
         } else if (method == "getProgramAccounts" && filters_enabled) {
             base::Value::List params_list;
 
@@ -360,7 +360,7 @@ namespace Solana_Rpc{
 
         const std::string method = "getMultipleAccounts";
 
-        base::Value::List params = build_common_request_args(pubkey_list);
+        base::Value::List params = build_common_request_args(pubkey_list, true);
         base::Value::Dict request_json = build_request_json(method, params);
 
         std::cout << "multiple request: " << request_json << std::endl;

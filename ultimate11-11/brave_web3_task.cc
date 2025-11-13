@@ -24,15 +24,15 @@ namespace Brave_web3_solana_task{
         content::BrowserContext* browser_context
     ){
 
-        // LOG(INFO) << "domain: " << domain;
+        LOG(INFO) << "domain: " << domain;
 
         // get the global root domains map
         Solana_Rpc::SolanaRootMap& rootMap = Solana_Rpc::SolanaRootMap::instance();
         std::vector<std::string> all_root_domains =  rootMap.get_all();
 
-        // for(const auto& root: all_root_domains){
-        //     LOG(INFO) << "root:" << root;
-        // }
+        for(const auto& root: all_root_domains){
+            LOG(INFO) << "root:" << root;
+        }
 
         // check the map state
         if(all_root_domains.size() == 0 && !rootMap.has_loaded){
@@ -40,8 +40,8 @@ namespace Brave_web3_solana_task{
             scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory =
                 storage_partition->GetURLLoaderFactoryForBrowserProcess();
 
-            //init
-            // LOG(INFO) << "will init the root map !!!";
+            // init
+            LOG(INFO) << "will init the root map !!!";
 
             rootMap.reverse_load_state();
             update_root_domains(url_loader_factory);
@@ -220,11 +220,13 @@ namespace Brave_web3_solana_task{
         Solana_Rpc::SolanaRootMap& rootMap = Solana_Rpc::SolanaRootMap::instance();
         std::vector<std::string> all_root_domains =  rootMap.get_all();
 
-        LOG(INFO) << "ominibox_match_judge: ";
-
         if(all_root_domains.size() == 0 && !rootMap.has_loaded){
             LOG(INFO) << "ominibox_match_judge: no the root";
             return;
+        }
+
+        for(const auto& root: all_root_domains){
+            LOG(INFO) << "omnibox root:" << root;
         }
 
         const std::string maybe_web3_domain = Solana_web3::extract_target_domain(frist_destination_url);

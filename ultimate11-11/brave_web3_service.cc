@@ -143,7 +143,7 @@ namespace Solana_web3{
     //-------------------------------------------
 
     Pubkey return_NAMESERVICE(){
-        return Pubkey("BEUuE7dmW6yyTVhyecrHktKF1necQvfiZdFyBCBjCXQm");
+        return Pubkey("BjKdJYwPEUW51Fgjy6opBWCffpoGF5NFv7sZumBnbWZm");
     }
 
     Pubkey return_RECORDSTATE(){
@@ -151,7 +151,7 @@ namespace Solana_web3{
     }
 
     Pubkey return_REGISTERSTATE(){
-        return Pubkey("MLUCvnLm7HHBiHnr8bHA6XMZQJbMXewocDRvpaVhFcf");
+        return Pubkey("DVwLzRmG4smZ5tE2U7GF1XRmUzwF7Zh1Pt152Jr6LBPz");
     }
 
 

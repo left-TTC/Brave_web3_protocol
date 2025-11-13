@@ -135,7 +135,8 @@ namespace Solana_Rpc{
     base::Value::List build_root_filters();
     
     base::Value::List build_common_request_args(
-        const base::Value::List& pubkey_array
+        const base::Value::List& pubkey_array,
+        bool multiple = false
     );
 
     GURL getCidUrlFromContent(
