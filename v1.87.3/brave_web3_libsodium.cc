@@ -1,9 +1,14 @@
 
 #include "brave_web3_libsodium.h"
-
+#include "build/build_config.h"
 
 #if defined(__clang__)
-#pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
+    #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
+#endif
+
+#if BUILDFLAG(IS_WIN)
+    #include <windows.h>
+    #include <wincrypt.h>  // SecureZeroMemory
 #endif
 
 namespace Web3_libsodium{
