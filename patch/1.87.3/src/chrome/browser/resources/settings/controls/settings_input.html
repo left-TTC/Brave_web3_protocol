@@ -1,0 +1,43 @@
+<style include="cr-shared-style">
+    :host {
+        display: flex;
+        flex: 1;
+        align-items: center;
+    }
+
+    cr-input {
+        width: 100%;
+    }
+
+    .box-input {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    cr-policy-pref-indicator {
+        margin-inline-end: var(--cr-controlled-by-spacing);
+    }
+
+    .box {
+        width: 100%;
+    }
+
+</style>
+
+<template is="dom-if" if="[[pref.controlledBy]]" restamp>
+    <cr-policy-pref-indicator pref="[[pref]]"></cr-policy-pref-indicator>
+</template>
+
+<div class="box">
+    <cr-input 
+        class="box-input"
+        id="input"
+        value="{{bindingValue_}}"
+        placeholder="{{bindingValue_}}"  
+        on-change="onInputChange_"
+        disabled="[[shouldDisable_(disabled, pref.*)]]"
+        type="url"> 
+    </cr-input>
+</div>

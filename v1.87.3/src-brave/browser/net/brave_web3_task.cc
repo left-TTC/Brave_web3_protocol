@@ -2,6 +2,8 @@
 
 #include "brave/browser/net/brave_web3_task.h"
 
+
+
 namespace Brave_web3_solana_task{
 
     DomainCidMap::DomainCidMap() = default;
@@ -10,6 +12,37 @@ namespace Brave_web3_solana_task{
     DomainCidMap& DomainCidMap::instance() {
         static base::NoDestructor<DomainCidMap> instance;
         return *instance;
+    }
+
+    bool if_use_WNS(){
+        PrefService* prefs = g_browser_process->local_state();
+
+        if (prefs) {
+            const bool ipfs_proxy =
+                decentralized_dns::IsWnsResolveMethodEnabled(prefs);
+            LOG(INFO) << "FMC get ipfs over";
+
+            std::string gateway = decentralized_dns::GetIpfsGateWay(prefs);
+            LOG(INFO) << "FMC get ipfs gateway: "<< gateway;
+            
+            return ipfs_proxy;
+
+        } else {
+            LOG(INFO) << "FMC no service";
+            return false;
+        }
+    }
+
+    std::string get_local_ipfs_gateway(){
+        PrefService* prefs = g_browser_process->local_state();
+
+        if(prefs){
+            LOG(INFO) << "FMC local ipfs gateway: "<< decentralized_dns::GetIpfsGateWay(prefs);
+            return decentralized_dns::GetIpfsGateWay(prefs); 
+        }else{
+            LOG(INFO) << "FMC no local ipfs gateway";
+            return "ipfs.io/ipfs";
+        }
     }
 
     void update_root_domains(
@@ -208,7 +241,10 @@ namespace Brave_web3_solana_task{
 
 
     GURL return_url_from_cid(const std::string& cid){
-        const std::string new_url = "https://ipfs.io/ipns/" + cid;
+
+        const std::string ipfs_gateway = get_local_ipfs_gateway();
+
+        const std::string new_url = "https://" + ipfs_gateway + "/" + cid;
         return GURL(new_url);
     }
 

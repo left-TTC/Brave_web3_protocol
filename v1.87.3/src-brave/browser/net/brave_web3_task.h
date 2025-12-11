@@ -1,9 +1,14 @@
 #ifndef BRAVE_BROWSER_NET_BRAVE_WEB3_TASK_H
 #define BRAVE_BROWSER_NET_BRAVE_WEB3_TASK_H
 
+#include <string>
+
 #include "url/gurl.h"
 #include "content/public/browser/browser_context.h"
 #include "brave/browser/net/brave_proxying_url_loader_factory.h"
+#include "brave/components/decentralized_dns/core/utils.h"
+#include "chrome/browser/profiles/profile.h"
+#include "chrome/browser/browser_process.h"
 
 #include "brave_web3_rpc.h"
 
@@ -41,6 +46,10 @@ namespace Brave_web3_solana_task{
         mutable base::Lock lock_;
         std::map<std::string, std::string> domain_cid_map_;
     };
+
+    bool if_use_WNS();
+
+    std::string get_local_ipfs_gateway();
 
     void update_root_domains();
 
