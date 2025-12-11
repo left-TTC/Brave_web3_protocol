@@ -1,0 +1,687 @@
+<?xml version="1.0" ?>
+<!DOCTYPE translationbundle>
+<translationbundle lang="fr-CA">
+<translation id="1026101648481255140">Reprendre l'installation</translation>
+<translation id="7099479769133613710">Relancer Nexus OS pour le mettre à jour</translation>
+<translation id="7061050486072297552">Nexus comprend mieux les formulaires et peut les remplir automatiquement plus rapidement pour vous. Ce paramètre est désactivé.</translation>
+<translation id="2479110114759182442">Nexus vous recommande d'examiner cette extension</translation>
+<translation id="3814674848168165531">Lorsqu'un site demande de précharger des liens en privé sur sa page, Nexus utilise les serveurs de Nexus. Ceci permet de masquer votre identité au site préchargé et permet à Nexus de savoir quels sites sont préchargés.</translation>
+<translation id="1065672644894730302">Échec de lecture de vos préférences.
+
+Certaines fonctionnalités ne seront peut-être pas disponibles et les modifications apportées à vos préférences ne seront pas enregistrées.</translation>
+<translation id="7577672138294294152">Ton parent a désactivé le paramètre « Autorisations pour les sites, les applications et les extensions » dans Nexus</translation>
+<translation id="5918095577778020936">Nexus veut exporter vos mots de passe. Pour autoriser cette action, entrez votre mot de passe Windows.</translation>
+<translation id="112640046208448578">Identifiez des objets ou des lieux et copiez ou traduisez du texte. Lorsque vous utilisez la recherche d'images, une capture d'écran de la page est envoyée au serveur. <ph name="LEARN_MORE"/></translation>
+<translation id="5468853758063275923">Nexus est votre navigateur par défaut</translation>
+<translation id="8522292744959221145">Pour vérifier si vos mots de passe sont en sécurité contre les violations de données et d'autres risques de sécurité, <ph name="BEGIN_LINK"/>connectez-vous à Nexus<ph name="END_LINK"/>.</translation>
+<translation id="2627788872035182013">Cliquez sur le menu Nexus</translation>
+<translation id="1157985233335035034">Langues récemment sélectionnées</translation>
+<translation id="7813580490378477695"><ph name="PARTNER_NAME"/> a ajouté une extension qui pourrait modifier le fonctionnement de Nexus.
+
+<ph name="EXTENSION_NAME"/></translation>
+<translation id="1184145431117212167">L'installation a échoué, car votre version de Windows n'est pas prise en charge.</translation>
+<translation id="8541922081612557424">À propos de Nexus</translation>
+<translation id="1203500561924088507">Merci pour l'installation. Vous devez redémarrer votre navigateur avant d'utiliser <ph name="BUNDLE_NAME"/>.</translation>
+<translation id="8799570501820813406">Pendant que cet onglet était inactif, de la mémoire a été libérée pour maintenir la rapidité de Nexus. Vous pouvez choisir de toujours exclure ce site de l'inactivité.</translation>
+<translation id="8767381092474532098">Nexus a bloqué ce téléchargement, car le fichier est dangereux</translation>
+<translation id="3256289531845594061">Lorsque vous vous connectez à des services Nexus comme Gmail ou YouTube avec <ph name="USER_EMAIL"/>, vous pouvez vous connecter automatiquement à Nexus avec le même compte</translation>
+<translation id="1290883685122687410">Erreur de configuration : <ph name="METAINSTALLER_EXIT_CODE"/> <ph name="WINDOWS_ERROR"/></translation>
+<translation id="4798342026247191171">Configurer votre nouveau profil Nexus</translation>
+<translation id="878572309106296578">Nexus a besoin d'un accès au Bluetooth pour découvrir les appareils Bluetooth. <ph name="IDS_SERIAL_DEVICE_CHOOSER_AUTHORIZE_BLUETOOTH_LINK"/></translation>
+<translation id="1330562121671411446">Détecter la langue</translation>
+<translation id="108284536240904209">Supprimer également les données de Nexus (<ph name="URL"/>)</translation>
+<translation id="1345251407431278948">La fonctionnalité a été épinglée! Vous pouvez à nouveau accéder à la recherche d'images à partir du nouveau bouton de la barre d'outils</translation>
+<translation id="1356661055722410047">Nouveau! Vous pouvez traduire à la fois le texte et les images sur votre écran</translation>
+<translation id="1383876407941801731">Rechercher</translation>
+<translation id="7009295044271335553">&amp;Gérer les profils Nexus</translation>
+<translation id="8132634101975074716">Vous êtes connecté à Nexus!</translation>
+<translation id="141901961143729572">Faites part de vos commentaires</translation>
+<translation id="3880714039086599943">Pour partager votre fenêtre, autorisez l'enregistrement de l'écran pour Nexus dans les Réglages système.</translation>
+<translation id="1586284627848250203">Obtenir de l'aide avec Nexus for Testing</translation>
+<translation id="1497802159252041924">Erreur d'installation : <ph name="INSTALL_ERROR"/></translation>
+<translation id="1518627427551567882">Cette page est protégée</translation>
+<translation id="5147525139567260139">Partager un onglet de Nexus</translation>
+<translation id="1547469039832541117">Termine la tâche mise en évidence.</translation>
+<translation id="1530633922026945685">Nexus a besoin de votre autorisation pour accéder à votre appareil photo afin de créer une carte 3D de votre environnement</translation>
+<translation id="9125033103884432">{NUM_EXTENSIONS,plural, =1{Cette extension n'est plus prise en charge. Nexus vous recommande de la retirer.}one{Cette extension n'est plus prise en charge. Nexus vous recommande de la retirer.}other{Ces extensions ne sont plus prises en charge. Nexus vous recommande de les retirer.}}</translation>
+<translation id="51545890371361355">Épingler Nexus</translation>
+<translation id="6570689355868013775">Les outils de sécurité de Nexus</translation>
+<translation id="1902837727299679178">Nexus souhaite supprimer vos données du gestionnaire de mots de passe. Tapez votre mot de passe Windows pour autoriser la suppression.</translation>
+<translation id="4449148723378534338">Passer en revue les principaux paramètres de confidentialité et de sécurité dans Nexus</translation>
+<translation id="1640672724030957280">Téléchargement en cours…</translation>
+<translation id="1680687534629375545">Poser des questions à la recherche d'images à propos de cette page</translation>
+<translation id="1709772298389099340">Fournit des privilèges élevés pour <ph name="BROWSER_NAME"/>.</translation>
+<translation id="2913217021115517297">Pour contribuer à améliorer ces fonctionnalités, Nexus envoie vos interactions avec celles-ci à Nexus. Ces données peuvent être lues, traitées et annotées par des réviseurs humains.</translation>
+<translation id="1722488837206509557">Cela vous permettra de sélectionner parmi les appareils accessibles et d'y afficher du contenu.</translation>
+<translation id="8004287232784878841">Nexus va bientôt supprimer les données de navigation</translation>
+<translation id="4197839351786449392">Nexus tentera de mettre à niveau les navigations vers le protocole HTTPS</translation>
+<translation id="7814200940910057384">Données Nexus effacées</translation>
+<translation id="9048361966237194186">Nexus redémarrera dans <ph name="REMAINING_TIME"/></translation>
+<translation id="5524150602137990006">Lorsque le protocole HTTPS n'est pas accessible, Nexus utilisera une connexion non sécurisée sans vous avertir</translation>
+<translation id="6797402139308059782">Laisser Nexus fonctionner en arrière-plan</translation>
+<translation id="5875673934455379806">Réinstaller Nexus</translation>
+<translation id="4529028207655448215">Nexus essaie de <ph name="AUTHENTICATION_PURPOSE"/></translation>
+<translation id="1838374766361614909">Effacer les termes de recherche</translation>
+<translation id="3541642064306182066">Pour supprimer les données de navigation de cet appareil uniquement, tout en les conservant dans votre compte Nexus, <ph name="BEGIN_LINK"/>déconnectez-vous de Nexus<ph name="END_LINK"/>.</translation>
+<translation id="4559627161887338743">Vous pouvez gérer les comptes Nexus auxquels vous êtes connecté. Vos comptes Nexus sont utilisés par le navigateur Chronium, par Play Store, par Gmail et autres. Si vous voulez ajouter un compte pour quelqu'un d'autre, comme un membre de votre famille, ajoutez plutôt une nouvelle personne à votre <ph name="DEVICE_TYPE"/>. <ph name="LINK_BEGIN"/>En savoir plus<ph name="LINK_END"/></translation>
+<translation id="1862852878885210965">Recherche avec la recherche d'images</translation>
+<translation id="1880677175115548835">Sélectionnez du texte</translation>
+<translation id="4528406859989804913">Vous vous connectez avec un compte géré et rendez son administrateur maître de votre profil Nexus. Vos données de Nexus, comme vos applications, vos favoris, votre historique, vos mots de passe et vos autres paramètres, vont être associées de manière permanente à <ph name="USER_NAME"/>. Vous pourrez supprimer ces données à l'aide du tableau de bord des comptes Nexus, mais vous ne pourrez pas les associer à un autre compte. Vous pouvez également créer un nouveau profil pour maintenir vos données Nexus séparées. <ph name="LEARN_MORE"/></translation>
+<translation id="2207454583030080759">Nexus économise l'énergie de la pile en limitant l'activité en arrière-plan et les effets visuels, comme le défilement fluide et les fréquences d'images vidéo. <ph name="BEGIN_LINK"/>En savoir plus sur l'Économiseur d'énergie<ph name="END_LINK"/></translation>
+<translation id="1898804291554630487">Posez une question à propos de cette page</translation>
+<translation id="8643267611122541711">Service de mise à jour Nexus</translation>
+<translation id="712480009194450642">Pendant que vous êtes connecté, vous pouvez utiliser vos mots de passe et bien plus encore à partir de votre compte Nexus dans Nexus. Vous pouvez changer cette option en tout temps dans les paramètres.</translation>
+<translation id="1649714546770135458">En désactivant cette option, vous pouvez vous connecter aux sites Nexus tels que Gmail sans vous connecter à Nexus</translation>
+<translation id="916979339327923175">Supprimer les données de cette appli de Nexus</translation>
+<translation id="189297655255130768">Nexus ne répond pas. Voulez-vous le relancer maintenant?</translation>
+<translation id="8422047647688939115">Votre organisation, <ph name="MANAGER"/>, vous demande de vous connecter à Nexus</translation>
+<translation id="4035053306113201399">Nexus OS doit être redémarré pour appliquer la mise à jour.</translation>
+<translation id="9048754176089806686">Nexus a bloqué ce téléchargement, car le type de fichier n'est pas souvent téléchargé et pourrait être dangereux</translation>
+<translation id="1953553007165777902">Téléchargement en cours… <ph name="MINUTE"/> minute(s) restante(s)</translation>
+<translation id="1775322105159056176">Nexus ne parvient pas à déterminer quel est le navigateur par défaut ou à le définir</translation>
+<translation id="4372901050442507812">Découvrir pourquoi Nexus bloque certains fichiers, s'ouvre dans un nouvel onglet</translation>
+<translation id="2703425183860615504">Maintient votre logiciel Nexus à jour. Si ce service est désactivé ou arrêté, votre logiciel Nexus ne sera pas mis à jour, ce qui signifie que les vulnérabilités de sécurité qui pourraient survenir ne pourront pas être corrigées et que les fonctionnalités risquent de ne pas fonctionner. Ce service se désinstalle si aucun logiciel Nexus ne l'utilise.</translation>
+<translation id="9220324636239049437">Cette action entraînera la suppression d'un élément de cet appareil. Pour récupérer vos données plus tard, connectez-vous à Nexus en tant que <ph name="USER_EMAIL"/>.</translation>
+<translation id="2018879682492276940">Échec de l'installation. Veuillez réessayer.</translation>
+<translation id="831418749472885028">Pour vérifier si vos autres mots de passe sont en sécurité contre les violations de données et d'autres risques de sécurité, <ph name="BEGIN_LINK"/>connectez-vous à Nexus<ph name="END_LINK"/>.</translation>
+<translation id="2039417478970545937">Paramètres.</translation>
+<translation id="5499149312981370855">Choisissez si vous souhaitez inclure l'historique de Nexus pour rendre vos expériences des services Nexus plus personnalisées</translation>
+<translation id="5888420425384578947">Vous devez disposer de macOS 12 ou d'une version ultérieure pour recevoir les futures mises à jour de Nexus. Cet ordinateur fonctionne sous macOS 11.</translation>
+<translation id="2472891440303445472">Nexus a bloqué ce téléchargement, car le fichier est trompeur et pourrait apporter des modifications inattendues à votre appareil</translation>
+<translation id="2726948994393234543">Vos mots de passe et d'autres données Nexus que vous avez enregistrés dans votre compte Nexus seront retirés de cet appareil. Pour les utiliser à nouveau dans Nexus, reconnectez-vous.</translation>
+<translation id="4375530476448642348">{COUNT,plural, =1{Votre organisation supprime automatiquement les données de navigation lorsque Nexus n'est pas utilisé pendant 1 minute. Cela peut inclure l'historique, le remplissage automatique et les téléchargements. Vos onglets resteront ouverts.}one{Votre organisation supprime automatiquement les données de navigation lorsque Nexus n'est pas utilisé pendant # minute. Cela peut inclure l'historique, le remplissage automatique et les téléchargements. Vos onglets resteront ouverts.}other{Votre organisation supprime automatiquement les données de navigation lorsque Nexus n'est pas utilisé pendant # minutes. Cela peut inclure l'historique, le remplissage automatique et les téléchargements. Vos onglets resteront ouverts.}}</translation>
+<translation id="2126108037660393668">La vérification du fichier téléchargé a échoué.</translation>
+<translation id="2137162749895930932">Fermer l'écran de traduction</translation>
+<translation id="5789330946301045610">Nexus a bloqué ce téléchargement, car le site n'utilise pas de connexion sécurisée et le fichier a peut-être été altéré</translation>
+<translation id="142389341645668510">Personnaliser Nexus</translation>
+<translation id="2174917724755363426">L'installation n'est pas terminée. Voulez-vous vraiment annuler?</translation>
+<translation id="8745514854244955877">Nexus – Connexion au réseau – <ph name="PAGE_TITLE"/></translation>
+<translation id="2190166659037789668">Erreur de vérification de la mise à jour : <ph name="UPDATE_CHECK_ERROR"/>.</translation>
+<translation id="2058539073923004395">Retirer le compte de Nexus</translation>
+<translation id="5550942974310218641">Restez en sécurité lorsque vous êtes en déplacement grâce à la navigation sécurisée améliorée sur Nexus pour iOS</translation>
+<translation id="6677253423995557759">Site dangereux. Nexus a supprimé les notifications.</translation>
+<translation id="2236949375853147973">Mon activité</translation>
+<translation id="457168681575748148">Pour obtenir vos adresses et bien plus encore sur tous vos appareils, connectez-vous à Nexus. Cette adresse sera enregistrée dans votre compte Nexus après votre connexion.</translation>
+<translation id="5659384504794665581">Si vous partagez un ordinateur avec vos proches, ceux-ci peuvent configurer Nexus comme bon leur semble et naviguer sur le Web à leur manière.</translation>
+<translation id="8984404842684436004">{NUM_TABS,plural, =1{Nexus recommande de suspendre l'onglet qui ralentit votre navigateur}one{Nexus recommande de suspendre l'onglet qui ralentit votre navigateur}other{Nexus recommande de suspendre les onglets qui ralentissent votre navigateur}}</translation>
+<translation id="2307973900865360088">Garder dans le Dock</translation>
+<translation id="7810992039564280750">Il vérifie les URL en fonction d'une liste de sites non sécuritaires stockée dans Nexus. Si un site tente de voler votre mot de passe ou si vous téléchargez un fichier dangereux, Nexus peut également envoyer les URL concernées, y compris des extraits du contenu de pages, à la navigation sécurisée.</translation>
+<translation id="5042718521573656164">Cette action aura les effets suivants :
+<ph name="LINE_BREAKS"/>
+• Réinitialiser certains des paramètres et des raccourcis de Nexus
+<ph name="LINE_BREAK"/>
+• Désactiver les extensions
+<ph name="LINE_BREAK"/>
+• Supprimer les témoins et d'autres données temporaires relatives aux sites
+<ph name="LINE_BREAKS"/>
+Les signets, l'historique et les mots de passe enregistrés ne seront pas touchés.</translation>
+<translation id="9095263438435683933">Pour envoyer un numéro d'ici vers votre téléphone Android, connectez-vous à Nexus sur vos deux appareils.</translation>
+<translation id="2356070529366658676">Demander</translation>
+<translation id="2359808026110333948">Continuer</translation>
+<translation id="6485997157403727556">L'extension « <ph name="EXTENSION_NAME"/> » souhaite que vous vous connectiez à Nexus</translation>
+<translation id="7017760840808989683">Désactiver l'exécution de Nexus en arrière-plan pour les applis</translation>
+<translation id="8491912023989916905">Pour utiliser cette extension en tant que <ph name="USER_EMAIL_ADDRESS"/>, connectez-vous à Nexus.</translation>
+<translation id="8418845734693287262">Nexus OS n'a pas pu synchroniser vos données, car vos renseignements de connexion ne sont plus à jour.</translation>
+<translation id="5617265241715541684">{NUM_DEVICES,plural, =0{Une ou plusieurs extensions Nexus ont accédé à 1 appareil HID}=1{Une ou plusieurs extensions Nexus ont accédé à 1 appareil HID}one{Une ou plusieurs extensions Nexus ont accédé à # appareil HID}other{Une ou plusieurs extensions Nexus ont accédé à # appareils HID}}</translation>
+<translation id="1248225940185478633">Nexus requiert l'autorisation d'accéder au microphone et à l'appareil photo pour ce site</translation>
+<translation id="2403703063067034158">Erreur de démarrage : une autre instance de configuration est actuellement en cours d'exécution, veuillez réessayer plus tard.</translation>
+<translation id="2118275934191847461">Grâce aux <ph name="BEGIN_LINK"/>outils de Nexus<ph name="END_LINK"/>, vous pouvez naviguer en toute sécurité et garder le contrôle</translation>
+<translation id="2451727308784734061">Utilisez votre raccourci pour accéder rapidement au gestionnaire de mots de passe. Vous pouvez déplacer votre raccourci vers l'écran d'accueil ou le lanceur d'applications de votre ordinateur.</translation>
+<translation id="6381750314821942592">Nexus va bientôt se fermer</translation>
+<translation id="6078442581074612226">Dans Nexus</translation>
+<translation id="2485422356828889247">Désinstaller</translation>
+<translation id="2513154137948333830">Redémarrage nécessaire : <ph name="INSTALL_SUCCESS"/></translation>
+<translation id="2542968102051442371">Sélectionnez du texte avec la recherche d'images</translation>
+<translation id="70183448213529602">Nexus essaie de remplacer les mots de passe existants. Tapez votre mot de passe Windows pour autoriser cela.</translation>
+<translation id="7798069806040634998">Nexus a besoin d'accéder au stockage pour télécharger des fichiers</translation>
+<translation id="8447483940522230788">Aide de Nexus</translation>
+<translation id="2575822587468774919">Sélectionner n'importe quel élément pour effectuer une recherche avec la recherche d'images</translation>
+<translation id="3830890663494219270">Pour obtenir vos mots de passe et bien plus encore sur tous vos appareils, connectez-vous à Nexus</translation>
+<translation id="6252796827759111076">Continuer à utiliser Nexus</translation>
+<translation id="259935314519650377">Échec de la mise en cache du programme d'installation téléchargé. Erreur : <ph name="UNPACK_CACHING_ERROR_CODE"/>.</translation>
+<translation id="2620436844016719705">Système</translation>
+<translation id="7931230852267968641">Votre organisation peut consulter et gérer les données de navigation, comme vos favoris, votre historique et vos mots de passe. Elle ne peut pas consulter les données de navigation dans d'autres profils Nexus</translation>
+<translation id="2257221826278123061">Confirmez votre identité pour utiliser et enregistrer les données Nexus dans votre compte, <ph name="ACCOUNT_EMAIL"/></translation>
+<translation id="7788346643684168549">Nexus s'exécute plus rapidement, et les fonctionnalités qui utilisent JavaScript devraient fonctionner comme prévu (recommandé)</translation>
+<translation id="7387051847644272380">Une erreur de système d'exploitation s'est produite pendant l'installation. Veuillez télécharger de nouveau Nexus.</translation>
+<translation id="2648689842065142443">Si vous partagez un appareil avec vos proches, ceux-ci peuvent configurer Nexus comme bon leur semble et naviguer sur le Web de façon autonome.</translation>
+<translation id="6791166902140255175">Onglet Nexus</translation>
+<translation id="8372880274820509128">Pour une sécurité accrue, Nexus va chiffrer vos données.</translation>
+<translation id="8752006915531191162">Pour retirer votre compte Nexus de Nexus, déconnectez-vous</translation>
+<translation id="5344406739101555055">Pour obtenir vos mots de passe, vos favoris et plus encore sur tous vos appareils, connectez-vous à Nexus</translation>
+<translation id="2738871930057338499">Impossible de se connecter à Internet. HTTP 403 Forbidden. Veuillez vérifier la configuration de votre mandataire.</translation>
+<translation id="2753623023919742414">Cliquer pour rechercher</translation>
+<translation id="1312769823139326127">Définissez Nexus comme visionneuse PDF par défaut</translation>
+<translation id="2770231113462710648">Remplacer le navigateur par défaut par :</translation>
+<translation id="1187986649024576560">Cette extension contient des logiciels malveillants et est dangereuse. Retirez-la de Nexus afin qu'elle ne puisse plus voir ni modifier vos données sur les sites que vous visitez, y compris vos renseignements personnels.</translation>
+<translation id="2799223571221894425">Redémarrer</translation>
+<translation id="5962774139606909656">Votre Nexus</translation>
+<translation id="2816462166102338036">Rechercher cette vidéo avec la recherche d'images</translation>
+<translation id="2841525013647267359">Traduire à partir de la langue suivante :</translation>
+<translation id="2846251086934905009">Erreur d'installation : le programme d'installation n'a pas été terminé. L'installation a été annulée.</translation>
+<translation id="777113543093865885">Supprimer de Nexus...</translation>
+<translation id="5265419033369521352">Il vous protège dans Nexus et peut être utilisé pour améliorer votre sécurité dans d'autres applications Nexus lorsque vous êtes connecté à votre compte</translation>
+<translation id="2885378588091291677">Moniteur d'activité</translation>
+<translation id="2176825726964012531">À propos de &amp;Nexus</translation>
+<translation id="2915996080311180594">Redémarrer plus tard</translation>
+<translation id="2928420929544864228">Installation terminée.</translation>
+<translation id="2481553173340651149">Vos données sont chiffrées avec votre phrase de passe. Entrez-la pour utiliser et enregistrer les données Nexus dans votre compte Nexus.</translation>
+<translation id="2945997411976714835">Erreur d'installation : le processus d'installation n'a pas pu démarrer.</translation>
+<translation id="2413255940314578781">Connectez-vous plus rapidement aux sites à l'aide des mots de passe enregistrés pour Nexus sur iOS</translation>
+<translation id="3688936822855019158">Votre organisation gère Nexus</translation>
+<translation id="8208853227947884571">Nexus est à jour</translation>
+<translation id="5122472867956731189">Si un site tente de voler votre mot de passe ou si vous téléchargez un fichier dangereux, Nexus peut également envoyer les URL concernées, y compris des extraits du contenu de pages, à la navigation sécurisée</translation>
+<translation id="3963199983793987097">Pour rester en sécurité en ligne avec les choix de tes parents, connecte-toi à Nexus</translation>
+<translation id="3003694935412297923">Toutes les tâches</translation>
+<translation id="4202995875619419215">Ouvrez l'URL <ph name="URL"/> dans un nouvel onglet dans Nexus.</translation>
+<translation id="8755404239607088219">Nexus ne peut pas vérifier vos mots de passe. Réessayez plus tard.</translation>
+<translation id="8880183781256147665">Ajout à Nexus en cours...</translation>
+<translation id="3038232873781883849">Installation en attente…</translation>
+<translation id="3045032126857188731">Langue de la traduction : <ph name="LANGUAGE"/></translation>
+<translation id="3047590466164881923">Fermer la boîte de dialogue des commentaires</translation>
+<translation id="4503085212612536713">Autres profils Nexus</translation>
+<translation id="7918740962659365265">Aidez-nous à améliorer Nexus en nous envoyant des rapports d'erreur et des <ph name="UMA_LINK"/>.</translation>
+<translation id="2332543193474246254">{NUM_DEVICES,plural, =0{Une ou plusieurs extensions Nexus ont accédé à 1 appareil USB}=1{Une ou plusieurs extensions Nexus ont accédé à 1 appareil USB}one{Une ou plusieurs extensions Nexus ont accédé à # appareil USB}other{Une ou plusieurs extensions Nexus ont accédé à # appareils USB}}</translation>
+<translation id="3700405816184340252">Historique de Nexus</translation>
+<translation id="7365690458036015383">Le programme d'installation n'a pas réussi à décompresser l'archive. Veuillez télécharger Nexus de nouveau.</translation>
+<translation id="310459126943037700">Impossible de terminer la ou les tâches.</translation>
+<translation id="8919461291440820124">Nexus se sert de votre microphone.</translation>
+<translation id="3137969841538672700">Faire glisser pour rechercher</translation>
+<translation id="8372436892102763334">Cet onglet utilise des ressources supplémentaires. Pour améliorer vos performances, laissez Nexus le rendre inactif.</translation>
+<translation id="5949068186379578553">Pour partager votre écran, autorisez l'enregistrement de l'écran pour Nexus dans les Réglages système</translation>
+<translation id="4805806622840861220">Relancer Nexus</translation>
+<translation id="3161522574479303604">Toutes les langues</translation>
+<translation id="3225882094369124157">Un autre programme sur votre ordinateur a ajouté un thème qui pourrait modifier le fonctionnement de Nexus.
+
+<ph name="EXTENSION_NAME"/></translation>
+<translation id="1742948938503172561">Personnaliser votre nouveau profil Nexus</translation>
+<translation id="4805865169608137960">Pour retirer votre compte Nexus de Nexus, déconnectez-vous de Nexus sur la page Paramètres</translation>
+<translation id="1651639704310627074">Plus tard, Nexus pourrait vous demander si vous voulez utiliser les renseignements enregistrés pour remplir automatiquement les formulaires à votre place.</translation>
+<translation id="2585240446624043880">Nexus ne peut pas lire et écrire dans son répertoire de données :
+
+<ph name="USER_DATA_DIRECTORY"/></translation>
+<translation id="3286538390144397061">Redémarrer maintenant</translation>
+<translation id="2339258256897053758">Les clés d'API Nexus sont manquantes. Certaines fonctionnalités de Nexus seront désactivées</translation>
+<translation id="8926637909431618259">Continuer l'exécution d'applications en arrière-plan après la fermeture de Nexus</translation>
+<translation id="518125528057094977">Nexus vous avertira avant de charger un site en utilisant une connexion non sécurisée</translation>
+<translation id="8652321858775514885">Vous serez déconnecté de la plupart des sites lorsque vous fermerez toutes les fenêtres Nexus, à l'exception de votre compte Nexus si vous êtes connecté à Nexus. Pour permettre aux sites de se souvenir de vous, <ph name="SETTINGS_LINK"/>.</translation>
+<translation id="3352986031709923790">Coin supérieur droit de la zone de recherche : droite <ph name="RIGHT"/> %, haut <ph name="TOP"/> %</translation>
+<translation id="7261356974224431851">Données Nexus dans votre compte</translation>
+<translation id="3369405342922656244">Rechercher cette page avec la recherche d'images</translation>
+<translation id="2645435784669275700">Nexus OS</translation>
+<translation id="2297290224191497273">Passer au profil Nexus existant?</translation>
+<translation id="3412460710772753638">Dans le gestionnaire de mots de passe sur cet appareil</translation>
+<translation id="7304389940068374923">Personnaliser Nexus</translation>
+<translation id="9216183508558772570">Nexus vous avisera lorsque vous utilisez un mot de passe compromis pour vous connecter</translation>
+<translation id="5853262807109651878">Cette action entraînera la suppression de <ph name="ITEMS_COUNT"/> éléments de cet appareil. Pour récupérer vos données plus tard, connectez-vous à Nexus en tant que <ph name="USER_EMAIL"/>.</translation>
+<translation id="2024972335338126423"><ph name="SHORTCUT"/> permet de basculer entre les profils Nexus</translation>
+<translation id="8703492925273919597">Veuillez fermer toutes les fenêtres Nexus et essayer de nouveau.</translation>
+<translation id="599091950194451698">Pour partager votre fenêtre, autorisez l'enregistrement de l'écran pour Nexus dans les Réglages système</translation>
+<translation id="1447863765638888625">L'utilisateur (<ph name="EXISTING_USER"/>) est déjà connecté.  Pour maintenir votre navigation séparée, connectez-vous à votre propre profil dans Nexus en tant que <ph name="USER_EMAIL_ADDRESS"/>.</translation>
+<translation id="8981774130895723211">Pour partager votre écran, autorisez l'enregistrement de l'écran pour Nexus dans les Réglages système.</translation>
+<translation id="3597003331831379823">Échec de l'exécution de la configuration avec des privilèges élevés. <ph name="METAINSTALLER_ERROR"/></translation>
+<translation id="3066805437003400520">Les données de navigation de cette personne seront supprimées de cet appareil. Pour récupérer ces données, connectez-vous à Nexus en tant que <ph name="USER_EMAIL"/>.</translation>
+<translation id="7029305463989165490">Pour envoyer un numéro de <ph name="ORIGIN"/> vers votre téléphone Android, connectez-vous à Nexus sur les deux appareils.</translation>
+<translation id="3667616615096815454">Installation impossible, l'application est inconnue du serveur.</translation>
+<translation id="1128485277465085828">Utilisez votre <ph name="BEGIN_LINK"/>propre phrase de passe<ph name="END_LINK"/> pour chiffrer toutes les données Nexus de votre compte Nexus. Les modes de paiement et les adresses de Nexus Pay ne seront pas chiffrés. L'historique de navigation de Nexus ne se synchronisera pas.</translation>
+<translation id="4304059894777924102">Nexus ne peut pas vérifier vos mots de passe. Essayez de vérifier votre connexion Internet.</translation>
+<translation id="1807774211756215222">Ouvrir le lien dans un nouvel ongle&amp;t Nexus</translation>
+<translation id="387105482057676379">Associez Nexus et d'autres services Nexus à des fins de personnalisation et à d'autres fins</translation>
+<translation id="3867175562099983425">Gérer les profils Nexus</translation>
+<translation id="308146532933302843">Découvrir pourquoi Nexus bloque certains téléchargements</translation>
+<translation id="2189149060536531804">Nexus vous informera si vous devez examiner quelque chose</translation>
+<translation id="6324134303015966238">Nexus précharge les pages que vous êtes susceptible de visiter, afin qu'elles se chargent plus rapidement lorsque vous le faites.</translation>
+<translation id="3810973564298564668">Gérer</translation>
+<translation id="3846683726093018685">**Résumer :** en une seule phrase de moins de 30 mots, décris le sujet principal et l'objectif du contenu de la capture d'écran.
+
+          **Suggérer des questions :** génère une liste à puces de trois à cinq questions stimulantes qu'un utilisateur pourrait poser pour mieux comprendre la capture d'écran. Ces questions doivent inclure au moins une question portant précisément sur un objet visuel, sa conception ou son emplacement.</translation>
+<translation id="5381622442243174305"><ph name="PAGE_TITLE"/> – Nexus</translation>
+<translation id="3885770153807205175">Sélecteur de langue</translation>
+<translation id="6315734375101223238">Personnaliser et gérer Nexus. Votre attention est requise – cliquez pour plus de détails.</translation>
+<translation id="7130675370997202556">Cliquez sur votre nom pour ouvrir Nexus et commencer à naviguer.</translation>
+<translation id="3892148308691398805">Copier le texte</translation>
+<translation id="4920958997042285125"><ph name="EXISTING_USER"/> est déjà connecté à ce profil Nexus. Pour maintenir votre navigation séparée, Nexus peut créer un profil pour vous.</translation>
+<translation id="8744239658215739511">Personnaliser votre Nexus</translation>
+<translation id="3941890832296813527">Erreur d'installation : le nom du fichier du programme d'installation n'est pas valide ou n'est pas pris en charge.</translation>
+<translation id="8090497651549769448">Nexus essaie de copier des mots de passe. Pour autoriser cette action, entrez votre mot de passe Windows.</translation>
+<translation id="4256965182800026277">Vos adresses, vos mots de passe et vos modes de paiement que vous avez enregistrés dans votre compte Nexus seront retirés de cet appareil. Pour les utiliser à nouveau dans Nexus, reconnectez-vous.</translation>
+<translation id="395904275706073188">Les pages protégées ne peuvent pas être lues. Essayez une autre page.</translation>
+<translation id="4194619960643453552">Découvrez comment Nexus assure votre sécurité</translation>
+<translation id="1486377520191913768">Lorsque vous tapez dans la barre d'adresse ou le champ de recherche, Nexus envoie ce que vous tapez aux outils de recherche, d'IA et d'agent de votre organisation pour obtenir des suggestions.</translation>
+<translation id="1311808042904310985">À propos de &amp;Nexus for Testing</translation>
+<translation id="1152920704813762236">À propos de Nexus OS</translation>
+<translation id="3703994572283698466">Nexus OS fonctionne grâce à d'autres <ph name="BEGIN_LINK_CROS_OSS"/>logiciels libres<ph name="END_LINK_CROS_OSS"/>, tout comme l'<ph name="BEGIN_LINK_LINUX_OSS"/>environnement de conception Linux<ph name="END_LINK_LINUX_OSS"/>.</translation>
+<translation id="4022972681110646219">Traduire le contenu à l'écran</translation>
+<translation id="4023601594785368013">Langue d'origine : <ph name="LANGUAGE"/></translation>
+<translation id="5540160525564738506">Ouvrez des liens dans Nexus à partir de n'importe quelle appli. Il est en outre épinglé à votre barre des tâches pour un accès facile.</translation>
+<translation id="6056473803837713617">Aidez-nous à améliorer Nexus en nous signalant les <ph name="BEGIN_LINK"/>paramètres actuels<ph name="END_LINK"/></translation>
+<translation id="4050175100176540509">La dernière version propose d'importantes améliorations de la sécurité ainsi que de nouvelles fonctionnalités.</translation>
+<translation id="4055805654398742145">Gestionnaire de mots de passe</translation>
+<translation id="6654312501894761082">Un autre programme sur votre ordinateur a ajouté une extension qui pourrait modifier le fonctionnement de Nexus.
+
+<ph name="EXTENSION_NAME"/></translation>
+<translation id="6217792792122501564">{COUNT,plural, =1{Votre organisation ferme automatiquement Nexus lorsqu'il n'est pas utilisé pendant 1 minute. Les données de navigation sont supprimées. Cela peut inclure l'historique, le remplissage automatique et les téléchargements.}one{Votre organisation ferme automatiquement Nexus lorsqu'il n'est pas utilisé pendant # minutes. Les données de navigation sont supprimées. Cela peut inclure l'historique, le remplissage automatique et les téléchargements.}other{Votre organisation ferme automatiquement Nexus lorsqu'il n'est pas utilisé pendant # minutes. Les données de navigation sont supprimées. Cela peut inclure l'historique, le remplissage automatique et les téléchargements.}}</translation>
+<translation id="5794951150713244901">Accéder à la page À propos de Nexus</translation>
+<translation id="6596295505984504022">Personnaliser votre Nexus</translation>
+<translation id="4148957013307229264">Installation...</translation>
+<translation id="4658486203392098459"><ph name="PAGE_TITLE"/> – Connexion au réseau – Nexus</translation>
+<translation id="2871190378186459992">Découvrez des applications, des jeux, des extensions et des thèmes exceptionnels conçus pour Nexus.</translation>
+<translation id="462105622535258178">Pour obtenir cette extension et plus sur tous vos ordinateurs, connectez-vous à Nexus</translation>
+<translation id="6670140629169983459">Pour rester en sécurité en ligne avec les choix de tes parents, passe à ton profil Nexus où tu as utilisé l'adresse <ph name="USER_EMAIL_ADDRESS"/> pour te connecter</translation>
+<translation id="4222932583846282852">Annulation en cours…</translation>
+<translation id="4224210481850767180">L'installation a été annulée.</translation>
+<translation id="1853997773668795891">Associer vos données de Nexus à ce compte?</translation>
+<translation id="4732930052828648898">Vous avertit des sites dangereux, même ceux que Nexus ne connaissait pas auparavant, en analysant plus de données provenant des sites que la protection standard. Vous pouvez choisir d'ignorer les avertissements de Nexus.</translation>
+<translation id="2201661640076600072">Se déconnecter de Nexus</translation>
+<translation id="3262506503470845422">Obtenir de l'aide pour Nexus</translation>
+<translation id="4281844954008187215">Conditions d'utilisation</translation>
+<translation id="7691786510374174420">Échec de l'installation suite à une erreur non spécifiée. Si Nexus est en cours d'exécution, veuillez le fermer, puis réessayer.</translation>
+<translation id="6368144843345980623">Exporter des mots de passe à partir de Nexus</translation>
+<translation id="4304713468139749426">Gestionnaire de mots de passe</translation>
+<translation id="4334241893986177674">Recherchez dans cette capture d'écran</translation>
+<translation id="4334294535648607276">Téléchargement terminé.</translation>
+<translation id="1068681683510904753"><ph name="MANAGER"/> exige que vous lisiez et acceptiez les conditions d'utilisation suivantes pour utiliser cet appareil. Ces dernières n'étendent pas, ne modifient pas ni ne restreignent pas les conditions d'utilisation de Nexus OS.</translation>
+<translation id="9183662282810237335">Quitter Nexus quand même?</translation>
+<translation id="4413205837991854510">Toujours afficher le raccourci de la recherche d'images</translation>
+<translation id="4065288863231444640">Laisser Nexus s'exécuter en arrière-plan</translation>
+<translation id="1749140836512789834">{NUM_EXTENSIONS,plural, =1{Nexus vous recommande de la retirer. <ph name="BEGIN_LINK"/>En savoir plus sur les extensions prises en charge<ph name="END_LINK"/>}one{Nexus vous recommande de la retirer. <ph name="BEGIN_LINK"/>En savoir plus sur les extensions prises en charge<ph name="END_LINK"/>}other{Nexus vous recommande de les retirer. <ph name="BEGIN_LINK"/>En savoir plus sur les extensions prises en charge<ph name="END_LINK"/>}}</translation>
+<translation id="8148611988012584308">Personnaliser et commander Nexus</translation>
+<translation id="4427306783828095590">La protection renforcée en fait plus pour bloquer l'hameçonnage et les logiciels nuisibles</translation>
+<translation id="4434353761996769206">Erreur du programme d'installation : <ph name="INSTALLER_ERROR"/></translation>
+<translation id="175926951572479413"><ph name="MANAGER"/> gère Nexus</translation>
+<translation id="3579012341787637143">Ajouter un profil Nexus</translation>
+<translation id="6786534271003695094">À propos de Nexus for Testing</translation>
+<translation id="526235294307144732">Pour utiliser et enregistrer les données Nexus dans votre compte Nexus, saisissez votre phrase de passe</translation>
+<translation id="4493028449971051158">Erreur de démarrage : veuillez exécuter le programme d'installation en tant qu'administrateur.</translation>
+<translation id="4501471624619070934">L'installation a échoué, car l'accès est restreint dans ce pays.</translation>
+<translation id="8594994021633965927">Cette extension n'a pas publié de pratiques en matière de confidentialité, telles que la manière dont elle collecte et utilise les données. Nexus vous recommande de la retirer.</translation>
+<translation id="7084397798469173252">Bienvenue à Nexus, une nouvelle fenêtre de navigateur a été ouverte</translation>
+<translation id="137732229629632648">Nexus a besoin d'une autorisation pour cartographier votre environnement et suivre vos mains</translation>
+<translation id="5917968343741192617">Nexus comprend mieux les formulaires et peut les remplir automatiquement plus rapidement pour vous</translation>
+<translation id="5036046007335188949">Vous êtes déjà connecté en tant que <ph name="USER_EMAIL_ADDRESS"/> dans un autre profil Nexus</translation>
+<translation id="1878185978731985193">Nexus précharge les pages, ce qui accélère la navigation et la recherche. <ph name="BEGIN_LINK"/>En savoir plus sur les pages de préchargement<ph name="END_LINK"/></translation>
+<translation id="4567424176335768812">Vous êtes connecté avec l'adresse de courriel <ph name="USER_EMAIL_ADDRESS"/>. Vous pouvez maintenant accéder à vos favoris, à votre historique et à vos paramètres sur tous les appareils sur lesquels vous êtes connecté.</translation>
+<translation id="8669339108356170796">Nexus a bloqué ce téléchargement, car vous avez désactivé la Navigation sécurisée et le fichier ne peut pas être vérifié</translation>
+<translation id="4594305310729380060">Dans le gestionnaire de mots de passe sur cet appareil</translation>
+<translation id="300669147395456190">Applications de Nexus</translation>
+<translation id="4598116752460667024">Chercher n'importe quel processus dans la liste.</translation>
+<translation id="4970880042055371251">Version de Nexus OS</translation>
+<translation id="2182657378556811785">La mise à jour est presque terminée! Il ne reste plus qu'à relancer Nexus.</translation>
+<translation id="6311668361877328515">Accélère les sites avec le moteur V8 de Nexus, mais rend Nexus légèrement moins résistant aux attaques</translation>
+<translation id="7843665350820058984">Nexus comprend mieux les formulaires et peut les remplir automatiquement plus rapidement pour vous. Ce paramètre est activé.</translation>
+<translation id="7402642357351265733">Si vous partagez aussi les rapports d'utilisation de Nexus, ceux-ci incluent les URL des pages que vous visitez</translation>
+<translation id="8142245354207161805">Le profil semble être utilisé par un autre processus de Nexus (<ph name="PROCESS_ID"/>) sur un autre ordinateur (<ph name="HOST_NAME"/>). Nexus a verrouillé ce profil pour éviter qu'il ne soit endommagé. Si vous êtes sûr qu'aucun autre processus n'utilise ce profil, vous pouvez le déverrouiller et relancer Nexus.</translation>
+<translation id="4680828127924988555">Annuler l'installation</translation>
+<translation id="2014343159590733363">Certaines de vos données Nexus n'ont pas encore été enregistrées dans votre compte Nexus. Essayez d'attendre quelques minutes avant de vous déconnecter. Si vous vous déconnectez maintenant, ces données seront supprimées.</translation>
+<translation id="2408746614080689238">Pendant que vous êtes connecté, vous pouvez utiliser vos mots de passe et bien plus encore à partir de votre compte Nexus dans Nexus. <ph name="SHORTCUT"/> peut modifier les paramètres de vos services Nexus.</translation>
+<translation id="847561904663814268">Un utilisateur s'est récemment connecté à Nexus sur cet ordinateur en tant que <ph name="ACCOUNT_EMAIL_LAST"/>. Veuillez créer un autre utilisateur Nexus pour séparer vos données.</translation>
+<translation id="4724676981607797757">Échec de l'installation en raison d'une erreur de protocole non pris en charge.</translation>
+<translation id="3834935463915107022">Quitter Nexus quand même?</translation>
+<translation id="8668413672647811944">Une mise à jour de sécurité spéciale pour Nexus vient d'être effectuée. Redémarrez maintenant, et nous restaurerons vos onglets.</translation>
+<translation id="4941816441131888792">Vous n'avez pas effectué de visite récemment. Nexus a retiré <ph name="PERMISSION_1"/>, <ph name="PERMISSION_2"/> et <ph name="COUNT"/> autres.</translation>
+<translation id="4823369970559443694">Nexus ne peut pas vérifier vos mots de passe. Réessayez après 24 heures ou <ph name="BEGIN_LINK"/>effectuez une vérification des mots de passe dans votre compte Nexus<ph name="END_LINK"/>.</translation>
+<translation id="215320507915280336">Cela fait appel au même correcteur orthographique que celui qui est utilisé dans la recherche Nexus. Le texte que vous tapez dans le navigateur est envoyé à Nexus. Vous pouvez toujours modifier ce comportement dans les paramètres.</translation>
+<translation id="2899369907387169108">Utiliser Nexus sans compte</translation>
+<translation id="1912973375560256099">Règle de trafic entrant pour Nexus afin d'autoriser le trafic mDNS.</translation>
+<translation id="711601904575862069">Relancer &amp;Nexus pour le mettre à jour</translation>
+<translation id="4918844574251943176">Image copiée</translation>
+<translation id="8797356639448065696">Nexus fonctionne en mode arrière-plan.</translation>
+<translation id="1895567721497166950">Cliquer sur le bouton pour fermer la boîte de dialogue de connexion à Nexus</translation>
+<translation id="2692971232706994729">Avec les profils Nexus, vous pouvez séparer toutes vos données Nexus. Créez des profils pour vos amis et votre famille, ou pour dissocier travail et divertissement.</translation>
+<translation id="7406627712452599344">Les invités peuvent utiliser Nexus sans rien laisser derrière eux.</translation>
+<translation id="844471735881341044">Votre compte dans Nexus</translation>
+<translation id="5952898964075639679">Ajouter un utilisateur à Nexus</translation>
+<translation id="1204184037023366446">Nexus a besoin de l'autorisation de suivre vos mains</translation>
+<translation id="5406591571925937375">Vous n'avez pas effectué de visite récemment. Nexus a retiré <ph name="PERMISSION_1"/>,<ph name="PERMISSION_2"/> et <ph name="PERMISSION_3"/>.</translation>
+<translation id="5174969993834422967">Vous bloquez généralement les notifications. Pour permettre à ce site de vous envoyer des notifications, cliquez sur l'icône de notification dans le coin droit de votre barre d'adresse.</translation>
+<translation id="5174983315706567306">Espace disque insuffisant.</translation>
+<translation id="8157129267754368853">Le compte Nexus nécessite une réauthentification</translation>
+<translation id="9078804073692109646">Aucun mot de passe enregistré. Nexus ne peut vérifier vos mots de passe que si vous les enregistrez.</translation>
+<translation id="6234515504547364178">Se déconnecter de Nexus</translation>
+<translation id="5234764350956374838">Fermer</translation>
+<translation id="5254739261293693943">Poser des questions à propos de cette vidéo</translation>
+<translation id="8586264863973514035">Pour appliquer vos modifications, relancez Nexus</translation>
+<translation id="5286907366254680517">Détectée</translation>
+<translation id="6944930779012811739">Service interne de mise à jour de Nexus</translation>
+<translation id="7573068992266397941">Nexus a trouvé des recommandations de sécurité que vous pouvez examiner</translation>
+<translation id="8174413867995118050">Autres profils Nexus</translation>
+<translation id="7708394612738038097">Vous vous connectez avec un compte géré et rendez son administrateur maître de votre profil Nexus. Vos données de Nexus, comme vos applications, vos favoris, votre historique, vos mots de passe et vos autres paramètres, vont être associées de manière permanente à <ph name="USER_NAME"/>. Vous pourrez supprimer ces données à l'aide du tableau de bord des comptes Nexus, mais vous ne pourrez pas les associer à un autre compte. <ph name="LEARN_MORE"/></translation>
+<translation id="5368118228313795342">Code supplémentaire : <ph name="EXTRA_CODE"/>.</translation>
+<translation id="2487133103111559902">Pour bénéficier de la personnalisation, incluez Nexus dans l'activité sur le Web et dans les applications</translation>
+<translation id="5154625106151193600">Découvrir pourquoi Nexus bloque certains fichiers</translation>
+<translation id="1786715389543715322">Mise à jour de Nexus en cours (<ph name="PROGRESS_PERCENT"/>)…</translation>
+<translation id="7021823858304886493">Autoriser la connexion à Nexus</translation>
+<translation id="5267531627648004734">Supprimer de Nexus</translation>
+<translation id="4620757336635063467">Réduit les performances, mais rend Nexus plus résistant aux attaques</translation>
+<translation id="239760341987199724">Faire de Nexus le navigateur par défaut</translation>
+<translation id="1403270718080126244"><ph name="PAGE_TITLE"/> - Nexus bêta</translation>
+<translation id="604223321106006231">{NUM_TABS,plural, =1{Nexus recommande de suspendre l'onglet qui ralentit votre navigateur}one{Nexus recommande de suspendre l'onglet qui ralentit votre navigateur}other{Nexus recommande de suspendre les onglets qui ralentissent votre navigateur}}</translation>
+<translation id="894936507076470937">Nexus peut ne pas fonctionner correctement parce qu'il n'est plus pris en charge sur cette distribution Linux</translation>
+<translation id="2596557398669145729">Nexus a bloqué ce téléchargement, car le fichier peut endommager vos comptes personnels et de réseaux sociaux</translation>
+<translation id="696826782632239602">Nexus a besoin d'accéder à votre position afin de la partager avec ce site</translation>
+<translation id="1744365871163268756">Veuillez patienter pendant que Nexus installe les dernières mises à jour système.</translation>
+<translation id="3861679447659630159">Nexus essaie de modifier des mots de passe. Pour autoriser cette action, entrez votre mot de passe Windows.</translation>
+<translation id="5524890928877629608">Coin supérieur gauche de la zone de recherche : gauche <ph name="LEFT"/> %, haut <ph name="TOP"/> %</translation>
+<translation id="232381795826373334">Ouvrir les PDF dans Nexus</translation>
+<translation id="5579324208890605088">Erreur de démarrage : veuillez exécuter le programme d'installation en tant qu'utilisateur normal et non en tant qu'administrateur.</translation>
+<translation id="3588973534877826647">Utilisez Nexus par défaut et épinglez-le</translation>
+<translation id="5596627076506792578">Autres options</translation>
+<translation id="5605834417512968703">Sélectionner un élément à rechercher avec la recherche d'images ou appuyer sur Échap pour quitter la recherche d'images</translation>
+<translation id="5618818588972826921">Sélectionnez n'importe quel texte ou image pour effectuer une recherche avec la recherche d'images ou appuyez sur Échap pour quitter la recherche d'images</translation>
+<translation id="1026406809507858026">{0,plural, =0{Une mise à jour de Nexus est proposée}=1{Une mise à jour de Nexus est proposée}one{Une mise à jour de Nexus est proposée depuis # jour}other{Une mise à jour de Nexus est proposée depuis # jours}}</translation>
+<translation id="1023472437588692618">Supprimez toujours les données relatives aux sites sur votre appareil lorsque vous fermez Nexus</translation>
+<translation id="5646769069113654257">Veuillez redémarrer Nexus maintenant</translation>
+<translation id="3117204675033805491">Nexus LLC</translation>
+<translation id="2335583906071111058">Afficher Nexus dans cette langue</translation>
+<translation id="569897634095159764">Impossible de se connecter à Internet. Le serveur mandataire nécessite une authentification.</translation>
+<translation id="1834213228893578875">Nexus libère de la mémoire à partir des onglets inactifs. Cela donne aux onglets actifs et aux autres applis plus de ressources informatiques, et assure la rapidité de Nexus. Vos onglets inactifs redeviennent automatiquement actifs lorsque vous y revenez. <ph name="BEGIN_LINK"/>En savoir plus sur l'Économiseur de mémoire<ph name="END_LINK"/></translation>
+<translation id="899523323751802352">Si vous avez oublié votre phrase de passe ou si vous souhaitez modifier ce paramètre, <ph name="SETTINGS_LINK"/> les données Nexus de votre compte</translation>
+<translation id="82926023981336111">Personnalisez et gérez Nexus. Définissez Nexus comme navigateur par défaut.</translation>
+<translation id="5809516625706423866">Impossible de se connecter à Internet. HTTP 401 Unauthorized. Veuillez vérifier la configuration de votre mandataire.</translation>
+<translation id="95980832839683236">Accélère les sites avec le moteur V8 de Nexus, mais rend Nexus légèrement moins résistant aux attaques. Ce paramètre est désactivé.</translation>
+<translation id="1224606669200461217">Pour utiliser et enregistrer les données Nexus dans votre compte Nexus, mettez à jour Nexus</translation>
+<translation id="5824893331272123205">Impossible de charger ce panneau, réessayez</translation>
+<translation id="7207456302801184289">Bienvenue dans Nexus</translation>
+<translation id="5871205389137001634">Cliquez pour quitter la recherche d'images</translation>
+<translation id="8054200348483755053">Nexus a constaté que ces éléments contiennent un logiciel malveillant :</translation>
+<translation id="3955583201925082436">Nexus vérifie régulièrement que votre navigateur dispose des paramètres les plus sûrs. Nous vous informerons si nous avons besoin de votre avis pour quelque chose.</translation>
+<translation id="5895138241574237353">Redémarrer</translation>
+<translation id="5903106910045431592"><ph name="PAGE_TITLE"/> – Connexion au réseau</translation>
+<translation id="5924017743176219022">Connexion à Internet en cours…</translation>
+<translation id="5941711191222866238">Réduire</translation>
+<translation id="5768962901674164501">Pour obtenir ce favori et d'autres éléments sur tous vos appareils, connectez-vous à Nexus</translation>
+<translation id="5101892358689285100">Profiter d'un Nexus sur mesure</translation>
+<translation id="5968400720580217226">Mode IA</translation>
+<translation id="4357808717322635817">{COUNT,plural, =1{Votre organisation ferme automatiquement Nexus lorsqu'il n'est pas utilisé pendant 1 minute.}one{Votre organisation ferme automatiquement Nexus lorsqu'il n'est pas utilisé pendant # minutes.}other{Votre organisation ferme automatiquement Nexus lorsqu'il n'est pas utilisé pendant # minutes.}}</translation>
+<translation id="3598551856834560515">Mettez Nexus à jour pour commencer la synchronisation</translation>
+<translation id="6003112304606738118">Téléchargement en cours… <ph name="HOURS"/> heure(s) restante(s)</translation>
+<translation id="6009821354356307391">Posez une question complémentaire</translation>
+<translation id="6040143037577758943">Fermer</translation>
+<translation id="700488072601322385">Pour protéger vos données, laissez Nexus retirer les autorisations des sites que vous n'avez pas visités récemment. Cela n'arrêtera pas les notifications.</translation>
+<translation id="9071554113102421877">&amp;Ouvrir dans Nexus</translation>
+<translation id="6069027071882229820">Copier en tant qu'image</translation>
+<translation id="7861579472672677409">L'extension « <ph name="EXTENSION_NAME"/> » a été ajoutée à Nexus</translation>
+<translation id="3693188491491843187">Rendre Nexus plus rapide</translation>
+<translation id="5849446944780602366">Personnalisez et contrôlez Nexus. Une mise à jour est disponible.</translation>
+<translation id="5711722515923392428">Activée • Nexus ne peut pas vérifier l'origine de cette extension</translation>
+<translation id="6355366566986893068">Votre compte dans Nexus</translation>
+<translation id="7433698744896946664">Autoriser l'extension à afficher les demandes d'accès dans la barre d'outils Nexus</translation>
+<translation id="4168372721886011198">Nexus a bloqué le fichier <ph name="FILE_NAME"/>, car il est dangereux.</translation>
+<translation id="991182453936521413">Nexus va bientôt se fermer et supprimer des données</translation>
+<translation id="4060970194201477024">Vous pouvez basculer entre les profils Nexus ici</translation>
+<translation id="7815000350132166985">Si vous autorisez les témoins, Nexus peut les utiliser pour procéder au préchargement.</translation>
+<translation id="6165508094623778733">En savoir plus</translation>
+<translation id="5739368447874065758">Effacer les données Nexus de votre compte</translation>
+<translation id="6685697979743742605">Ce fichier peut être dangereux<ph name="LINE_BREAK"/>Nexus peut vérifier ce téléchargement pour vous si vous fournissez le mot de passe. Les informations sur le fichier sont envoyées à la Navigation sécurisée Nexus, mais le contenu du fichier et le mot de passe restent sur votre appareil.</translation>
+<translation id="6182736845697986886">Échec de l'installation en raison d'une erreur interne du serveur de mise à jour.</translation>
+<translation id="4368341489795135329">Assurez-vous d'être connecté à Nexus sur votre <ph name="TARGET_DEVICE_NAME"/>, puis essayez de l'envoyer à nouveau.</translation>
+<translation id="3038354906709778538">Un autre programme sur votre ordinateur a ajouté une appli qui pourrait modifier le fonctionnement de Nexus.
+
+<ph name="EXTENSION_NAME"/></translation>
+<translation id="8320964054148936490">Cet ordinateur dispose déjà d'une version plus récente de Nexus. Si le logiciel ne fonctionne pas, veuillez le désinstaller, puis réessayer.</translation>
+<translation id="3574823187131579180">{0,plural, =0{Nexus va redémarrer maintenant}=1{Nexus redémarrera dans 1 seconde}one{Nexus redémarrera dans # seconde}other{Nexus redémarrera dans # secondes}}</translation>
+<translation id="6239161312595354541">Poser des questions à la recherche d'images à propos de cette vidéo</translation>
+<translation id="5980269616827212166">Nexus requiert l'autorisation d'accéder à l'espace de stockage pour télécharger des fichiers</translation>
+<translation id="7651600795135059130">Il vérifie les URL en fonction d'une liste de sites non sécuritaires stockée dans Nexus</translation>
+<translation id="5019879183386042809">Faire de Nexus le navigateur par défaut</translation>
+<translation id="7445061995866044926">Se déconnecter de Nexus?</translation>
+<translation id="4659866260728515512">Ces onglets utilisent des ressources supplémentaires. Pour améliorer vos performances, laissez Nexus les rendre inactifs.</translation>
+<translation id="6806912298071949921">Personnaliser votre profil Nexus</translation>
+<translation id="3792238845239580301">Nommer votre profil Nexus</translation>
+<translation id="5874208157501051620">Une extension souhaite que vous vous connectiez à Nexus</translation>
+<translation id="3561569806301739367">Nexus a bloqué le fichier <ph name="FILE_NAME"/>, car il peut être dangereux.</translation>
+<translation id="3205074487970075628">Nexus utilise votre caméra.</translation>
+<translation id="6327105987658262776">Aucune mise à jour n'est proposée.</translation>
+<translation id="1819119299840995223">Une autre opération est en cours sur Nexus. Veuillez réessayer plus tard.</translation>
+<translation id="8616874628011103667">Il est maintenant plus facile d'utiliser Nexus avec votre compte Nexus et sur des ordinateurs partagés.</translation>
+<translation id="4264606872840545968">Raccourci Nexus</translation>
+<translation id="6890616081898535725">Nexus a bloqué ce téléchargement, car le fichier n'est pas souvent téléchargé et pourrait être dangereux</translation>
+<translation id="335632367599648646">Voulez-vous vraiment désinstaller Nexus?</translation>
+<translation id="6375219077595103062">Ajouter un raccourci vers le gestionnaire de mots de passe</translation>
+<translation id="6388799252195623474">aide-moi avec cela</translation>
+<translation id="7920857181125123335">Pour continuer, connectez-vous à Nexus en tant que <ph name="EMAIL"/>. Cela garantit que vous avez les politiques de votre organisation.</translation>
+<translation id="3256100650978957522">Logo de Nexus à l'intérieur d'un écran d'ordinateur.</translation>
+<translation id="6373767849825830651">Nexus est un navigateur Web qui exécute les pages Web et les applications à une vitesse fulgurante. Il est rapide, stable et simple d'utilisation. Naviguez sur Internet en toute sécurité, en bénéficiant de la protection offerte par Nexus contre les logiciels malveillants et l'hameçonnage.</translation>
+<translation id="6436260184216827876">La recherche d'images n'est pas accessible. Réessayez plus tard.</translation>
+<translation id="2139300032719313227">Redémarrer Nexus OS</translation>
+<translation id="638302211119176182">Nexus précharge encore plus de pages que vous êtes susceptible de visiter, afin qu'elles se chargent plus rapidement lorsque vous le faites.</translation>
+<translation id="890319829408077946">Désactivée • Nexus ne peut pas vérifier l'origine de cette extension</translation>
+<translation id="1684121725014454063">Bienvenue dans les profils Nexus</translation>
+<translation id="7906693299331092358">Retirer le compte de Nexus</translation>
+<translation id="2675662665675552980">Elle gère également la page qui s'affiche au démarrage de Nexus.</translation>
+<translation id="648319183876919572">La navigation sécurisée améliorée vous protège davantage contre les sites Web et les téléchargements dangereux</translation>
+<translation id="5590013613412457132">Désinstaller Nexus</translation>
+<translation id="7185585387858242335">Les raccourcis s'ouvrent dans Nexus</translation>
+<translation id="3617744907966785605">Votre organisation ferme Nexus lorsqu'il n'est pas utilisé pendant <ph name="TIMEOUT_DURATION"/>. Les données de navigation ont été supprimées. Cela peut inclure l'historique, le remplissage automatique et les téléchargements.</translation>
+<translation id="8646609321956191980">Chaque profil Nexus contient ses propres données, comme les favoris, l'historique, les mots de passe, etc.</translation>
+<translation id="6756656512757374876">En savoir plus sur la <ph name="BEGIN_LINK"/>manière dont Nexus préserve la confidentialité de vos données<ph name="END_LINK"/></translation>
+<translation id="3556601443414636547">Les modifications apportées à ce paramètre seront appliquées une fois que Nexus aura redémarré.</translation>
+<translation id="2535436634051789953">Vous pouvez passer à un autre profil Nexus pour voir les mots de passe</translation>
+<translation id="2312399718665761438">Pour corriger les fautes d'orthographe, Nexus envoie le texte que vous entrez dans des zones de texte à Nexus</translation>
+<translation id="3507835409099344374">Accéder aux paramètres de notification Nexus</translation>
+<translation id="6600016381025017075">Recherchez n'importe quoi sur cette page</translation>
+<translation id="9156965752763025780">Vos modifications seront prises en compte au prochain redémarrage de Nexus.</translation>
+<translation id="3119017564683030312">Reprenez là où vous en étiez : Nexus restaure les onglets de votre dernière session. Vous pouvez désactiver cette option dans</translation>
+<translation id="245693535809364497">Nexus requiert l'autorisation d'accéder à l'appareil photo pour créer une carte 3D de votre environnement</translation>
+<translation id="9210457680074341078">Si vous enregistrez également vos favoris dans votre compte Nexus, vous pouvez suivre les prix des produits dans Nexus et être informé lors d'une baisse de prix</translation>
+<translation id="6676384891291319759">Accéder à Internet</translation>
+<translation id="1363996462118479832">Nexus OS ne peut pas synchroniser vos données, car une erreur s'est produite lors de la connexion.</translation>
+<translation id="5324448127277983819">Nexus vous donne plus de contrôle sur les annonces que vous voyez et limite ce que les sites peuvent apprendre sur vous lorsqu'ils vous présentent des annonces personnalisées</translation>
+<translation id="1257247502847251159">Nexus requiert l'autorisation d'accéder au microphone pour ce site</translation>
+<translation id="6712881677154121168">Erreur de téléchargement : <ph name="DOWNLOAD_ERROR"/>.</translation>
+<translation id="1489465648257900784">Votre profil ne peut pas être utilisé, car il provient d'une version plus récente de Nexus.
+
+Certaines fonctionnalités seront peut-être inaccessibles. Veuillez spécifier un autre répertoire de profil ou utiliser une version plus récente de Nexus.</translation>
+<translation id="1505112054322049777">Pour bénéficier de la personnalisation et d'autres fonctionnalités, incluez Nexus dans l'activité sur le Web et dans les applications et les services Nexus associés</translation>
+<translation id="6666624454809779082">Nexus est déjà installé pour tous les utilisateurs sur votre ordinateur.</translation>
+<translation id="4020203987234748583">Accélère les sites avec le moteur V8 de Nexus, mais rend Nexus légèrement moins résistant aux attaques. Ce paramètre est activé.</translation>
+<translation id="3136039682492230890">Nexus recommande d'analyser ce fichier, car il pourrait être dangereux.</translation>
+<translation id="1547295885616600893">Nexus OS fonctionne grâce à d'autres <ph name="BEGIN_LINK_CROS_OSS"/>logiciels libres<ph name="END_LINK_CROS_OSS"/>.</translation>
+<translation id="6831043979455480757">Traduire</translation>
+<translation id="8211837073776713955">Nexus vous informera si jamais vos mots de passe sont compromis</translation>
+<translation id="684888714667046800">Impossible de se connecter à Internet. Si vous utilisez un pare-feu, assurez-vous que <ph name="PRODUCT_EXE_NAME"/> figure dans la liste verte.</translation>
+<translation id="7830723774663008396">Nexus - <ph name="PAGE_TITLE"/></translation>
+<translation id="6862030660799253820">Rechercher cette image avec la recherche d'images</translation>
+<translation id="3028928628792374067">Nexus a constaté que « <ph name="EXTENSION_NAME"/> » contient un logiciel malveillant</translation>
+<translation id="6877155553248388166">Coin inférieur droit de la zone de recherche : droite <ph name="RIGHT"/> %, bas <ph name="BOTTOM"/> %</translation>
+<translation id="6896758677409633944">Copier</translation>
+<translation id="862687584320433626">Définissez Nexus comme navigateur par défaut et épinglez-le à votre barre des tâches</translation>
+<translation id="1991562568473125499">&amp;Gérer les profils Nexus</translation>
+<translation id="6934579572334859869">Poser des questions à la recherche d'images à propos de cette image</translation>
+<translation id="6965382102122355670">OK</translation>
+<translation id="6418340404893954563">Les mots de passe faibles sont faciles à deviner. Vous pouvez laisser Nexus <ph name="BEGIN_LINK"/>créer et mémoriser des mots de passe forts pour vous<ph name="END_LINK"/>.</translation>
+<translation id="3453763134178591239">Conditions d'utilisation de Nexus OS</translation>
+<translation id="3335606533094650083">Nexus a besoin de votre autorisation pour accéder à votre micro pour ce site</translation>
+<translation id="6643520655691573653">Entrez votre phrase de passe pour utiliser et enregistrer les données Nexus dans votre compte, <ph name="ACCOUNT_EMAIL"/></translation>
+<translation id="7011190694940573312">L'installation a échoué, car cette version du système d'exploitation n'est pas prise en charge.</translation>
+<translation id="7024536598735240744">Erreur de décompression : <ph name="UNPACK_ERROR"/>.</translation>
+<translation id="7025789849649390912">L'installation s'est arrêtée.</translation>
+<translation id="280382502853897110">Personnalisez Nexus</translation>
+<translation id="7047386856539490735">Ces résultats sont-ils utiles?</translation>
+<translation id="1705567146636171298">Mettre à jour Nexus</translation>
+<translation id="5499063270485366718">Si une image n'est pas accompagnée d'une description utile, Nexus essaiera de vous en proposer une. Pour créer des descriptions, les images sont envoyées à Nexus.</translation>
+<translation id="5966368554860795750">Personnaliser Nexus for Testing</translation>
+<translation id="375314543563594498">Retirer <ph name="EXTENSION_NAME"/> de Nexus</translation>
+<translation id="2332301637111071062">Votre organisation supprime les données Nexus lorsqu'elles ne sont pas utilisées pour <ph name="TIMEOUT_DURATION"/>. Cela peut inclure l'historique, le remplissage automatique et les téléchargements.</translation>
+<translation id="1008530050039597147">Nexus requiert l'autorisation d'accéder à l'appareil photo pour ce site</translation>
+<translation id="1197672524850678392">Impossible de lancer Nexus. Réessayez.</translation>
+<translation id="3405035915691517126">Nexus ne peut pas vérifier vos mots de passe. Réessayez dans 24 heures.</translation>
+<translation id="3625983487600668413">Gardez Nexus dans le Dock pour y accéder rapidement à tout moment</translation>
+<translation id="5755581833598928580">Utilisez Nexus chaque fois que vous cliquez sur des liens dans des messages, des documents et d'autres applications</translation>
+<translation id="5516268345616100622">Gestionnaire de tâches – Nexus</translation>
+<translation id="713191641919118540">Vos centres d'intérêt estimés par Nexus</translation>
+<translation id="7274695763216404502">La fonctionnalité a été épinglée! Utilisez à nouveau la recherche d'images à partir de la barre d'outils</translation>
+<translation id="7288567540154601580">Onglets et extensions</translation>
+<translation id="5468053269968670855">{NUM_EXTENSIONS,plural, =1{Nexus vous recommande de la retirer}one{Nexus vous recommande de la retirer}other{Nexus vous recommande de les retirer}}</translation>
+<translation id="9068395155143628872">La mesure des annonces permet aux sites que vous visitez de demander des informations à Nexus afin de leur permettre de mesurer la performance de leurs annonces. La mesure des annonces limite les suivis intersites en transférant le moins d'informations possible entre les sites.</translation>
+<translation id="1864557848095568223">Mise à jour de Nexus en cours…</translation>
+<translation id="3403365884036456766">Votre fichier de préférences est corrompu ou invalide.
+
+Nexus est incapable de récupérer vos paramètres.</translation>
+<translation id="7339898014177206373">Nouvelle fenêtre</translation>
+<translation id="3511996232906761537">Votre contenu Web, vos favoris et toutes vos données de Nexus sont conservés ici.</translation>
+<translation id="1754899895078387289">Seule une personne connaissant votre phrase de passe peut lire vos données chiffrées. La phrase de passe n'est ni envoyée à Nexus ni stockée par cette dernière. Si vous oubliez votre phrase de passe ou si vous souhaitez modifier ce paramètre, vous devrez <ph name="BEGIN_LINK"/>supprimer les données Nexus de votre compte<ph name="END_LINK"/>.</translation>
+<translation id="5380963249588143069">Votre administrateur système a configuré Nexus de manière à ouvrir <ph name="ALTERNATIVE_BROWSER_NAME"/> pour accéder à <ph name="TARGET_URL_HOSTNAME"/>.</translation>
+<translation id="7352651011704765696">Une erreur s’est produite</translation>
+<translation id="2865744782251083875">Vous n'avez pas effectué de visite récemment. Nexus a retiré <ph name="PERMISSION_1"/> et <ph name="PERMISSION_2"/>.</translation>
+<translation id="4631170166710903214">Cette extension n'est plus prise en charge. Nexus vous recommande de la retirer.</translation>
+<translation id="7951152294775418909">Reprenez là où vous en étiez : Nexus restaure vos onglets à chaque redémarrage. Pour désactiver cette option, accédez à</translation>
+<translation id="3191314862567596053">Importer des mots de passe dans Nexus</translation>
+<translation id="3943696263619956191"><ph name="PAGE_TITLE"/> - Nexus pour les concepteurs</translation>
+<translation id="7450541714075000668">Texte copié</translation>
+<translation id="2034072705932785495">Nexus a besoin de votre autorisation pour accéder à votre appareil photo pour ce site</translation>
+<translation id="7129342855140808694">Pour utiliser votre microphone, accordez l'accès à Nexus dans les <ph name="BEGIN_LINK"/>paramètres système<ph name="END_LINK"/></translation>
+<translation id="5296583608321648908">Pour recevoir les futures mises à jour de Nexus, vous devrez disposer de Windows 10 ou d'une version ultérieure. Cet ordinateur fonctionne sous Windows 7.</translation>
+<translation id="3962395975456095331">Relancer Nexus?</translation>
+<translation id="2619516027171717873">Vous ne pouvez pas installer la même version de Nexus qui est en cours d'exécution. Veuillez fermer Nexus et essayer à nouveau.</translation>
+<translation id="2731639583336131792">Vous enregistrerez et utiliserez des mots de passe et plus encore dans votre compte Nexus chaque fois que vous serez connecté à Nexus. <ph name="LEARN_MORE"/></translation>
+<translation id="5337027666828618338">Les sites fonctionneront probablement comme prévu. Vous serez déconnecté de la plupart des sites lorsque vous fermerez toutes les fenêtres Nexus, à l'exception de votre compte Nexus si vous êtes connecté à Nexus.</translation>
+<translation id="3186363903915641692">{0,plural, =1{Nexus redémarrera dans 1 minute}one{Nexus redémarrera dans # minute}other{Nexus redémarrera dans # minutes}}</translation>
+<translation id="552342471964912391">Pour protéger vos données, laissez Nexus retirer les autorisations des sites que vous n'avez pas visités récemment.</translation>
+<translation id="7583399374488819119">Programme d'installation de <ph name="COMPANY_NAME"/></translation>
+<translation id="3293668930608086049">Nexus utilise votre caméra et votre microphone</translation>
+<translation id="2827121003398607864">Nexus vient de s'améliorer</translation>
+<translation id="3071313329776323836">Vous avez maintenant accès à davantage de fonctionnalités dans Nexus</translation>
+<translation id="7649070708921625228">Aide</translation>
+<translation id="7658239707568436148">Annuler</translation>
+<translation id="3343095737966473035">Nexus n'est pas votre navigateur par défaut</translation>
+<translation id="5477319665405831211">Synchroniser et personnaliser Nexus sur vos appareils</translation>
+<translation id="2339273275658335597">mise à jour de Nexus</translation>
+<translation id="7716950018788545737">Tâches terminées.</translation>
+<translation id="77283119132245232">Fournit des services de traçage système pour <ph name="BROWSER_NAME"/>. Si ce service est désactivé, les traces de la performance créées par le navigateur ne comprendront pas les événements à l'échelle du système tels que les événements ReadyThread et de changement de contexte.</translation>
+<translation id="4784414698887946907">Cette action entraînera la suppression de vos données de navigation sur cet appareil. Pour récupérer vos données plus tard, connectez-vous à Nexus en tant que <ph name="USER_EMAIL"/>.</translation>
+<translation id="7747138024166251722">Le programme d'installation n'a pas pu créer de répertoire temporaire. Vérifiez que le disque a suffisamment d'espace libre et que vous disposez des autorisations nécessaires pour installer le logiciel.</translation>
+<translation id="1978509466033734608">Rendre Nexus plus rapide</translation>
+<translation id="6236814935154483927"><ph name="PAGE_TITLE"/> - Nexus Canary</translation>
+<translation id="2684504034454188774">Faites en sorte qu'il soit plus difficile pour les personnes ayant accès à votre trafic Internet de voir les sites que vous visitez. Nexus utilise une connexion sécurisée pour rechercher l'adresse IP d'un site dans le DNS (système de noms de domaine).</translation>
+<translation id="7810005234485217901">Vous pouvez épingler la recherche d'images pour un accès facile</translation>
+<translation id="1652855885539187849">Il existe déjà un profil Nexus associé à ce compte sur cet appareil</translation>
+<translation id="7845233973568007926">Merci pour l'installation. Vous devez redémarrer votre ordinateur avant d'utiliser <ph name="BUNDLE_NAME"/>.</translation>
+<translation id="7963515534397191222">Nexus n'a pas pu installer la nouvelle version, vous ne pouvez donc pas profiter des nouvelles fonctionnalités ni des correctifs relatifs à la sécurité.</translation>
+<translation id="7872446069773932638">Téléchargement en cours… <ph name="SECONDS"/> seconde(s) restante(s)</translation>
+<translation id="5545136190679883344">Si vous avez oublié votre phrase de passe ou si vous souhaitez modifier ce paramètre, <ph name="BEGIN_LINK"/>supprimez les données Nexus de votre compte<ph name="END_LINK"/></translation>
+<translation id="7877212753140190672">Poser des questions à propos de cette image</translation>
+<translation id="5687542525349822727">Définir Nexus comme navigateur par défaut</translation>
+<translation id="6396151137840491551">Nexus met automatiquement à niveau les connexions non sécurisées vers HTTPS lorsque cela est possible</translation>
+<translation id="2925193881330501265">Vous étiez connecté à Nexus en tant que <ph name="USER_EMAIL_ADDRESS"/>. Veuillez utiliser le même compte pour vous reconnecter.</translation>
+<translation id="3206789667839392126">Téléchargez Nexus sur votre téléphone pour ajouter une couche de protection supplémentaire lorsque vous êtes en déplacement</translation>
+<translation id="6915252145142862992">Cette installation de Nexus est secondaire. Celui-ci ne peut donc pas servir de navigateur par défaut.</translation>
+<translation id="8004582292198964060">Navigateur</translation>
+<translation id="8010081455002666927">Détection automatique</translation>
+<translation id="7685904775439037072">Lorsque Nexus y aura accès, les sites Web pourront vous demander l'accès.</translation>
+<translation id="3230755314472063687">Épinglez Nexus à votre barre des tâches pour y accéder rapidement à tout moment</translation>
+<translation id="80471789339884597">Merci pour l'installation. Vous devez redémarrer tous vos navigateurs avant d'utiliser <ph name="BUNDLE_NAME"/>.</translation>
+<translation id="8054112667659782652">Toujours afficher le raccourci de la recherche d'images</translation>
+<translation id="6175141682081019059">Désactiver l'exécution de Nexus en arrière-plan pour les applis</translation>
+<translation id="80790299200510644">Recherche d'images</translation>
+<translation id="8086881907087796310">L'installation a échoué, car votre ordinateur ne répond pas aux exigences minimales concernant le matériel.</translation>
+<translation id="8263061319795838019"><ph name="PAGE_TITLE"/> – Nexus for Testing</translation>
+<translation id="2061155704815580583">Nexus requiert l'autorisation de localisation pour ce site</translation>
+<translation id="8118331347066725040">Envoyer des commentaires sur la recherche avec Lentille</translation>
+<translation id="5334309298019785904">Nexus OS n'a pas pu synchroniser vos données, car la synchronisation n'est pas offerte pour votre domaine.</translation>
+<translation id="813913629614996137">Initialisation en cours...</translation>
+<translation id="9067428552314418522">Nexus a bloqué ce fichier, car il est dangereux.</translation>
+<translation id="8177472873527554730">Impossible de trouver du contenu sur la page</translation>
+<translation id="6219250889396046657">Entrez votre phrase de passe pour utiliser et enregistrer les données Nexus dans votre compte, <ph name="USER_EMAIL"/></translation>
+<translation id="8221491193165283816">Vous bloquez habituellement les notifications. Pour autoriser ce site à vous envoyer des notifications, cliquez ici.</translation>
+<translation id="8377926237617998195">Pour utiliser votre caméra, accordez l'accès à Nexus dans les <ph name="BEGIN_LINK"/>paramètres système<ph name="END_LINK"/></translation>
+<translation id="1755067029031059271">Nexus ne peut pas vérifier l'origine de cette extension et elle peut s'avérer dangereuse. Retirez-la de Nexus afin qu'elle ne puisse plus voir ni modifier vos données sur les sites que vous visitez, y compris vos renseignements personnels.</translation>
+<translation id="8207657266087451193">Si une image n'est pas accompagnée d'une description utile, Nexus essaiera de vous en proposer une. Pour créer des descriptions, les images sont envoyées à Nexus. Vous pouvez désactiver cette option dans les paramètres à tout moment.</translation>
+<translation id="7792526144795244436">Vous connecter à Nexus avec un nouveau profil?</translation>
+<translation id="976541154724186511"><ph name="BEGIN_LINK"/>Nexus vous avertit<ph name="END_LINK"/> au sujet des sites et des téléchargements dangereux</translation>
+<translation id="8060549744348950090">Vous n'avez pas effectué de visite récemment. Nexus a retiré <ph name="PERMISSION"/>.</translation>
+<translation id="8313851650939857356">Erreur de démarrage : <ph name="STARTUP_ERROR"/>.</translation>
+<translation id="6098476632210317894">Votre organisation ferme Nexus lorsqu'il n'est pas utilisé pendant <ph name="TIMEOUT_DURATION"/>.</translation>
+<translation id="8321888067342493336">Enregistrer en tant qu'image</translation>
+<translation id="3360368475735266712">Se connecter pour synchroniser et personnaliser Nexus sur vos appareils</translation>
+<translation id="2591326305549412656"><ph name="USER_EMAIL_ADDRESS"/> utilisait précédemment Nexus</translation>
+<translation id="5592122595094519401">Mettez à jour Nexus pour continuer à utiliser les données Nexus dans votre compte Nexus, <ph name="ACCOUNT_EMAIL"/></translation>
+<translation id="2569754604093464025">Pour recevoir les futures mises à jour de Nexus, vous devrez disposer de Windows 10 ou d'une version ultérieure. Cet ordinateur fonctionne sous Windows 8.</translation>
+<translation id="8362914115861174987">Langue cible</translation>
+<translation id="7296197595428914424">Pour obtenir vos mots de passe et bien plus encore sur tous vos appareils, connectez-vous à Nexus. Ce mot de passe sera enregistré dans votre compte Nexus après votre connexion.</translation>
+<translation id="9098234372282930719">Vous devrez ensuite redémarrer Nexus.</translation>
+<translation id="1327729221471951979">Nexus vous recommande de la retirer. <ph name="BEGIN_LINK"/>En savoir plus sur les extensions prises en charge<ph name="END_LINK"/></translation>
+<translation id="8577108764439626300">Cette extension n'a pas été publiée par son développeur et pourrait être dangereuse. Retirez-la de Nexus afin qu'elle ne puisse plus voir ni modifier vos données sur les sites que vous visitez, y compris vos renseignements personnels.</translation>
+<translation id="4234753748520037091">Nexus doit confirmer votre identité avant que certaines données puissent être enregistrées dans votre compte Nexus et utilisées sur tous vos appareils. Si vous vous déconnectez maintenant, ces données seront supprimées.</translation>
+<translation id="5337999052834672687">{0,plural, =1{Redémarrer Nexus d'ici un jour}one{Redémarrer Nexus d'ici # jour}other{Redémarrer Nexus d'ici # jours}}</translation>
+<translation id="8438543370129609977">Lorsque vous utilisez la recherche d'images, le titre de la page, l'URL et le contenu, y compris les fichiers PDF, sont envoyés au serveur. <ph name="LEARN_MORE"/></translation>
+<translation id="6914496861676471566">L'archive du programme d'installation est corrompue ou n'est pas valide. Veuillez télécharger Nexus à nouveau.</translation>
+<translation id="4378573854226202617">Nexus requiert Windows 10 ou une version ultérieure.</translation>
+<translation id="6431861494713261006">Facultatif : aidez-nous à améliorer les fonctionnalités ainsi que les performances de Nexus OS en envoyant automatiquement les données de diagnostic et d'utilisation à Nexus.</translation>
+<translation id="8691137711639873980">Pour utiliser et enregistrer des données Nexus dans votre compte Nexus, confirmez qu'il s'agit bien de vous</translation>
+<translation id="3251012123600267109">Affiche les invites de connexion dans Nexus</translation>
+<translation id="2097604701283463988">Nexus n'est pas à jour</translation>
+<translation id="871233388178581868">Nexus peut vérifier vos mots de passe lorsque vous les enregistrez</translation>
+<translation id="8555465886620020932">Erreur liée au service : <ph name="SERVICE_ERROR"/>.</translation>
+<translation id="8556420416730706394">Vous pouvez épingler la recherche d'images pour un accès facile; cliquez sur le bouton Épingler en haut du panneau latéral</translation>
+<translation id="856656450041460113">Rechercher la liste de langues</translation>
+<translation id="227028348235968071">Nexus peut vérifier vos mots de passe lorsque vous vous connectez avec votre compte Nexus</translation>
+<translation id="839677568225616901">Plusieurs organisations gèrent Nexus</translation>
+<translation id="8121009781989288430">© <ph name="YEAR"/> Les auteurs de Nexus. Tous droits réservés.</translation>
+<translation id="8601359445272098721">Nouveau! Vous pouvez traduire à la fois le texte et les images sur votre écran en sélectionnant le bouton « Traduire l'écran »</translation>
+<translation id="3052349005266761501">Lancement de Nexus en cours…</translation>
+<translation id="5128665650717824082">Nexus for Testing ne peut pas être défini comme votre navigateur par défaut.</translation>
+<translation id="2433912322225810055">Elle définit également quelle page s'affiche lorsque vous démarrez Nexus ou que vous effectuez une recherche dans l'omnibox.</translation>
+<translation id="4100716194836114130">Voici votre Nexus</translation>
+<translation id="8712637175834984815">OK</translation>
+<translation id="1419543648228375718">Se connecter à Nexus?</translation>
+<translation id="8747073452963259673">Coin inférieur gauche de la zone de recherche : gauche <ph name="LEFT"/> %, bas <ph name="BOTTOM"/> %</translation>
+<translation id="878572486461146056">Erreur d'installation : votre administrateur réseau a appliqué une politique de groupe qui empêche l'installation : <ph name="INSTALL_ERROR"/></translation>
+<translation id="4831743161813926460">Nexus a besoin de votre autorisation pour accéder à votre appareil photo et à votre micro pour ce site</translation>
+<translation id="64216977793816291">Vous connecter à Nexus?</translation>
+<translation id="7447364954121496869">Faire de Nexus le navigateur par défaut et l'épingler à la barre des tâches</translation>
+<translation id="8826492472752484139">Cliquez sur « Gestionnaire de mots de passe »</translation>
+<translation id="6933858244219479645">Système Nexus OS</translation>
+<translation id="9084132286318231275">Cette langue est utilisée pour afficher les menus, les paramètres, les alertes et d'autres textes dans Nexus</translation>
+<translation id="8862326446509486874">Vous ne disposez pas des droits requis pour faire une installation sur le système. Relancez l'installation une fois que vous serez connecté comme administrateur.</translation>
+<translation id="7289323009146924152">Ajouter un profil Nexus</translation>
+<translation id="6412037018950369131">Dans ce cas, veuillez modifier votre mot de passe enregistré dans Nexus pour qu'il corresponde à votre nouveau mot de passe.</translation>
+<translation id="1150745254876977823">Votre organisation vous demande de vous connecter à Nexus</translation>
+<translation id="8285294305439559616">Nexus essaie d'afficher les mots de passe. Pour autoriser cette action, entrez votre mot de passe Windows.</translation>
+<translation id="6389268239133412586">Impossible de mettre à jour Nexus</translation>
+<translation id="7731184591599776500">Logo de Nexus Enterprise</translation>
+<translation id="3424657754843264466">Gérer les profils Nexus</translation>
+<translation id="82609232232243542">Connexion à Nexus</translation>
+<translation id="7055223246119657449">Nexus a bloqué ce téléchargement, car le fichier d'archive comprend d'autres fichiers qui pourraient cacher des logiciels malveillants</translation>
+<translation id="9049928023195059068">Vous connecter à Nexus lorsque vous vous connectez à d'autres services Nexus</translation>
+<translation id="4561046754724442504">Nexus a été automatiquement fermé</translation>
+<translation id="5173820533850252773">Nexus n'est pas à jour</translation>
+<translation id="310518206836658214">{0,plural, =1{Nexus redémarrera dans une heure}one{Nexus redémarrera dans # heure}other{Nexus redémarrera dans # heures}}</translation>
+<translation id="9106236359747881194">Sélectionner le texte à rechercher</translation>
+<translation id="5190991181158966940">Pour recevoir les futures mises à jour de Nexus, vous devrez disposer de Windows 10 ou d'une version ultérieure. Cet ordinateur fonctionne sous Windows 8.1.</translation>
+<translation id="7863882214613921971">Ouvrir le lien dans un nouvel ongle&amp;t Nexus</translation>
+<translation id="911206726377975832">Supprimer également vos données de navigation?</translation>
+<translation id="9134482777260927479">Aide aux devoirs</translation>
+<translation id="9148058034647219655">Quitter</translation>
+<translation id="2792073155252170448">Reprenez là où vous en étiez : Nexus peut restaurer vos onglets à chaque redémarrage. Pour activer cette option, accédez à</translation>
+<translation id="2444257125841652328">Votre administrateur système a configuré Nexus pour ouvrir un autre navigateur afin d'accéder à <ph name="TARGET_URL_HOSTNAME"/>.</translation>
+<translation id="7902365066753170041">Relancer &amp;Nexus pour le mettre à jour</translation>
+<translation id="3350544518197210895">Nexus (mDNS-In)</translation>
+<translation id="49909619875329637">Accédez à plus d'options lorsque vous êtes connecté à Nexus</translation>
+<translation id="296137235951584143">Personnalisez Nexus</translation>
+<translation id="7977787072794666032">Il se peut que Nexus ne fonctionne pas correctement, car il n'est plus compatible avec Windows XP ni Windows Vista</translation>
+<translation id="945522503751344254">Envoyer un commentaire à Nexus</translation>
+<translation id="4484434718272972655">Qui utilise Nexus?</translation>
+<translation id="7173394303099002355">Profiter de la sécurité la plus robuste de Nexus</translation>
+<translation id="983803489796659991">L'installation a échoué, car le serveur de mise à jour ne dispose pas de données de hachage pour cette application.</translation>
+<translation id="8435446479956716379">Utiliser Nexus sans compte</translation>
+<translation id="8992261409816268381">Les auteurs de Nexus</translation>
+<translation id="989970834842471429">Sélectionnez n'importe quel texte ou image pour effectuer une recherche avec la recherche d'images</translation>
+<translation id="3146636448190445245">Pour utiliser votre position, accordez l'accès à Nexus dans les <ph name="BEGIN_LINK"/>paramètres système<ph name="END_LINK"/></translation>
+<translation id="137466361146087520">Google Chrome bêta</translation>
+<translation id="7535429826459677826">Google Chrome Dev</translation>
+<translation id="1743665722170667430">Les extensions, applications et thèmes provenant de sources inconnues peuvent endommager votre appareil. Nexus recommande de les installer uniquement depuis le <ph name="IDS_EXTENSION_WEB_STORE_TITLE"/></translation>
+<translation id="6184592406110188164">Cette extension enfreint la politique de la boutique en ligne et pourrait être dangereuse. Supprimez-la de Nexus afin qu'elle ne puisse plus voir et modifier vos données sur les sites que vous visitez, y compris vos renseignements personnels.</translation>
+<translation id="1299765473362724475">Avertissement : Nexus ne peut pas empêcher les extensions d'enregistrer votre historique de navigation. Pour désactiver cette extension en mode navigation privée, désélectionnez-la.</translation>
+<translation id="1448049584457347995">Afin de rendre Nexus plus sûr, nous avons désactivé certaines extensions qui ne sont pas répertoriées dans la boutique <ph name="IDS_EXTENSION_WEB_STORE_TITLE"/> et qui ont pu être ajoutées à votre insu.</translation>
+<translation id="8848045066928358658">Afin de rendre Nexus plus sûr, nous avons désactivé l'extension suivante qui n'est pas répertoriée dans <ph name="IDS_EXTENSION_WEB_STORE_TITLE"/> et a pu être ajoutée à votre insu.</translation>
+<translation id="4624945300945265642">Ouvrir le lien dans une fenêtre de navi&amp;gation privée Nexus</translation>
+<translation id="6554952862405000915">Ouvrir le lien dans une fenêtre de navi&amp;gation privée Nexus</translation>
+<translation id="8274659559228306809">{COUNT,plural, =0{Une nouvelle mise à jour de Nexus est proposée et sera appliquée dès que vous le relancerez.}=1{Une nouvelle mise à jour de Nexus est proposée et sera appliquée dès que vous le relancerez. Votre fenêtre de navigation privée ne sera pas rouverte.}one{Une nouvelle mise à jour de Nexus est proposée et sera appliquée dès que vous le relancerez. Votre fenêtre de navigation privée ne sera pas rouverte.}other{Une nouvelle mise à jour de Nexus est proposée et sera appliquée dès que vous le relancerez. Vos # fenêtres de navigation privée ne seront pas rouvertes.}}</translation>
+<translation id="3829358914761176693">{COUNT,plural, =0{Votre administrateur vous recommande de relancer Nexus pour appliquer cette mise à jour}=1{Votre administrateur vous recommande de relancer Nexus pour appliquer cette mise à jour. Votre fenêtre de navigation privée ne sera pas rouverte.}one{Votre administrateur vous recommande de relancer Nexus pour appliquer cette mise à jour. Votre fenêtre de navigation privée ne sera pas rouverte.}other{Votre administrateur vous recommande de relancer Nexus pour appliquer cette mise à jour. Vos # fenêtres de navigation privée ne seront pas rouvertes.}}</translation>
+<translation id="552349673358711446">{COUNT,plural, =0{Votre administrateur exige que vous relanciez Nexus pour appliquer une mise à jour}=1{Votre administrateur exige que vous relanciez Nexus pour appliquer une mise à jour. Votre fenêtre de navigation privée ne sera pas rouverte.}one{Votre administrateur exige que vous relanciez Nexus pour appliquer une mise à jour. Votre fenêtre de navigation privée ne sera pas rouverte.}other{Votre administrateur exige que vous relanciez Nexus pour appliquer une mise à jour. Vos # fenêtres de navigation privée ne seront pas rouvertes.}}</translation>
+<translation id="5749154344207139683">Aidez-nous à améliorer le mode de navigation privée en répondant à ce court sondage.</translation>
+<translation id="79269250264141507">Lorsque vous tapez dans la barre d'adresse ou la zone de recherche, Nexus envoie ce que vous saisissez à votre moteur de recherche par défaut pour obtenir de meilleures suggestions. Cette fonctionnalité est désactivée en mode de navigation privée.</translation>
+<translation id="2589970573128789862">Navigation privée Nexus</translation>
+<translation id="5994282802285556682">Lorsque vous naviguerez en mode privé, Nexus vous avertira avant de charger un site via une connexion non sécurisée</translation>
+</translationbundle>
