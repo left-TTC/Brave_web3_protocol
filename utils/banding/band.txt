@@ -1,0 +1,5 @@
+/home/f/myproject/Brave/src/brave/app/theme/brave/BRANDING copied to /home/f/myproject/Brave/src/chrome/app/theme/brave/BRANDING
+/home/f/myproject/Brave/src/brave/app/theme/brave/BRANDING.beta copied to /home/f/myproject/Brave/src/chrome/app/theme/brave/BRANDING.beta
+/home/f/myproject/Brave/src/brave/app/theme/brave/BRANDING.dev copied to /home/f/myproject/Brave/src/chrome/app/theme/brave/BRANDING.dev
+/home/f/myproject/Brave/src/brave/app/theme/brave/BRANDING.development copied to /home/f/myproject/Brave/src/chrome/app/theme/brave/BRANDING.development
+/home/f/myproject/Brave/src/brave/app/theme/brave/BRANDING.nightly copied to /home/f/myproject/Brave/src/chrome/app/theme/brave/BRANDING.nightly
