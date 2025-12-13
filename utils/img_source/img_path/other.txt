@@ -1,0 +1,3 @@
+D:\Project\Brave_web3_protocol\utils\img_source\img\src\brave\app\theme\default_100_percent\brave\brave_search_conversion_button_brave_search_icon.png
+D:\Project\Brave_web3_protocol\utils\img_source\img\src\brave\app\theme\default_100_percent\brave\brave_search_logo_in_search_promotion.png
+D:\Project\Brave_web3_protocol\utils\img_source\img\src\brave\app\theme\default_100_percent\brave\playlist_default_thumbnail.png
